@@ -42,4 +42,20 @@ The Minimum Viable Product that will be produced following the second two-week s
 
 If the value hypothesis has been proven then the targeted engagement tool could be built upon by combining other types of engagement, such as automated text messages (cheap), letters (a bit pricey), or calls from advisors (very expensive!). This is the 'killer function' of the tool. It can combine multiple forms of contact into an engagement to produce better results. Approaching potential customers multiple times and from multiple directions can be very effective at converting potential interest into an actual sale.
 
+### Tech stack
+
+* Webapp hosted on Heroku (or paid service) which has the email dashboard
+* Postgres database hosted on Heroku/AWS (encrypted)
+* CSV upload library which sends data to database
+* Email server hosted on Heroku (or paid service) which scans the database every day to see if it needs to send emails
+* Mailgun (or other) API to send emails
+
+### Problems
+
+* The emails will not be coming from Wales Co-op so they will possibly be marked as spam quite a lot. The server we send them from might not have a high enough reputation for the emails to get through.
+* Formatting the emails in a way that looks professional (for example with image footers) might be very difficult and would need to be checked for every campaign. Presentation is very important and FAC will probably only be able to send basic text emails.
+* The app in its current for would require setting up three separate services which may not be able to talk to each other that easily.
+* Founders and Coders will not be able to complete the task in a way which allows Wales Co-op to prove or disprove the value hypothesis. If almost none of the emails are opened, why might that be? Because they got junked? Ignored? What if the emails had been sent from Wales Co-op's domain? Or formatted better? If it fails, we will never know why.
+* Wales Co-op is in possession of the means of sending well-formatted emails from their own domain via MS Dynamics/ Outook. These tools are very well suited to this type of task.
+
 [Github reference guide from DWLY](https://github.com/dwyl/github-reference)
