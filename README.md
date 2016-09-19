@@ -53,6 +53,10 @@ If the value hypothesis has been proven then the targeted engagement tool could 
 ### Problems
 
 * The emails will not be coming from Wales Co-op so they will possibly be marked as spam quite a lot. The server we send them from might not have a high enough reputation for the emails to get through.
+* It is not possible to run an email campaign to small businesses from cloud servers. These IPs (the data centres) serve large numbers of companies, many of which are spammers or have a low reputation. As a result most email providers, especially providors of enterprise email services, will block emails from these IPs. The options for dealing with this are all things that we have not dealt with:
+ * Option 1: Set up a dedicated email server in FAC or another location and build up its reputation over time.
+ * Option 2: Use Wales Co-op's servers.
+ * Option 3: Buy some dedicated server space in a place that guarantees high reputation.
 * Formatting the emails in a way that looks professional (for example with image footers) might be very difficult and would need to be checked for every campaign. Presentation is very important and FAC will probably only be able to send basic text emails.
 * The app in its current for would require setting up three separate services which may not be able to talk to each other that easily.
 * Founders and Coders will not be able to complete the task in a way which allows Wales Co-op to prove or disprove the value hypothesis. If almost none of the emails are opened, why might that be? Because they got junked? Ignored? What if the emails had been sent from Wales Co-op's domain? Or formatted better? If it fails, we will never know why.
