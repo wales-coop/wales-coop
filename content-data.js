@@ -2,6 +2,7 @@ const contentData = [
   {
     title: 'The Mission',
     subtitle: 'The objective of this section is to help you write a succinct mission statement that describes your social business\'s purpose.',
+    topic: 'Before you start a social business',
     URL: 'https://businesswales.gov.wales/socialbusinesswales/mission',
     resources: [
       {
