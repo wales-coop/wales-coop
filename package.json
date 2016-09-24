@@ -1,0 +1,35 @@
+{
+  "name": "wales-coop-engagement-tool",
+  "version": "1.0.0",
+  "description": "Tool to help Wales Co-op deliver content to small businesses",
+  "main": "server/index.js",
+  "scripts": {
+    "lint": "eslint ./server/*.js",
+    "precommit": "npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wales-coop/wales-coop.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wales-coop/wales-coop/issues"
+  },
+  "homepage": "https://github.com/wales-coop/wales-coop#readme",
+  "dependencies": {
+    "hapi": "^15.0.3",
+    "inert": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb": "^11.2.0",
+    "eslint-config-airbnb-base": "^7.2.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "husky": "^0.11.8"
+  }
+}
