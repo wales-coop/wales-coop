@@ -8,9 +8,22 @@
   </head>
   <body>
     <div id="canvas-holder" style="width:40%">
-        <canvas id="chart-area" />
+      <canvas id="chart-area" />
     </div>
     <script>
+
+(function(){
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  } else {
+    console.log('ServiceWorker not supported') 
+  }
+})();
 
     </script>
   </body>
