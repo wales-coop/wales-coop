@@ -22,7 +22,6 @@
   "dependencies": {
     "chartjs-color": "^2.0.0",
     "hapi": "^15.0.3",
-    "hapi-require-https": "^2.0.9",
     "inert": "^4.0.2"
   },
   "devDependencies": {
