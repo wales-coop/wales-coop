@@ -1,4 +1,5 @@
 var gulp = require('gulp'); // needed
+var sass = require('gulp-sass'); // needed for build task
 var concat = require('gulp-concat'); // needed for build task
 var connect = require('gulp-connect'); // needed for server task
 var insert = require('gulp-insert'); // needed for build task
@@ -31,6 +32,10 @@ gulp.task('dev', ['server', 'default']);
 gulp.task('default', ['build', 'watch']);
 
 function buildTask() {
+
+  gulp.src(srcDir + 'sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest(outDir + 'css/'));
 
   var nonBundled = browserify('./src/chart.js', { standalone: 'Chart' })
     .plugin(collapse)
