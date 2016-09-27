@@ -68,6 +68,11 @@
           window.myDoughnut = new Chart(ctx, config);
       };
 
+      $('#chart-area').click(function(evt) {
+          var activePoint = window.myDoughnut.getElementsAtEvent(evt)[0]._index;
+          console.log(activePoint);
+      });
+
       $('#addData').click(function() {
           if (config.data.datasets.length > 0) {
               config.data.labels.push('data #' + config.data.labels.length);
