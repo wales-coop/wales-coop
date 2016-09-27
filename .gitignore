@@ -37,7 +37,7 @@ jspm_packages
 .node_repl_history
 
 # Chart.js dist folder built by gulp
-public/Chart.min.js
+public/js/Chart.min.js
 
 #tls key and cert
 key.pem

@@ -1,10 +1,10 @@
-self.importScripts('cache-polyfill.js');
+self.importScripts('js/cache-polyfill.js');
 
 const filesToCache = [
   '/',
-  'index.html',
-  'Chart.min.js',
-  'offline.html',
+  '/js/*.js',
+  '/css/*.css',
+  '/*.html',
 ];
 
 const staticCacheName = 'pages-cache-v1';

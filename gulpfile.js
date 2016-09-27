@@ -12,7 +12,7 @@ var collapse = require('bundle-collapser/plugin'); // needed for build task
 var packageJSON = require('./package.json');
 
 var srcDir = './src/';
-var outDir = './public/';
+var outDir = './public/js/';
 
 var header = "/*!\n" +
   " * Chart.js\n" +
