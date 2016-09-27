@@ -17,7 +17,7 @@ var outDir = './public/';
 var header = "/*!\n" +
   " * Chart.js\n" +
   " * http://chartjs.org/\n" +
-  " * Version: {{ version }}\n" +
+  " * Version: 2.3.0\n" +
   " *\n" +
   " * Copyright 2016 Nick Downie\n" +
   " * Released under the MIT license\n" +
@@ -30,11 +30,6 @@ gulp.task('server', serverTask);
 gulp.task('dev', ['server', 'default']);
 gulp.task('default', ['build', 'watch']);
 
-/**
- * Generates the bower.json manifest file which will be pushed along release tags.
- * Specs: https://github.com/bower/spec/blob/master/json.md
- */
-
 function buildTask() {
 
   var nonBundled = browserify('./src/chart.js', { standalone: 'Chart' })
@@ -43,7 +38,6 @@ function buildTask() {
     .pipe(source('Chart.js'))
     .pipe(streamify(uglify()))
     .pipe(insert.prepend(header))
-    .pipe(streamify(replace('{{ version }}', packageJSON.version)))
     .pipe(streamify(concat('Chart.min.js')))
     .pipe(gulp.dest(outDir));
 
