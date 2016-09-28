@@ -93,7 +93,10 @@
         </div>
       </div>
     </div>
+    <script src="./js/content-data.js" charset="utf-8"></script>
     <script>
+    console.log(topics);
+    console.log(questions);
       var config = {
           type: 'doughnut',
           data: {
@@ -108,13 +111,7 @@
                       "#4D5360",
                   ],
               }],
-              labels: [
-                "Before you start a social business",
-                "Starting a Social Enterprise",
-                "Running a Social Business",
-                "Growing A Social Business",
-                "Case Studies"
-              ]
+              labels: topics
           },
           options: {
               responsive: true,
