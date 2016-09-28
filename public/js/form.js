@@ -1,4 +1,13 @@
+var questionCount = 0;
+
+function incrementQuestionsThisSession() {
+    questionCount += 1;
+}
+
 $('.question-button').click(function(event) {
+  var answer = event.target.id === 'question-button-yes'? true : false;
+  docCookies.setItem("question" + questionCount, answer);
+  incrementQuestionsThisSession();
   $.each($('.question-title'), function(index, question){
     if ($(question).is(':visible')) {
       $(question).toggle('slide', { direction: 'up' }, 600, function () {
