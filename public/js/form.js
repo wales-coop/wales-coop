@@ -1,23 +1,36 @@
-var questionCount = 0;
+(function() {
 
-function incrementQuestionsThisSession() {
+function returnQuestionCount() {
+  var completedQuestions = docCookies.keys();
+  return completedQuestions.length;
+}
+
+var questionCount = returnQuestionCount() > 0 ? returnQuestionCount() : 0;
+
+function incrementSessionQuestionCount() {
     questionCount += 1;
+}
+
+function setCookie(answer, questionNumber) {
+  docCookies.setItem("question" + questionNumber, answer);
+}
+
+function updateDoughnut(percentage) {
+  config.data.labels.push('data #' + config.data.labels.length);
+  $.each(config.data.datasets, function(index, dataset) {
+      dataset.data.push(percentage);
+      dataset.backgroundColor.push();
+  });
+  window.myDoughnut.update();
 }
 
 $('.question-button').click(function(event) {
 
-    config.data.labels.push('data #' + config.data.labels.length);
-
-    $.each(config.data.datasets, function(index, dataset) {
-        dataset.data.push(20);
-        dataset.backgroundColor.push();
-    });
-
-    window.myDoughnut.update();
-
   var answer = event.target.id === 'question-button-yes'? true : false;
-  docCookies.setItem("question" + questionCount, answer);
-  incrementQuestionsThisSession();
+
+  updateDoughnut(20);
+  setCookie(answer, questionCount);
+
   $.each($('.question-title'), function(index, question){
     if ($(question).is(':visible')) {
       $(question).toggle('slide', { direction: 'up' }, 600, function () {
@@ -57,5 +70,7 @@ $('.question-button').click(function(event) {
       }
     }
   });
+  incrementSessionQuestionCount();
   event.preventDefault();
 });
+})()
