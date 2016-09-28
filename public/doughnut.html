@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Wales Co-op Engagement Tool</title>
-    <script src="./Chart.min.js"></script>
+    <script src="./js/Chart.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <style>
     canvas {
@@ -24,7 +24,7 @@
 
   <body>
     <header>
-      Header
+      <button id="addData">Add Data</button>
     </header>
     <div id="canvas-holder">
         <canvas id="chart-area" />
@@ -35,7 +35,7 @@
           data: {
               datasets: [
                 {
-                  data: [20, 20, 20, 20, 20],
+                  data: [],
                   backgroundColor: [
                       "#F7464A",
                       "#46BFBD",
@@ -67,6 +67,24 @@
           var ctx = document.getElementById("chart-area").getContext("2d");
           window.myDoughnut = new Chart(ctx, config);
       };
+
+      $('#chart-area').click(function(evt) {
+          var activePoint = window.myDoughnut.getElementsAtEvent(evt)[0]._index;
+          console.log(activePoint);
+      });
+
+      $('#addData').click(function() {
+          if (config.data.datasets.length > 0) {
+              config.data.labels.push('data #' + config.data.labels.length);
+
+              $.each(config.data.datasets, function(index, dataset) {
+                  dataset.data.push(20);
+                  dataset.backgroundColor.push();
+              });
+
+              window.myDoughnut.update();
+          }
+      });
     </script>
   </body>
 </html>

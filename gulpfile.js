@@ -45,7 +45,7 @@ function buildTask() {
     .pipe(streamify(uglify()))
     .pipe(insert.prepend(header))
     .pipe(streamify(concat('Chart.min.js')))
-    .pipe(gulp.dest(outDir));
+    .pipe(gulp.dest(outDirJS));
 
   return merge(nonBundled);
 
