@@ -13,7 +13,8 @@ var collapse = require('bundle-collapser/plugin'); // needed for build task
 var packageJSON = require('./package.json');
 
 var srcDir = './src/';
-var outDir = './public/';
+var outDirJS = './public/js/';
+var outDirCSS = './public/css/';
 
 var header = "/*!\n" +
   " * Chart.js\n" +
@@ -35,7 +36,7 @@ function buildTask() {
 
   gulp.src(srcDir + 'sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(outDir + 'css/'));
+    .pipe(gulp.dest(outDirCSS));
 
   var nonBundled = browserify('./src/chart.js', { standalone: 'Chart' })
     .plugin(collapse)
