@@ -2,9 +2,11 @@ self.importScripts('js/cache-polyfill.js');
 
 const filesToCache = [
   './',
-  './js/Chart.min.js',
+  './vendor/Chart.min.js',
+  './vendor/jquery-ui.min.js',
   './css/style.css',
   './index.html',
+  './doughnut.html',
   './offline.html',
 ];
 
