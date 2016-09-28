@@ -1,17 +1,13 @@
 (function() {
-  var questionForm = $('.question-form');
+  var questionForm = document.getElementsByClassName('questions')[0];
+  console.log(questionForm);
   questions.map(function(questionObject) {
-    console.log(questionObject);
+    var questionDiv = document.createElement('h2');
+    var questionText = document.createTextNode(questionObject.question);
+    questionDiv.appendChild(questionText);
+    questionDiv.classList.add('question-title');
+    questionDiv.classList.add('question-hidden');
+    questionDiv.id = (questionObject.question);
+    questionForm.appendChild(questionDiv);
   })
-  // topics.map(function(topic, index) {
-  //   var topicDiv = document.createElement('div');
-  //   topicDiv.className = 'topic';
-  //   topicDiv.setAttribute('style', 'display: none');
-  //   topicDiv.id = topic;
-  //   var headerElem = document.createElement('h2');
-  //   var headerText = document.createTextNode(topic);
-  //   headerElem.appendChild(headerText);
-  //   topicDiv.appendChild(headerElem);
-  //   contentHolder.appendChild(topicDiv);
-  // })
 })()
