@@ -1,31 +1,61 @@
 body {
-  font-family: Helvetica, sans-serif; }
+  font-family: 'Source Sans Pro', sans-serif; }
 
 input {
   margin-right: 1em; }
 
 form {
-  height: 14em;
+  height: 16em;
+  position: relative;
   padding: 0.5em 2em;
   background-color: #E72B37;
   color: white; }
   form h2 {
+    margin: 0.3em 0 0 0;
+    padding: 0;
+    font-weight: 300;
+    font-size: 1.6em; }
+    @media (min-width: 600px) {
+      form h2 {
+        font-size: 2.2em; } }
+    @media (min-width: 800px) {
+      form h2 {
+        font-size: 2.4em; } }
+    @media (min-width: 1000px) {
+      form h2 {
+        font-size: 2.8em; } }
+  form h3 {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+    font-weight: 300; }
+  form ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    font-size: 3em;
-    font-weight: 300; }
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  font-size: 1.8em;
-  font-weight: 100; }
-  ul li {
+    font-size: 1.8em;
+    font-weight: 100; }
+    @media (max-width: 800px) {
+      form ul {
+        font-size: 1.4em; } }
+  form li {
     margin-top: 0.4em; }
+  form hr {
+    display: block;
+    border: 0;
+    border-top: 1px solid white;
+    padding: 0; }
 
 .question-hidden, .question-end {
   display: none; }
 
-.question-wrapper {
-  height: 12em; }
+.question-form {
+  position: absolute;
+  bottom: 2.4em; }
+  @media (min-width: 600px) {
+    .question-form {
+      bottom: 2em; } }
+
+.question-button {
+  position: absolute;
+  bottom: 10px;
+  margin-top: 2em; }

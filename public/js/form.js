@@ -1,87 +1,109 @@
 $('.question-button').click(function(event) {
   event.preventDefault();
-  if ($('.question-1').is(':visible')) {
-    $('.question-1').toggle('slide', 1000, function () {
-      $('.question-2').toggle('slide', 1000);
+  if ($('.question-1-title').is(':visible')) {
+    $('.question-1-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-2-title').toggle('slide', { direction: 'down' }, 600);
+      $('form').animate({
+        backgroundColor: '#46BFBD'
+      }, 600);
+      $('h3.question-section-title').text('Starting a Social Enterprise');
     });
     return;
   }
-  if ($('.question-2').is(':visible')) {
-    $('.question-2').toggle('slide', 1000, function () {
-      $('.question-3').toggle('slide', 1000);
+  if ($('.question-2-title').is(':visible')) {
+    $('.question-2-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-3-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-3').is(':visible')) {
-    $('.question-3').toggle('slide', 1000, function () {
-      $('.question-4').toggle('slide', 1000);
+  if ($('.question-3-title').is(':visible')) {
+    $('.question-3-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-4-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-4').is(':visible')) {
-    $('.question-4').toggle('slide', 1000, function () {
-      $('.question-5').toggle('slide', 1000);
+  if ($('.question-4-title').is(':visible')) {
+    $('.question-4-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-5-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-5').is(':visible')) {
-    $('.question-5').toggle('slide', 1000, function () {
-      $('.question-6').toggle('slide', 1000);
+  if ($('.question-5-title').is(':visible')) {
+    $('.question-5-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-6-title').toggle('slide', { direction: 'down' }, 600);
+      $('form').animate({
+        backgroundColor: '#E72B37'
+      }, 600);
+      $('h3.question-section-title').text('Running a Social Enterprise');
     });
     return;
   }
-  if ($('.question-6').is(':visible')) {
-    $('.question-6').toggle('slide', 1000, function () {
-      $('.question-7').toggle('slide', 1000);
+  if ($('.question-6-title').is(':visible')) {
+    $('.question-6-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-7-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-7').is(':visible')) {
-    $('.question-7').toggle('slide', 1000, function () {
-      $('.question-8').toggle('slide', 1000);
+  if ($('.question-7-title').is(':visible')) {
+    $('.question-7-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-8-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-8').is(':visible')) {
-    $('.question-8').toggle('slide', 1000, function () {
-      $('.question-9').toggle('slide', 1000);
+  if ($('.question-8-title').is(':visible')) {
+    $('.question-8-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-9-title').toggle('slide', { direction: 'down' }, 600);
+      $('form').animate({
+        backgroundColor: '#46BFBD'
+      }, 600);
+      $('h3.question-section-title').text('Growing a Social Enterprise');
     });
     return;
   }
-  if ($('.question-9').is(':visible')) {
-    $('.question-9').toggle('slide', 1000, function () {
-      $('.question-10').toggle('slide', 1000);
+  if ($('.question-9-title').is(':visible')) {
+    $('.question-9-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-10-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-10').is(':visible')) {
-    $('.question-10').toggle('slide', 1000, function () {
-      $('.question-11').toggle('slide', 1000);
+  if ($('.question-10-title').is(':visible')) {
+    $('.question-10-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-11-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-11').is(':visible')) {
-    $('.question-11').toggle('slide', 1000, function () {
-      $('.question-12').toggle('slide', 1000);
+  if ($('.question-11-title').is(':visible')) {
+    $('.question-11-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-12-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-12').is(':visible')) {
-    $('.question-12').toggle('slide', 1000, function () {
-      $('.question-13').toggle('slide', 1000);
+  if ($('.question-12-title').is(':visible')) {
+    $('.question-12-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-13-title').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
-  if ($('.question-13').is(':visible')) {
-    $('.question-13').toggle('slide', 1000, function () {
-      $('.question-14').toggle('slide', 1000);
+  if ($('.question-13-title').is(':visible')) {
+    $('.question-13-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-14-title').toggle('slide', { direction: 'down' }, 600);
+      $('form').animate({
+        backgroundColor: '#E72B37'
+      }, 600);
+      $('h3.question-section-title').text('Case Studies');
     });
     return;
   }
-  if ($('.question-14').is(':visible')) {
-    $('.question-14').toggle('slide', 1000, function () {
-      $('.question-button').toggle();
-      $('.question-end').toggle('slide', 1000);
+  if ($('.question-14-title').is(':visible')) {
+    $('.question-14-title').toggle('slide', { direction: 'up' }, 600, function () {
+      $('.question-section-title').hide();
+      $('.question-section-hr').hide();
+      $('.question-button').hide();
+      $('.question-form').hide();
+      $('form').animate({
+        backgroundColor: '#46BFBD'
+      }, 600);
+      $('.question-end').toggle('slide', { direction: 'down' }, 600);
     });
     return;
   }
