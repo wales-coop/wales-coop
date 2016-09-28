@@ -13,7 +13,7 @@ var collapse = require('bundle-collapser/plugin'); // needed for build task
 var packageJSON = require('./package.json');
 
 var srcDir = './src/';
-var outDirJS = './public/js/';
+var outDirVendor = './public/vendor/';
 var outDirCSS = './public/css/';
 
 var header = "/*!\n" +
@@ -45,7 +45,7 @@ function buildTask() {
     .pipe(streamify(uglify()))
     .pipe(insert.prepend(header))
     .pipe(streamify(concat('Chart.min.js')))
-    .pipe(gulp.dest(outDirJS));
+    .pipe(gulp.dest(outDirVendor));
 
   return merge(nonBundled);
 
