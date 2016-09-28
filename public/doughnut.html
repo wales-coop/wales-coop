@@ -92,8 +92,13 @@
       };
 
       $('#chart-area').click(function(evt) {
+          var topicDivs = document.getElementsByClassName('topic');
+          Arraxy.prototype.map.call(topicDivs, function(div) {
+            div.setAttribute('style', 'display: none');
+          });
           var activePoint = window.myDoughnut.getElementsAtEvent(evt)[0]._index;
-          console.log(activePoint);
+          var activeDiv = document.getElementById(topics[activePoint]);
+          activeDiv.setAttribute('style', 'display: block');
       });
 
       $('#addData').click(function() {
