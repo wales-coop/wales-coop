@@ -12,7 +12,10 @@ function incrementSessionQuestionCount() {
 }
 
 function setCookie(answer, questionNumber) {
-  docCookies.setItem("question" + questionNumber, answer);
+  var questionArray = questions.map(function(questionObject){
+    return questionObject.question;
+  });
+  docCookies.setItem(questionArray[questionNumber], answer);
 }
 
 function updateDoughnut(percentage) {
@@ -24,53 +27,54 @@ function updateDoughnut(percentage) {
   window.myDoughnut.update();
 }
 
-$('.question-button').click(function(event) {
+function changeTopic(questionNo) {
+  var topicArray = questions.map(function(questionObject){
+    return questionObject.topic;
+  });
+  var currentTopic = $('h3.question-section-title').text();
+  if (currentTopic !== topicArray[questionNo + 1]) {
+    $('h3.question-section-title').text(topicArray[questionNo + 1]);
+    //this is just a patch. We will do this by toggling classes
+    if ($('.question-form').css('background-color') === 'rgb(231, 43, 55)') {
+      $('.question-form').animate({
+        backgroundColor: 'rgb(70, 191, 189)'
+      }, 600);
+    }
+    if ($('.question-form').css('background-color') === 'rgb(70, 191, 189)') {
+      $('.question-form').animate({
+        backgroundColor: 'rgb(231, 43, 55)'
+      }, 600);
+    }
+  }
+  // this is still not quite working
+  if (questionNo >= topicArray.length) {
+    $('.question-section-title').css('visibility', 'hidden');
+    $('.question-section-hr').css('visibility', 'hidden');
+    $('.question-form').animate({
+      backgroundColor: 'rgb(70, 191, 189)'
+    }, 600);
+    $('.question-end').toggle('slide', { direction: 'down' }, 600);
+  }
+}
 
-  var answer = event.target.id === 'question-button-yes'? true : false;
-
-  updateDoughnut(20);
-  setCookie(answer, questionCount);
-
+function changeQuestion() {
   $.each($('.question-title'), function(index, question){
     if ($(question).is(':visible')) {
       $(question).toggle('slide', { direction: 'up' }, 600, function () {
         $(question).next().toggle('slide', { direction: 'down' }, 600);
       });
-      if (index === 0) {
-        $('.question-form').animate({
-          backgroundColor: '#46BFBD'
-        }, 600);
-        $('h3.question-section-title').text('Starting a Social Enterprise');
-      }
-      if (index === 4) {
-        $('.question-form').animate({
-          backgroundColor: '#E72B37'
-        }, 600);
-        $('h3.question-section-title').text('Running a Social Enterprise');
-      }
-      if (index === 7) {
-        $('.question-form').animate({
-          backgroundColor: '#46BFBD'
-        }, 600);
-        $('h3.question-section-title').text('Growing a Social Enterprise');
-      }
-      if (index === 12) {
-        $('.question-form').animate({
-          backgroundColor: '#E72B37'
-        }, 600);
-        $('h3.question-section-title').text('Case Studies');
-      }
-      if (index === 13) {
-        $('.question-section-title').css('visibility', 'hidden');
-        $('.question-section-hr').css('visibility', 'hidden');
-        $('.question-form').animate({
-          backgroundColor: '#46BFBD'
-        }, 600);
-        $('.question-end').toggle('slide', { direction: 'down' }, 600);
-      }
+      changeTopic(index);
     }
   });
+}
+
+$('.question-button').click(function(event) {
+  var answer = event.target.id === 'question-button-yes'? true : false;
+  updateDoughnut(20);
+  setCookie(answer, questionCount);
+  changeQuestion();
   incrementSessionQuestionCount();
   event.preventDefault();
 });
+
 })()
