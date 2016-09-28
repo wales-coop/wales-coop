@@ -1,0 +1,23 @@
+{
+  "name": "Wales co-op",
+  "short_name": "W_coop",
+  "start_url": "index.html",
+  "icons": [{
+    "src": "icons/icon.svg",
+    "sizes": "72x72",
+    "type": "image/svg+xml"
+  }],
+  "background_color": "#3E4EB8",
+  "display": "standalone",
+  "theme_color": "#2E3AA1"
+}
+
+                                                                                                                                                                                                                              }
+                                                                                                                                                                                                }
+                                                                                                                                                                  }
+                                                                                                                                    }
+                                                                                                      }
+                                                                        }
+                                          }
+          }]
+}
