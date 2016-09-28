@@ -1,10 +1,13 @@
 self.importScripts('js/cache-polyfill.js');
 
 const filesToCache = [
-  '/',
-  '/js/*.js',
-  '/css/*.css',
-  '/*.html',
+  './',
+  './vendor/Chart.min.js',
+  './vendor/jquery-ui.min.js',
+  './css/style.css',
+  './index.html',
+  './doughnut.html',
+  './offline.html',
 ];
 
 const staticCacheName = 'pages-cache-v1';
