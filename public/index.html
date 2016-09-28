@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="./vendor/jquery-ui.min.js"></script>
     <script src="https://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"   integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="   crossorigin="anonymous"></script>
-    <script src="js/cookie-library.js"></script>
+    <script src="vendor/cookie-library.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
   </head>
   <body>
@@ -35,20 +35,18 @@
       </div>
     </div>
     <script>
-
-(function(){
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }).catch(function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-  } else {
-    console.log('ServiceWorker not supported')
-  }
-})();
-
+    (function(){
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      } else {
+        console.log('ServiceWorker not supported')
+      }
+    })();
     </script>
     <script src="./js/content-data.js"></script>
     <script src="./js/question-creator.js"></script>
