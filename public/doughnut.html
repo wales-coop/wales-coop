@@ -14,9 +14,17 @@
         -webkit-user-select: none;
         -ms-user-select: none;
     }
+    .doughnut-container {
+      width: 100%;
+      display: flex;
+      padding: 5%;
+    }
     #canvas-holder {
-      margin: 2em auto auto auto;
       width: 40%;
+    }
+    .content-holder {
+      width: 40%;
+      padding: 5%;
     }
     header {
       height: 20vh;
@@ -29,8 +37,19 @@
     <header>
       <button id="addData">Add Data</button>
     </header>
-    <div id="canvas-holder">
-        <canvas id="chart-area" />
+    <div class="doughnut-container">
+      <div id="canvas-holder">
+          <canvas id="chart-area" />
+      </div>
+      <div class="content-holder">
+        <ul>
+          <li>some content</li>
+          <li>some content</li>
+          <li>some content</li>
+          <li>some content</li>
+          <li>some content</li>
+        </ul>
+      </div>
     </div>
     <script>
       var config = {
