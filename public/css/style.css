@@ -1,2 +1,31 @@
 body {
-  background-color: blue; }
+  font-family: Helvetica, sans-serif; }
+
+input {
+  margin-right: 1em; }
+
+form {
+  height: 14em;
+  padding: 0.5em 2em;
+  background-color: #E72B37;
+  color: white; }
+  form h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 3em;
+    font-weight: 300; }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.8em;
+  font-weight: 100; }
+  ul li {
+    margin-top: 0.4em; }
+
+.question-hidden, .question-end {
+  display: none; }
+
+.question-wrapper {
+  height: 12em; }

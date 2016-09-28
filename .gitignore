@@ -43,4 +43,5 @@ public/Chart.min.js
 key.pem
 cert.pem
 
+# DS_Store
 .DS_Store
