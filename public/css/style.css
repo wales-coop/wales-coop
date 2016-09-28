@@ -1,45 +1,64 @@
 body {
-  font-family: 'Source Sans Pro', sans-serif; }
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0; }
 
-input {
-  margin-right: 1em; }
-
-form {
-  height: 16em;
+.question-form {
+  height: 13em;
   position: relative;
   padding: 0.5em 2em;
   background-color: #E72B37;
   color: white; }
-  form h2 {
+  @media (min-width: 800px) {
+    .question-form {
+      height: 14em; } }
+  .question-form h2 {
     margin: 0.3em 0 0 0;
     padding: 0;
     font-weight: 300;
     font-size: 1.6em; }
     @media (min-width: 600px) {
-      form h2 {
+      .question-form h2 {
         font-size: 2.2em; } }
     @media (min-width: 800px) {
-      form h2 {
+      .question-form h2 {
         font-size: 2.4em; } }
     @media (min-width: 1000px) {
-      form h2 {
+      .question-form h2 {
         font-size: 2.8em; } }
-  form h3 {
+  .question-form h3 {
     margin: 0.5em 0 0 0;
     padding: 0;
     font-weight: 300; }
-  form ul {
+  .question-form ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    font-size: 1.8em;
-    font-weight: 100; }
+    padding: 0; }
+  .question-form li {
+    display: block; }
+  .question-form input[type=radio] {
+    display: none; }
+  .question-form input[type=radio] + label {
+    display: inline-block;
+    height: 40px;
+    margin: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+    opacity: 0.6; }
+  .question-form input[type=radio], .question-form label::before {
+    content: ''; }
+  .question-form input[type=radio]:checked + label {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out; }
+  .question-form label {
+    font-weight: 100;
+    font-size: 1.8em; }
     @media (max-width: 800px) {
-      form ul {
+      .question-form label {
         font-size: 1.4em; } }
-  form li {
-    margin-top: 0.4em; }
-  form hr {
+  .question-form hr {
     display: block;
     border: 0;
     border-top: 1px solid white;
@@ -48,14 +67,21 @@ form {
 .question-hidden, .question-end {
   display: none; }
 
-.question-form {
+.question-button-wrapper {
   position: absolute;
-  bottom: 2.4em; }
-  @media (min-width: 600px) {
-    .question-form {
-      bottom: 2em; } }
+  bottom: 1em; }
 
 .question-button {
-  position: absolute;
-  bottom: 10px;
-  margin-top: 2em; }
+  background-color: rgba(255, 0, 0, 0);
+  border: 2px solid white;
+  cursor: pointer;
+  color: white;
+  font-weight: 300;
+  font-size: 1em;
+  padding: 0.2em 1.5em;
+  margin-right: 0.8em; }
+  .question-button:focus {
+    outline: none; }
+  @media (min-width: 800px) {
+    .question-button {
+      font-size: 1.4em; } }

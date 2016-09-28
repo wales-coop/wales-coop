@@ -3,7 +3,7 @@ $('.question-button').click(function(event) {
   if ($('.question-1-title').is(':visible')) {
     $('.question-1-title').toggle('slide', { direction: 'up' }, 600, function () {
       $('.question-2-title').toggle('slide', { direction: 'down' }, 600);
-      $('form').animate({
+      $('.question-form').animate({
         backgroundColor: '#46BFBD'
       }, 600);
       $('h3.question-section-title').text('Starting a Social Enterprise');
@@ -31,7 +31,7 @@ $('.question-button').click(function(event) {
   if ($('.question-5-title').is(':visible')) {
     $('.question-5-title').toggle('slide', { direction: 'up' }, 600, function () {
       $('.question-6-title').toggle('slide', { direction: 'down' }, 600);
-      $('form').animate({
+      $('.question-form').animate({
         backgroundColor: '#E72B37'
       }, 600);
       $('h3.question-section-title').text('Running a Social Enterprise');
@@ -53,7 +53,7 @@ $('.question-button').click(function(event) {
   if ($('.question-8-title').is(':visible')) {
     $('.question-8-title').toggle('slide', { direction: 'up' }, 600, function () {
       $('.question-9-title').toggle('slide', { direction: 'down' }, 600);
-      $('form').animate({
+      $('.question-form').animate({
         backgroundColor: '#46BFBD'
       }, 600);
       $('h3.question-section-title').text('Growing a Social Enterprise');
@@ -87,7 +87,7 @@ $('.question-button').click(function(event) {
   if ($('.question-13-title').is(':visible')) {
     $('.question-13-title').toggle('slide', { direction: 'up' }, 600, function () {
       $('.question-14-title').toggle('slide', { direction: 'down' }, 600);
-      $('form').animate({
+      $('.question-form').animate({
         backgroundColor: '#E72B37'
       }, 600);
       $('h3.question-section-title').text('Case Studies');
@@ -96,11 +96,10 @@ $('.question-button').click(function(event) {
   }
   if ($('.question-14-title').is(':visible')) {
     $('.question-14-title').toggle('slide', { direction: 'up' }, 600, function () {
-      $('.question-section-title').hide();
-      $('.question-section-hr').hide();
+      $('.question-section-title').css('visibility', 'hidden');
+      $('.question-section-hr').css('visibility', 'hidden');
       $('.question-button').hide();
-      $('.question-form').hide();
-      $('form').animate({
+      $('.question-form').animate({
         backgroundColor: '#46BFBD'
       }, 600);
       $('.question-end').toggle('slide', { direction: 'down' }, 600);
