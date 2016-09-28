@@ -1,3 +1,11 @@
+const topics = [
+  "Before you start a social business",
+  "Starting a Social Enterprise",
+  "Running a Social Business",
+  "Growing A Social Business",
+  "Case Studies"
+]
+
 const questions = [
   {
     topic: 'Before you start a social business',

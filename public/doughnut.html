@@ -15,20 +15,31 @@
         -ms-user-select: none;
     }
     .doughnut-container {
-      width: 100%;
+      width: 96%;
       display: flex;
-      padding: 5%;
+      padding: 2%;
     }
     #canvas-holder {
-      width: 40%;
+      width: 45%;
     }
     .content-holder {
-      width: 40%;
-      padding: 5%;
+      width: 45%;
+      padding: 2%;
     }
     header {
       height: 20vh;
       border: solid 5px black;
+    }
+    p, h2, h3 {
+      margin: 0;
+    }
+    .topic {
+    }
+    .content {
+      border: solid 1px black;
+      border-radius: 3%;
+      margin: 2%;
+      padding: 2%;
     }
     </style>
   </head>
@@ -42,13 +53,44 @@
           <canvas id="chart-area" />
       </div>
       <div class="content-holder">
-        <ul>
-          <li>some content</li>
-          <li>some content</li>
-          <li>some content</li>
-          <li>some content</li>
-          <li>some content</li>
-        </ul>
+        <div id="Before you start a social business" class="topic">
+            <h2>Before you start a social business</h2>
+            <div id="The Mission" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/mission"><h3>The Mission</h3></a>
+              <p>The objective of this section is to help you write a succinct mission statement that describes your social business\'s purpose.</p>
+            </div>
+            <div id="Motivation" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/motivation"><h3>Motivation</h3></a>
+              <p>Ask yourself, “Why do I want to start up this social business?”  If it is for personal financial gain then you should consider setting up a sole trader business where you own it and take the profit from it.</p>
+            </div>
+            <div id="The Mission" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/mission"><h3>The Mission</h3></a>
+              <p>The objective of this section is to help you write a succinct mission statement that describes your social business\'s purpose.</p>
+            </div>
+            <div id="Motivation" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/motivation"><h3>Motivation</h3></a>
+              <p>Ask yourself, “Why do I want to start up this social business?”  If it is for personal financial gain then you should consider setting up a sole trader business where you own it and take the profit from it.</p>
+            </div>
+        </div>
+        <div id="Starting a Social Enterprise" class="topic">
+            <h2>Starting a Social Enterprise</h2>
+            <div id="The Mission" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/mission"><h3>The Mission</h3></a>
+              <p>The objective of this section is to help you write a succinct mission statement that describes your social business\'s purpose.</p>
+            </div>
+            <div id="Motivation" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/motivation"><h3>Motivation</h3></a>
+              <p>Ask yourself, “Why do I want to start up this social business?”  If it is for personal financial gain then you should consider setting up a sole trader business where you own it and take the profit from it.</p>
+            </div>
+            <div id="The Mission" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/mission"><h3>The Mission</h3></a>
+              <p>The objective of this section is to help you write a succinct mission statement that describes your social business\'s purpose.</p>
+            </div>
+            <div id="Motivation" class="content">
+              <a href="https://businesswales.gov.wales/socialbusinesswales/motivation"><h3>Motivation</h3></a>
+              <p>Ask yourself, “Why do I want to start up this social business?”  If it is for personal financial gain then you should consider setting up a sole trader business where you own it and take the profit from it.</p>
+            </div>
+        </div>
       </div>
     </div>
     <script>
@@ -67,11 +109,11 @@
                   ],
               }],
               labels: [
-                  "Question 1",
-                  "Question 2",
-                  "Question 3",
-                  "Question 4",
-                  "Question 5"
+                "Before you start a social business",
+                "Starting a Social Enterprise",
+                "Running a Social Business",
+                "Growing A Social Business",
+                "Case Studies"
               ]
           },
           options: {
