@@ -5,6 +5,16 @@ function incrementQuestionsThisSession() {
 }
 
 $('.question-button').click(function(event) {
+
+    config.data.labels.push('data #' + config.data.labels.length);
+
+    $.each(config.data.datasets, function(index, dataset) {
+        dataset.data.push(20);
+        dataset.backgroundColor.push();
+    });
+
+    window.myDoughnut.update();
+
   var answer = event.target.id === 'question-button-yes'? true : false;
   docCookies.setItem("question" + questionCount, answer);
   incrementQuestionsThisSession();
