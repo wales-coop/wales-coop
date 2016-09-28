@@ -9,8 +9,26 @@
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <script src="./vendor/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./vendor/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"   integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="   crossorigin="anonymous"></script>
+    <script src="js/cookie-library.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
   </head>
   <body>
+    <div class="question-form">
+      <h3 class="question-section-title">Before you start a Social Business</h3>
+      <hr class="question-section-hr" />
+      <div class="questions">
+        <h2 class="question-title">Have you started your social enterprise?</h2>
+      </div>
+      <div class="question-end">
+        <h2>Thanks for forming</h2>
+      </div>
+      <div class="question-button-wrapper">
+        <button class="question-button" id="question-button-yes">Yes</button>
+        <button class="question-button" id="question-button-no">No</button>
+      </div>
+    </div>
     <div id="canvas-holder" style="width:40%">
       <canvas id="chart-area" />
     </div>
@@ -30,6 +48,9 @@
 })();
 
     </script>
+    <script src="js/content-data.js"></script>
+    <script src="js/question-creator.js"></script>
+    <script src="js/form.js"></script>
     <script src="./vendor/manup.min.js"></script>
   </body>
 </html>
