@@ -1,5 +1,5 @@
 var topics = [
-  'Before you start a Social Business',
+  'Before you Start a Social Business',
   'Starting a Social Business',
   'Running a Social Business',
   'Growing A Social Business',
