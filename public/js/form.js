@@ -52,14 +52,10 @@ function changeTopic(questionNo) {
     $('h3.question-section-title').text(questions[questionNo - 1].topic);
     $('div.question-form').switchClass(questions[questionNo - 2].class, questions[questionNo - 1].class, 600);
   }
-  // this is still not quite working
-  if (questionNo >= questions.length) {
+  if (questions[questionNo - 2].topic === 'Case Studies') {
     $('.question-section-title').css('visibility', 'hidden');
     $('.question-section-hr').css('visibility', 'hidden');
-    $('.question-form').animate({
-      backgroundColor: 'rgb(70, 191, 189)'
-    }, 600);
-    $('.question-end').toggle('slide', { direction: 'down' }, 600);
+    $('.question-button').hide();
   }
 }
 

@@ -80,6 +80,11 @@ var questions = [
     question: 'Would you like to see some case studies?',
     class: classes[4],
   },
+  {
+    topic: null,
+    question: 'Thanks for forming',
+    class: classes[0],
+  },
 ];
 
 
