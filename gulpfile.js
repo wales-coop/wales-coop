@@ -38,6 +38,11 @@ function buildTask() {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(outDirCSS));
 
+  gulp.src(srcDir + 'manup.js')
+    .pipe(streamify(uglify()))
+    .pipe(streamify(concat('manup.min.js')))
+    .pipe(gulp.dest(outDirVendor));
+
   var nonBundled = browserify('./src/chart.js', { standalone: 'Chart' })
     .plugin(collapse)
     .bundle()
