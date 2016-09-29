@@ -112,3 +112,35 @@ body {
     font-size: 1.4em;
   }
 }
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.doughnut-container {
+  width: 96%;
+  display: flex;
+  padding: 2%;
+}
+
+#canvas-holder {
+  width: 45%;
+}
+
+.content-holder {
+  width: 45%;
+  padding: 2%;
+}
+
+.content {
+  border: solid 1px black;
+  border-radius: 3%;
+  margin: 2%;
+  padding: 2%;
+
+  p, h2, h3 {
+    margin: 0;
+  }
+}
