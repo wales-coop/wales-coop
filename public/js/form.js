@@ -1,39 +1,55 @@
 (function() {
 
-function returnQuestionCount() {
+function cookieQuestionCount() {
   var completedQuestions = docCookies.keys();
   return completedQuestions.length;
 }
 
-var questionCount = returnQuestionCount() > 0 ? returnQuestionCount() : 0;
+var questionCount = cookieQuestionCount() > 0 ? cookieQuestionCount() : 0;
 
 function incrementSessionQuestionCount() {
     questionCount += 1;
 }
 
-function setCookie(answer, questionNumber) {
-  var questionArray = questions.map(function(questionObject){
-    return questionObject.question;
-  });
-  docCookies.setItem(questionArray[questionNumber], answer);
+// add check for cookies here
+var answerArray = questions.map(function(questionObject) {
+  questionObject.answer = false;
+  return questionObject;
+})
+
+function updateAnswers(answer, questionNo) {
+  answerArray[questionNo - 2].answer = answer;
 }
 
-function updateDoughnut(percentage) {
-  config.data.labels.push('data #' + config.data.labels.length);
-  $.each(config.data.datasets, function(index, dataset) {
-      dataset.data.push(percentage);
-      dataset.backgroundColor.push();
-  });
-  window.myDoughnut.update();
+function updateDoughnut(questionNo) {
+  var topicPercentages = topics.map(function(topic) {
+    var topicAnswers = answerArray.filter(function(answerObject) {
+      return answerObject.topic === topic;
+    });
+    var trueTopicAnswers = topicAnswers.filter(function(answerObject) {
+      return answerObject.answer === true;
+    });
+    var percentageTrueAnswers = trueTopicAnswers.length / topicAnswers.length;
+    var percentageOfDoughnut = percentageTrueAnswers * 100 / 5;
+    var rObj = {};
+    rObj[topic] = percentageOfDoughnut;
+    return rObj;
+  }).slice(0,5);
+  var currentTopicPercentage = topicPercentages.filter(function(topicObject) {
+    return Object.keys(topicObject)[0] === questions[questionNo - 2].topic;
+  })
+  var valueOfCurrentTopicPercentage = currentTopicPercentage[0][Object.keys(currentTopicPercentage[0])]
+  if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
+    config.data.labels.push('data #' + config.data.labels.length);
+    config.data.datasets[0].data.push(valueOfCurrentTopicPercentage);
+    config.data.datasets[0].backgroundColor.push();
+    window.myDoughnut.update();
+  }
 }
 
 function changeTopic(questionNo) {
-  var topicArray = questions.map(function(questionObject){
-    return questionObject.topic;
-  });
-  var currentTopic = $('h3.question-section-title').text();
-  if (currentTopic !== topicArray[questionNo + 1]) {
-    $('h3.question-section-title').text(topicArray[questionNo + 1]);
+  if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
+    $('h3.question-section-title').text(questions[questionNo - 1].topic);
     //this is just a patch. We will do this by toggling classes
     if ($('.question-form').css('background-color') === 'rgb(231, 43, 55)') {
       $('.question-form').animate({
@@ -47,7 +63,7 @@ function changeTopic(questionNo) {
     }
   }
   // this is still not quite working
-  if (questionNo >= topicArray.length) {
+  if (questionNo >= questions.length) {
     $('.question-section-title').css('visibility', 'hidden');
     $('.question-section-hr').css('visibility', 'hidden');
     $('.question-form').animate({
@@ -57,23 +73,29 @@ function changeTopic(questionNo) {
   }
 }
 
+function setCookie(answer, questionNo) {
+  // check to see if cookie already exists and delete if it does
+  docCookies.setItem(questions[questionNo - 2].question, answer);
+}
+
 function changeQuestion() {
   $.each($('.question-title'), function(index, question){
     if ($(question).is(':visible')) {
       $(question).toggle('slide', { direction: 'up' }, 600, function () {
         $(question).next().toggle('slide', { direction: 'down' }, 600);
       });
-      changeTopic(index);
     }
   });
 }
 
 $('.question-button').click(function(event) {
+  incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
-  updateDoughnut(20);
+  updateAnswers(answer, questionCount);
+  updateDoughnut(questionCount);
+  changeTopic(questionCount);
   setCookie(answer, questionCount);
   changeQuestion();
-  incrementSessionQuestionCount();
   event.preventDefault();
 });
 
