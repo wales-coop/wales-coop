@@ -1,11 +1,11 @@
 (function() {
 
-function returnQuestionCount() {
+function CookieQuestionCount() {
   var completedQuestions = docCookies.keys();
   return completedQuestions.length;
 }
 
-var questionCount = returnQuestionCount() > 0 ? returnQuestionCount() : 0;
+var questionCount = CookieQuestionCount() > 0 ? CookieQuestionCount() : 0;
 
 function incrementSessionQuestionCount() {
     questionCount += 1;
@@ -13,26 +13,19 @@ function incrementSessionQuestionCount() {
 
 function setCookie(answer, questionNo) {
   // check to see if cookie already exists and delete if it does
-  console.log(questions[questionNo - 1].question);
-  docCookies.setItem(questions[questionNo - 1].question, answer);
+  docCookies.setItem(questions[questionNo - 2].question, answer);
 }
 
 function updateDoughnut(answer, questionNo) {
   config.data.labels.push('data #' + config.data.labels.length);
-  console.log('doughnut ' + questionNo);
-  console.log('doughnut ' + questions[questionNo - 1].topic);
-  console.log('doughnut ' + questions[questionNo].topic);
   config.data.datasets[0].data.push(20);
   config.data.datasets[0].backgroundColor.push();
   window.myDoughnut.update();
 }
 
 function changeTopic(questionNo) {
-  console.log('topic ' + questionNo);
-  console.log('topic ' + questions[questionNo].topic);
-  console.log('topic ' + questions[questionNo + 1].topic);
-  if (questions[questionNo].topic !== questions[questionNo + 1].topic) {
-    $('h3.question-section-title').text(questions[questionNo + 1].topic);
+  if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
+    $('h3.question-section-title').text(questions[questionNo - 1].topic);
     //this is just a patch. We will do this by toggling classes
     if ($('.question-form').css('background-color') === 'rgb(231, 43, 55)') {
       $('.question-form').animate({
@@ -62,17 +55,17 @@ function changeQuestion() {
       $(question).toggle('slide', { direction: 'up' }, 600, function () {
         $(question).next().toggle('slide', { direction: 'down' }, 600);
       });
-      changeTopic(index);
     }
   });
 }
 
 $('.question-button').click(function(event) {
+  incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
   updateDoughnut(answer, questionCount);
+  changeTopic(questionCount);
   setCookie(answer, questionCount);
   changeQuestion();
-  incrementSessionQuestionCount();
   event.preventDefault();
 });
 
