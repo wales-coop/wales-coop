@@ -91,7 +91,23 @@ function showDesiredContent() {
   });
 }
 
+function enableButtons() {
+  $.each($('.question-button'), function(index, button) {
+    $(button).removeAttr("disabled");
+  });
+}
+
+function disableButtons() {
+  $.each($('.question-button'), function(index, button) {
+    $(button).attr("disabled", true);
+    setTimeout(function(){
+      enableButtons();
+    }, 1000);
+  });
+}
+
 $('.question-button').click(function(event) {
+  disableButtons();
   incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
   updateAnswers(answer, questionCount);
