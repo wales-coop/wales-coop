@@ -11,29 +11,28 @@ function incrementSessionQuestionCount() {
     questionCount += 1;
 }
 
-function setCookie(answer, questionNumber) {
-  var questionArray = questions.map(function(questionObject){
-    return questionObject.question;
-  });
-  docCookies.setItem(questionArray[questionNumber], answer);
+function setCookie(answer, questionNo) {
+  // check to see if cookie already exists and delete if it does
+  console.log(questions[questionNo - 1].question);
+  docCookies.setItem(questions[questionNo - 1].question, answer);
 }
 
-function updateDoughnut(percentage) {
+function updateDoughnut(answer, questionNo) {
   config.data.labels.push('data #' + config.data.labels.length);
-  $.each(config.data.datasets, function(index, dataset) {
-      dataset.data.push(percentage);
-      dataset.backgroundColor.push();
-  });
+  console.log('doughnut ' + questionNo);
+  console.log('doughnut ' + questions[questionNo - 1].topic);
+  console.log('doughnut ' + questions[questionNo].topic);
+  config.data.datasets[0].data.push(20);
+  config.data.datasets[0].backgroundColor.push();
   window.myDoughnut.update();
 }
 
 function changeTopic(questionNo) {
-  var topicArray = questions.map(function(questionObject){
-    return questionObject.topic;
-  });
-  var currentTopic = $('h3.question-section-title').text();
-  if (currentTopic !== topicArray[questionNo + 1]) {
-    $('h3.question-section-title').text(topicArray[questionNo + 1]);
+  console.log('topic ' + questionNo);
+  console.log('topic ' + questions[questionNo].topic);
+  console.log('topic ' + questions[questionNo + 1].topic);
+  if (questions[questionNo].topic !== questions[questionNo + 1].topic) {
+    $('h3.question-section-title').text(questions[questionNo + 1].topic);
     //this is just a patch. We will do this by toggling classes
     if ($('.question-form').css('background-color') === 'rgb(231, 43, 55)') {
       $('.question-form').animate({
@@ -47,7 +46,7 @@ function changeTopic(questionNo) {
     }
   }
   // this is still not quite working
-  if (questionNo >= topicArray.length) {
+  if (questionNo >= questions.length) {
     $('.question-section-title').css('visibility', 'hidden');
     $('.question-section-hr').css('visibility', 'hidden');
     $('.question-form').animate({
@@ -70,7 +69,7 @@ function changeQuestion() {
 
 $('.question-button').click(function(event) {
   var answer = event.target.id === 'question-button-yes'? true : false;
-  updateDoughnut(20);
+  updateDoughnut(answer, questionCount);
   setCookie(answer, questionCount);
   changeQuestion();
   incrementSessionQuestionCount();
