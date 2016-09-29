@@ -1,18 +1,22 @@
 .doughnut-container {
-  width: 96%;
+  width: 100%;
   display: flex;
-  padding: 2%; }
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  padding-top: 1%; }
+  @media (min-width: 1000px) {
+    .doughnut-container {
+      flex-direction: row;
+      align-items: stretch; } }
 
 #canvas-holder {
-  width: 45%; }
-
-.doughnut-container {
-  width: 96%;
-  display: flex;
-  padding: 2%; }
-
-#canvas-holder {
-  width: 45%; }
+  width: 60%;
+  padding-left: 6%;
+  padding-right: 6%; }
+  @media (min-width: 1000px) {
+    #canvas-holder {
+      width: 38%; } }
 
 .question-form {
   height: 13em;
@@ -111,22 +115,46 @@
     .question-button {
       font-size: 1.4em; } }
 
-.content-holder {
-  width: 45%;
-  padding: 2%; }
+#content-holder {
+  width: 50%;
+  padding: 0% 2% 2% 2%; }
+  #content-holder h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    padding-left: 2%; }
+  #content-holder a {
+    font-size: 1.4em; }
+  #content-holder p {
+    margin-top: 0.4em;
+    line-height: 1.2;
+    color: #212121; }
+  @media (max-width: 1000px) {
+    #content-holder {
+      text-align: center; } }
 
 .content {
-  border: solid 1px black;
-  border-radius: 3%;
-  margin: 2%;
   padding: 2%; }
-  .content p, .content h2, .content h3 {
-    margin: 0; }
+
+.before-you-start-a-social-business a, .before-you-start-a-social-business h2 {
+  color: #E72B37; }
+
+.starting-a-social-business a, .starting-a-social-business h2 {
+  color: #46BFBD; }
+
+.running-a-social-business a, .running-a-social-business h2 {
+  color: #FDB45C; }
+
+.growing-a-social-business a, .growing-a-social-business h2 {
+  color: #949FB1; }
+
+.case-studies a, .case-studies h2 {
+  color: #4D5360; }
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  box-sizing: border-box; }
 
 canvas {
   -moz-user-select: none;
