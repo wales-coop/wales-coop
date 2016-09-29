@@ -4,6 +4,7 @@
     var contentDiv = document.createElement('div');
     contentDiv.className = 'content';
     contentDiv.id = content.title;
+    contentDiv.style.display = 'none';
     var titleElem = document.createElement('h3');
     var titleText = document.createTextNode(content.title);
     titleElem.appendChild(titleText);

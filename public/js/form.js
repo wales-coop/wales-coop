@@ -73,6 +73,24 @@ function changeQuestion() {
   });
 }
 
+function showDesiredContent() {
+  var trueAnswers = answerArray.filter(function(answerObject) {
+    return answerObject.answer === true;
+  }).map(function(object) {
+    return object.question;
+  });
+  $.each($('.content'), function(index, content){
+    var relatedQuestion = contentData.filter(function(contentObject) {
+      return contentObject.title === content.id;
+    }).map(function(object) {
+      return object.question;
+    })[0];
+    if (trueAnswers.indexOf(relatedQuestion) >= 0) {
+      content.setAttribute('style', 'display: block');
+    }
+  });
+}
+
 $('.question-button').click(function(event) {
   incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
@@ -81,6 +99,7 @@ $('.question-button').click(function(event) {
   changeTopic(questionCount);
   setCookie(answer, questionCount);
   changeQuestion();
+  showDesiredContent();
   event.preventDefault();
 });
 
