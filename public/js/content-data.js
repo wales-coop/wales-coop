@@ -6,58 +6,79 @@ var topics = [
   'Case Studies',
 ];
 
+var classes = [
+  'question-form-section-default',
+  'question-form-section-1',
+  'question-form-section-2',
+  'question-form-section-3',
+  'question-form-section-4',
+]
+
 var questions = [
   {
     topic: topics[0],
     question: 'Have you started your Social Enterprise?',
+    class: classes[0],
   },
   {
     topic: topics[1],
     question: 'Do you have an engaged group of people?',
+    class: classes[1],
   },
   {
     topic: topics[1],
     question: 'Have you formed a legal structure?',
+    class: classes[1],
   },
   {
     topic: topics[1],
     question: 'Are you bidding for contracts or seeking funding?',
+    class: classes[1],
   },
   {
     topic: topics[1],
     question: 'Are you employing staff?',
+    class: classes[1],
   },
   {
     topic: topics[2],
     question: 'Are you confident in your organisations governance?',
+    class: classes[2],
   },
   {
     topic: topics[2],
     question: 'Do you use a form of Social Accounting?',
+    class: classes[2],
   },
   {
     topic: topics[2],
     question: 'Do you have a skilled management?',
+    class: classes[2],
   },
   {
     topic: topics[3],
     question: 'Are you looking to grow (expand, diversify etc)?',
+    class: classes[3],
   },
   {
     topic: topics[3],
     question: 'Are you thinking of grouping together with other like minded groups?',
+    class: classes[3],
   },
   {
     topic: topics[3],
     question: 'Do you think your idea could work in other areas?',
+    class: classes[3],
   },
   {
     topic: topics[3],
     question: 'Would you like to buy another business to help you grow?',
+    class: classes[3],
   },
   {
     topic: topics[4],
     question: 'Would you like to see some case studies?',
+    class: classes[4],
   },
 ];
 

@@ -50,17 +50,7 @@ function updateDoughnut(questionNo) {
 function changeTopic(questionNo) {
   if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
     $('h3.question-section-title').text(questions[questionNo - 1].topic);
-    //this is just a patch. We will do this by toggling classes
-    if ($('.question-form').css('background-color') === 'rgb(231, 43, 55)') {
-      $('.question-form').animate({
-        backgroundColor: 'rgb(70, 191, 189)'
-      }, 600);
-    }
-    if ($('.question-form').css('background-color') === 'rgb(70, 191, 189)') {
-      $('.question-form').animate({
-        backgroundColor: 'rgb(231, 43, 55)'
-      }, 600);
-    }
+    $('div.question-form').switchClass(questions[questionNo - 2].class, questions[questionNo - 1].class, 600);
   }
   // this is still not quite working
   if (questionNo >= questions.length) {
