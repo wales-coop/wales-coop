@@ -2,7 +2,7 @@
   var contentHolder = document.getElementById('content-holder');
   topics.map(function(topic, index) {
     var topicDiv = document.createElement('div');
-    topicDiv.className = 'topic';
+    topicDiv.className = 'topic ' + topic.replace(/\s/g, '-').toLowerCase();
     topicDiv.setAttribute('style', 'display: none');
     topicDiv.id = topic;
     var headerElem = document.createElement('h2');
