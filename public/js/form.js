@@ -38,11 +38,10 @@ function updateDoughnut(questionNo) {
   var currentTopicPercentage = topicPercentages.filter(function(topicObject) {
     return Object.keys(topicObject)[0] === questions[questionNo - 2].topic;
   })
-  var valueOfCurrentTopicPercentage = currentTopicPercentage[0][Object.keys(currentTopicPercentage[0]])
-  console.log(valueOfCurrentTopicPercentage);
+  var valueOfCurrentTopicPercentage = currentTopicPercentage[0][Object.keys(currentTopicPercentage[0])]
   if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
     config.data.labels.push('data #' + config.data.labels.length);
-    config.data.datasets[0].data.push(20);
+    config.data.datasets[0].data.push(valueOfCurrentTopicPercentage);
     config.data.datasets[0].backgroundColor.push();
     window.myDoughnut.update();
   }
