@@ -1,7 +1,18 @@
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  margin: 0;
-  padding: 0; }
+.doughnut-container {
+  width: 96%;
+  display: flex;
+  padding: 2%; }
+
+#canvas-holder {
+  width: 45%; }
+
+.doughnut-container {
+  width: 96%;
+  display: flex;
+  padding: 2%; }
+
+#canvas-holder {
+  width: 45%; }
 
 .question-form {
   height: 13em;
@@ -86,19 +97,6 @@ body {
     .question-button {
       font-size: 1.4em; } }
 
-canvas {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none; }
-
-.doughnut-container {
-  width: 96%;
-  display: flex;
-  padding: 2%; }
-
-#canvas-holder {
-  width: 45%; }
-
 .content-holder {
   width: 45%;
   padding: 2%; }
@@ -110,3 +108,13 @@ canvas {
   padding: 2%; }
   .content p, .content h2, .content h3 {
     margin: 0; }
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0; }
+
+canvas {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none; }
