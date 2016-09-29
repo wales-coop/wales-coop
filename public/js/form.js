@@ -88,6 +88,10 @@ function changeQuestion() {
   });
 }
 
+function showDesiredContent () {
+  console.log($('.content'));
+};
+
 $('.question-button').click(function(event) {
   incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
@@ -96,6 +100,7 @@ $('.question-button').click(function(event) {
   changeTopic(questionCount);
   setCookie(answer, questionCount);
   changeQuestion();
+  showDesiredContent()
   event.preventDefault();
 });
 
