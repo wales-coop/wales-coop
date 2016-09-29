@@ -22,26 +22,25 @@ function updateAnswers(answer, questionNo) {
 }
 
 function updateDoughnut(questionNo) {
-  var topicPercentages = topics.map(function(topic) {
-    var topicAnswers = answerArray.filter(function(answerObject) {
-      return answerObject.topic === topic;
-    });
-    var trueTopicAnswers = topicAnswers.filter(function(answerObject) {
-      return answerObject.answer === true;
-    });
-    var percentageTrueAnswers = trueTopicAnswers.length / topicAnswers.length;
-    var percentageOfDoughnut = percentageTrueAnswers * 100 / 5;
-    var rObj = {};
-    rObj[topic] = percentageOfDoughnut;
-    return rObj;
-  }).slice(0,5);
-  var currentTopicPercentage = topicPercentages.filter(function(topicObject) {
-    return Object.keys(topicObject)[0] === questions[questionNo - 2].topic;
-  })
-  var valueOfCurrentTopicPercentage = currentTopicPercentage[0][Object.keys(currentTopicPercentage[0])]
+  // find current topic
+  var currentTopic = questions[questionNo - 2].topic;
+  // find all the answer objects that match this topic
+  var currentTopicAnswers = answerArray.filter(function(answerObject) {
+    return answerObject.topic === currentTopic;
+  });
+  // length of array of current topic answers
+  var currentTopicAllLength = currentTopicAnswers.length;
+  // length of array of current topic true answers
+  var currentTopicTrueLength = currentTopicAnswers.filter(function(answerObject) {
+    return answerObject.answer === true;
+  }).length;
+  // percentage of current topic answered true
+  var percentageTrueAnswers = currentTopicTrueLength / currentTopicAllLength;
+  // percentage of doughnut it should take up
+  var percentageOfDoughnut = percentageTrueAnswers * 100 / topics.length;
   if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
     config.data.labels.push('data #' + config.data.labels.length);
-    config.data.datasets[0].data.push(valueOfCurrentTopicPercentage);
+    config.data.datasets[0].data.push(percentageOfDoughnut);
     config.data.datasets[0].backgroundColor.push();
     window.myDoughnut.update();
   }
@@ -74,7 +73,41 @@ function changeQuestion() {
   });
 }
 
+function showDesiredContent() {
+  var trueAnswers = answerArray.filter(function(answerObject) {
+    return answerObject.answer === true;
+  }).map(function(object) {
+    return object.question;
+  });
+  $.each($('.content'), function(index, content){
+    var relatedQuestion = contentData.filter(function(contentObject) {
+      return contentObject.title === content.id;
+    }).map(function(object) {
+      return object.question;
+    })[0];
+    if (trueAnswers.indexOf(relatedQuestion) >= 0) {
+      content.setAttribute('style', 'display: block');
+    }
+  });
+}
+
+function enableButtons() {
+  $.each($('.question-button'), function(index, button) {
+    $(button).removeAttr("disabled");
+  });
+}
+
+function disableButtons() {
+  $.each($('.question-button'), function(index, button) {
+    $(button).attr("disabled", true);
+    setTimeout(function(){
+      enableButtons();
+    }, 1000);
+  });
+}
+
 $('.question-button').click(function(event) {
+  disableButtons();
   incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
   updateAnswers(answer, questionCount);
@@ -82,6 +115,7 @@ $('.question-button').click(function(event) {
   changeTopic(questionCount);
   setCookie(answer, questionCount);
   changeQuestion();
+  showDesiredContent();
   event.preventDefault();
 });
 

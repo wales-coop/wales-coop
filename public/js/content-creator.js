@@ -4,6 +4,7 @@
     var contentDiv = document.createElement('div');
     contentDiv.className = 'content';
     contentDiv.id = content.title;
+    contentDiv.style.display = 'none';
     var anchorElem = document.createElement('a');
     anchorElem.href = content.URL;
     var anchorText = document.createTextNode(content.title);
