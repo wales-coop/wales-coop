@@ -1,19 +1,22 @@
 .doughnut-container {
-  width: 96%;
+  width: 100%;
   display: flex;
-  padding: 2%;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  padding-top: 1%;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
 
 #canvas-holder {
-  width: 45%;
-}
-
-.doughnut-container {
-  width: 96%;
-  display: flex;
-  padding: 2%;
-}
-
-#canvas-holder {
-  width: 45%;
+  width: 60%;
+  // border-right: #E72B37 solid 5px;
+  padding-left: 6%;
+  padding-right: 6%;
+  @media (min-width: 1000px) {
+    width: 38%;
+  }
 }
