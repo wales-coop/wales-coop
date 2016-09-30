@@ -78,6 +78,9 @@
     border-top: 1px solid white;
     padding: 0; }
 
+.question-section-wrapper {
+  flex-direction: row; }
+
 .question-hidden, .question-end {
   display: none; }
 

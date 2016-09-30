@@ -79,6 +79,10 @@
   }
 }
 
+.question-section-wrapper {
+  flex-direction: row;
+}
+
 .question-hidden, .question-end {
   display: none;
 }
