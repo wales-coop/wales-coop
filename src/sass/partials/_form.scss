@@ -6,6 +6,11 @@
   @media (min-width: 800px) {
     height: 14em;
   }
+  @media (max-width: 800px) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
 
   h2 {
     margin: 0.3em 0 0 0;
@@ -80,7 +85,12 @@
 }
 
 .question-section-wrapper {
+  display: flex;
   flex-direction: row;
+  img {
+    height: 70%;
+    margin-right: 0.5em;
+  }
 }
 
 .question-hidden, .question-end {
@@ -110,6 +120,9 @@
 .question-button-wrapper {
   position: absolute;
   bottom: 1em;
+  @media (max-width: 800px) {
+    align-self: center;
+  }
 }
 
 .question-button {
@@ -120,9 +133,11 @@
   font-weight: 300;
   font-size: 1em;
   padding: 0.2em 1.5em;
-  margin-right: 0.8em;
   &:focus {
     outline: none;
+  }
+  &:first-of-type {
+    margin-right: 0.8em;
   }
   @media (min-width: 800px) {
     font-size: 1.4em;
