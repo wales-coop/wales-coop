@@ -45,8 +45,7 @@ function changeTopic(questionNo) {
     $('div.question-form').switchClass(questions[questionNo - 1].class, questions[questionNo].class, 600);
   }
   if (questions[questionNo - 1].topic === 'Case Studies') {
-    $('.question-section-title').css('visibility', 'hidden');
-    $('.question-section-hr').css('visibility', 'hidden');
+    $('.question-section-wrapper').css('visibility', 'hidden');
     $('.question-button').hide();
   }
 }
