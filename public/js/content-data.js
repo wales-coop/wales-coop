@@ -17,7 +17,7 @@ var classes = [
 var questions = [
   {
     topic: topics[0],
-    question: 'Have you started your Social Enterprise?',
+    question: 'Have you started your social enterprise?',
     class: classes[0],
   },
   {
@@ -42,7 +42,7 @@ var questions = [
   },
   {
     topic: topics[2],
-    question: 'Are you confident in your organisations governance?',
+    question: 'Are you confident in your organisation\'s governance?',
     class: classes[2],
   },
   {
@@ -57,12 +57,12 @@ var questions = [
   },
   {
     topic: topics[3],
-    question: 'Are you looking to grow (expand, diversify etc)?',
+    question: 'Are you looking to grow (expand, diversify etc.)?',
     class: classes[3],
   },
   {
     topic: topics[3],
-    question: 'Are you thinking of grouping together with other like minded groups?',
+    question: 'Are you thinking of connecting with like-minded groups?',
     class: classes[3],
   },
   {

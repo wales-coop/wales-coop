@@ -26,6 +26,9 @@
   position: relative;
   padding: 0.5em 2em;
   color: white; }
+  @media (max-width: 300px) {
+    .question-form {
+      height: 16em; } }
   @media (min-width: 800px) {
     .question-form {
       height: 14em; } }
