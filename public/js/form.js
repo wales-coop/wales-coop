@@ -1,5 +1,4 @@
-(function() {
-
+(function () {
 var questionCount = 0;
 
 function incrementSessionQuestionCount() {
@@ -14,12 +13,11 @@ var answerArray = questions.map(function(questionObject) {
 })
 
 function updateAnswers(answer, questionNo) {
-  answerArray[questionNo - 2].answer = answer;
+  answerArray[questionNo - 1].answer = answer;
 }
 
 function updateDoughnut(questionNo) {
-  // find current topic
-  var currentTopic = questions[questionNo - 2].topic;
+  var currentTopic = questions[questionNo - 1].topic;
   // find all the answer objects that match this topic
   var currentTopicAnswers = answerArray.filter(function(answerObject) {
     return answerObject.topic === currentTopic;
@@ -30,12 +28,11 @@ function updateDoughnut(questionNo) {
   var currentTopicTrueLength = currentTopicAnswers.filter(function(answerObject) {
     return answerObject.answer === true;
   }).length;
-  // percentage of current topic answered true
-  var percentageTrueAnswers = currentTopicTrueLength / currentTopicAllLength;
+  // fraction of current topic answered true
+  var proportionTrueAnswers = currentTopicTrueLength / currentTopicAllLength;
   // percentage of doughnut it should take up
-  var percentageOfDoughnut = percentageTrueAnswers * 100 / topics.length;
-  if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
-    config.data.labels.push('data #' + config.data.labels.length);
+  var percentageOfDoughnut = proportionTrueAnswers * 100 / topics.length;
+  if (questions[questionNo - 1].topic !== questions[questionNo].topic) {
     config.data.datasets[0].data.push(percentageOfDoughnut);
     config.data.datasets[0].backgroundColor.push();
     window.myDoughnut.update();
@@ -43,11 +40,11 @@ function updateDoughnut(questionNo) {
 }
 
 function changeTopic(questionNo) {
-  if (questions[questionNo - 2].topic !== questions[questionNo - 1].topic) {
+  if (questions[questionNo - 1].topic !== questions[questionNo].topic) {
     $('h3.question-section-title').text(questions[questionNo - 1].topic);
-    $('div.question-form').switchClass(questions[questionNo - 2].class, questions[questionNo - 1].class, 600);
+    $('div.question-form').switchClass(questions[questionNo - 1].class, questions[questionNo].class, 600);
   }
-  if (questions[questionNo - 2].topic === 'Case Studies') {
+  if (questions[questionNo - 1].topic === 'Case Studies') {
     $('.question-section-title').css('visibility', 'hidden');
     $('.question-section-hr').css('visibility', 'hidden');
     $('.question-button').hide();
@@ -100,6 +97,7 @@ function disableButtons() {
 }
 
 $('.question-button').click(function(event) {
+  event.preventDefault();
   disableButtons();
   incrementSessionQuestionCount();
   var answer = event.target.id === 'question-button-yes'? true : false;
@@ -108,7 +106,5 @@ $('.question-button').click(function(event) {
   changeTopic(questionCount);
   changeQuestion();
   showDesiredContent();
-  event.preventDefault();
 });
-
-})()
+})();
