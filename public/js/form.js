@@ -33,6 +33,9 @@ function updateDoughnut(questionNo) {
   // percentage of doughnut it should take up
   var percentageOfDoughnut = proportionTrueAnswers * 100 / topics.length;
   if (questions[questionNo - 1].topic !== questions[questionNo].topic) {
+    if ($('.doughnut-placeholder').is(':visible')) {
+      $('.doughnut-placeholder').hide(400);
+    };
     config.data.datasets[0].data.push(percentageOfDoughnut);
     config.data.datasets[0].backgroundColor.push();
     window.myDoughnut.update();
