@@ -12,10 +12,13 @@
 }
 
 #canvas-holder {
-  width: 60%;
+  width: 90%;
   // border-right: #E72B37 solid 5px;
   padding-left: 6%;
   padding-right: 6%;
+  @media (min-width: 600px) {
+    width: 60%;
+  }
   @media (min-width: 1000px) {
     width: 38%;
   }
