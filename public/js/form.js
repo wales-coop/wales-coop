@@ -1,4 +1,4 @@
-
+(function () {
 var questionCount = 0;
 
 function incrementSessionQuestionCount() {
@@ -107,4 +107,4 @@ $('.question-button').click(function(event) {
   changeQuestion();
   showDesiredContent();
 });
-
+})();
