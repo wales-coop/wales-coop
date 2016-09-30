@@ -11,9 +11,12 @@
       align-items: stretch; } }
 
 #canvas-holder {
-  width: 60%;
+  width: 90%;
   padding-left: 6%;
   padding-right: 6%; }
+  @media (min-width: 600px) {
+    #canvas-holder {
+      width: 60%; } }
   @media (min-width: 1000px) {
     #canvas-holder {
       width: 38%; } }
@@ -147,6 +150,9 @@
   @media (max-width: 1000px) {
     #content-holder {
       text-align: center; } }
+  @media (max-width: 800px) {
+    #content-holder {
+      width: 70%; } }
 
 .content {
   padding: 2%; }
