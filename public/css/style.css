@@ -20,12 +20,16 @@
 
 .question-form {
   height: 13em;
-  position: relative;
   padding: 0.5em 2em;
-  color: white; }
+  color: white;
+  display: flex;
+  flex-direction: column; }
   @media (min-width: 800px) {
     .question-form {
       height: 14em; } }
+  @media (max-width: 1000px) {
+    .question-form {
+      text-align: center; } }
   .question-form h2 {
     margin: 0.3em 0 0 0;
     padding: 0;
@@ -98,7 +102,11 @@
 
 .question-button-wrapper {
   position: absolute;
-  bottom: 1em; }
+  bottom: 1em;
+  align-self: flex-end; }
+  @media (max-width: 1000px) {
+    .question-button-wrapper {
+      left: 38%; } }
 
 .question-button {
   background-color: rgba(255, 0, 0, 0);
