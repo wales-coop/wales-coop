@@ -1,5 +1,6 @@
-(function () {
-var questionCount = 0;
+//(function () {
+var questionCount;
+init();
 
 function incrementSessionQuestionCount() {
   if (questionCount < 13) {
@@ -42,9 +43,14 @@ function updateDoughnut(questionNo) {
   }
 }
 
+function init(){
+  questionCount = 0;
+  $('h3.question-section-title').text(questions[0].topic);
+  $('div.question-form').addClass(questions[0].class);
+}
 function changeTopic(questionNo) {
   if (questions[questionNo - 1].topic !== questions[questionNo].topic) {
-    $('h3.question-section-title').text(questions[questionNo - 1].topic);
+    $('h3.question-section-title').text(questions[questionNo].topic);
     $('div.question-form').switchClass(questions[questionNo - 1].class, questions[questionNo].class, 600);
   }
   if (questions[questionNo - 1].topic === 'Case Studies') {
@@ -110,4 +116,4 @@ $('.question-button').click(function(event) {
   changeQuestion();
   showDesiredContent();
 });
-})();
+//})();
