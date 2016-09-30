@@ -82,7 +82,7 @@ var questions = [
   },
   {
     topic: null,
-    question: 'Thanks for forming',
+    question: 'Click on sections of the doughnut to show content specific to the questions you answered',
     class: classes[0],
   },
 ];
