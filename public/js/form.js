@@ -1,17 +1,13 @@
 (function() {
 
-function cookieQuestionCount() {
-  var completedQuestions = docCookies.keys();
-  return completedQuestions.length;
-}
-
-var questionCount = cookieQuestionCount() > 0 ? cookieQuestionCount() : 0;
+var questionCount = 0;
 
 function incrementSessionQuestionCount() {
+  if (questionCount < 13) {
     questionCount += 1;
+  }
 }
 
-// add check for cookies here
 var answerArray = questions.map(function(questionObject) {
   questionObject.answer = false;
   return questionObject;
@@ -58,11 +54,6 @@ function changeTopic(questionNo) {
   }
 }
 
-function setCookie(answer, questionNo) {
-  // check to see if cookie already exists and delete if it does
-  docCookies.setItem(questions[questionNo - 2].question, answer);
-}
-
 function changeQuestion() {
   $.each($('.question-title'), function(index, question){
     if ($(question).is(':visible')) {
@@ -100,9 +91,11 @@ function enableButtons() {
 function disableButtons() {
   $.each($('.question-button'), function(index, button) {
     $(button).attr("disabled", true);
-    setTimeout(function(){
-      enableButtons();
-    }, 1000);
+    if (questionCount < 13) {
+      setTimeout(function(){
+        enableButtons();
+      }, 1000);
+    }
   });
 }
 
@@ -113,7 +106,6 @@ $('.question-button').click(function(event) {
   updateAnswers(answer, questionCount);
   updateDoughnut(questionCount);
   changeTopic(questionCount);
-  setCookie(answer, questionCount);
   changeQuestion();
   showDesiredContent();
   event.preventDefault();
