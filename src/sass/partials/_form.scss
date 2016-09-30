@@ -1,14 +1,10 @@
 .question-form {
   height: 13em;
+  position: relative;
   padding: 0.5em 2em;
   color: white;
-  display: flex;
-  flex-direction: column;
   @media (min-width: 800px) {
     height: 14em;
-  }
-  @media (max-width: 1000px) {
-    text-align: center;
   }
 
   h2 {
@@ -83,6 +79,10 @@
   }
 }
 
+.question-section-wrapper {
+  flex-direction: row;
+}
+
 .question-hidden, .question-end {
   display: none;
 }
@@ -110,10 +110,6 @@
 .question-button-wrapper {
   position: absolute;
   bottom: 1em;
-  align-self: flex-end;
-  @media (max-width: 1000px) {
-    left: 38%;
-  }
 }
 
 .question-button {
