@@ -23,3 +23,17 @@
     width: 38%;
   }
 }
+
+.doughnut-placeholder {
+  text-align: center;
+  font-weight: 300;
+  margin-top: 1.5em;
+  padding: 0 2em;
+  font-size: 1.6em;
+  @media (min-width: 600px) {
+    font-size: 1.8em;
+  }
+  @media (min-width: 1000px) {
+    font-size: 2em;
+  }
+}

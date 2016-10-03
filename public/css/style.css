@@ -21,6 +21,19 @@
     #canvas-holder {
       width: 38%; } }
 
+.doughnut-placeholder {
+  text-align: center;
+  font-weight: 300;
+  margin-top: 1.5em;
+  padding: 0 2em;
+  font-size: 1.6em; }
+  @media (min-width: 600px) {
+    .doughnut-placeholder {
+      font-size: 1.8em; } }
+  @media (min-width: 1000px) {
+    .doughnut-placeholder {
+      font-size: 2em; } }
+
 .question-form {
   height: 13em;
   position: relative;
@@ -185,8 +198,3 @@ canvas {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none; }
-
-.doughnut-placeholder {
-  text-align: center;
-  font-weight: 300;
-  font-size: 2em; }
