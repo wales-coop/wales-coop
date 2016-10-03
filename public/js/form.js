@@ -35,7 +35,7 @@ function updateDoughnut(questionNo) {
   var percentageOfDoughnut = proportionTrueAnswers * 100 / topics.length;
   if (questions[questionNo - 1].topic !== questions[questionNo].topic) {
     if ($('.doughnut-placeholder').is(':visible')) {
-      $('.doughnut-placeholder').hide(400);
+      $('.doughnut-placeholder').toggle('slide', { direction: 'up' }, 600);
     };
     config.data.datasets[0].data.push(percentageOfDoughnut);
     config.data.datasets[0].backgroundColor.push();
