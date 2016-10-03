@@ -22,17 +22,22 @@
       width: 38%; } }
 
 .doughnut-placeholder {
-  text-align: center;
   font-weight: 300;
-  margin-top: 1.5em;
-  padding: 0 2em;
-  font-size: 1.6em; }
+  margin-top: 1em;
+  margin-left: 1.1em;
+  font-size: 1.6em;
+  z-index: -1;
+  position: absolute; }
   @media (min-width: 600px) {
     .doughnut-placeholder {
       font-size: 1.8em; } }
   @media (min-width: 1000px) {
     .doughnut-placeholder {
       font-size: 2em; } }
+  @media (max-width: 800px) {
+    .doughnut-placeholder {
+      text-align: center;
+      margin: 1em 15%; } }
 
 .question-form {
   height: 13em;
