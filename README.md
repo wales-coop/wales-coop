@@ -9,13 +9,3 @@ It is important for Wales Co-op to maintain its relationship with SMEs and its r
 The targeted engagement tool takes existing resouces containing business advice and presents them to SMEs in an appealing and accessible way. The tool combines this with information specific to the business to tailor this experience. The agreed overarching user story from the hackday was 'I can virtually access specific business advice from the tech I use daily.'
 
 ![Wales Co-op Mission Statement](walescoopmission.png)
-
-## Implementation
-
-Several ways of providing specific advice were considered including a targeted email service. The email service would be most effective if it came from Wales Co-op's domain and using Wales Co-op's IP and it was decided that it would not be viable for Founders and Coders to carry this out in the 4 day sprint. As a result, it was decided that the project should focus on displaying the existing resources in the most engaging way possible with a webapp that would initially be standalone but would eventually make up part of the Wales Co-op website.
-
-### Design
-
-The design of the interface has not been fully decided yet. However it must fulfil the following criteria:
-* The design should look modern and appealing. A good design will make a big difference between businesses using the app and not using it.
-* It must present business advice in a way that is easily browsable, so intuituve hierarchy of information is still important.
