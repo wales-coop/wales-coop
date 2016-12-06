@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/server/plugins.js"],"names":[],"mappings":";;;;;;AAAA;;;;;;kBAEe,iB","file":"plugins.js","sourcesContent":["import inert from 'inert';\n\nexport default [\n  inert,\n];\n"]}

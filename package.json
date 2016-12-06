@@ -4,48 +4,83 @@
   "description": "Tool to help Wales Co-op deliver content to small businesses",
   "main": "server/index.js",
   "scripts": {
-    "lint": "eslint ./server/*.js",
-    "precommit": "npm run lint",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "lint": "eslint .",
+    "test": "nyc ava --verbose",
+    "clean": "rimraf './public/*.+(js|map|woff|woff2|eot|ttf)'",
+    "build-client": "webpack --config ./webpack.config.babel.js --progress --colors",
+    "build-server": "babel -d ./dist ./src/server -s",
+    "build": "npm run clean && npm run build-server && npm run build-client",
+    "dev-client": "webpack-dev-server --content-base public/ --inline",
+    "dev-server": "nodemon ./src/server/index.js --exec babel-node --presets latest,stage-2",
+    "dev": "npm run dev-server & npm run dev-client & wait",
+    "tdd": "nyc ava --verbose --watch --source ./src/**/**/*.js & npm run dev & wait",
+    "start": "node ./dist/index.js",
+    "precommit": "npm run lint && npm t",
+    "coverage": "nyc check-coverage --lines 95 --functions 95 --branches 95",
+    "report": "nyc report --reporter=html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wales-coop/wales-coop.git"
   },
-  "author": "",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wales-coop/wales-coop/issues"
   },
   "homepage": "https://github.com/wales-coop/wales-coop#readme",
-  "dependencies": {
-    "chartjs-color": "^2.0.0",
-    "hapi": "^15.0.3",
-    "inert": "^4.0.2"
+  "babel": {
+    "presets": [
+      "latest",
+      "stage-2"
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
   },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ],
+    "babel": "inherit"
+  },
+  "author": "Sam Galson and Mattia Spinelli",
+  "license": "ISC",
   "devDependencies": {
-    "eslint": "^3.6.0",
-    "eslint-config-airbnb": "^11.2.0",
-    "eslint-config-airbnb-base": "^7.2.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.2.2",
-    "eslint-plugin-react": "^6.3.0",
-    "husky": "^0.11.8",
-    "browserify": "^13.0.0",
-    "browserify-istanbul": "^0.2.1",
-    "bundle-collapser": "^1.2.1",
-    "coveralls": "^2.11.6",
-    "gulp": "3.9.x",
-    "gulp-concat": "~2.1.x",
-    "gulp-connect": "~2.0.5",
-    "gulp-insert": "~0.5.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-sass": "^2.3.2",    
-    "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "~0.2.x",
-    "merge-stream": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "ava": "^0.16.0",
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.0",
+    "bcrypt": "^1.0.0",
+    "boom": "^4.2.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "file-loader": "^0.9.0",
+    "husky": "^0.11.9",
+    "jsdom": "^9.8.3",
+    "nodemon": "^1.11.0",
+    "nyc": "^8.4.0",
+    "sinon": "^1.17.6",
+    "url-loader": "^0.5.7",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-2": "^6.17.0",
+    "env2": "^2.1.1",
+    "handlebars": "^4.0.6",
+    "hapi": "^16.0.1",
+    "hapi-auth-cookie": "^6.1.1",
+    "inert": "^4.0.3",
+    "joi": "^10.0.5",
+    "materialize-css": "^0.97.8",
+    "materialize-loader": "^1.1.1",
+    "pg": "^6.1.0",
+    "ramda": "^0.22.1",
+    "webpack": "^1.13.3"
   },
   "engines": {
     "node": "6.2.2"
