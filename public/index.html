@@ -3,103 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Wales Co-op Engagement Tool</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="./vendor/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"   integrity="sha256-Wp3wC/dKYQ/dCOUD7VUXXp4neLI5t0uUEF1pg0dFnAE="   crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
   </head>
   <body>
-    <div class="question-form question-form-section-default">
-      <div class="question-section-wrapper">
-        <img class="question-icon" src="images/icons/icon-white.svg" alt=""/>
-        <h3 class="question-section-title"></h3>
-      </div>
-      <hr class="question-section-hr" />
-      <div class="questions"></div>
-      <div class="question-button-wrapper">
-        <button class="question-button" id="question-button-yes">Yes</button>
-        <button class="question-button" id="question-button-no">No</button>
-      </div>
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Test</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="">Link</a></li>
+      </ul>
     </div>
-    <div class="doughnut-placeholder">
-      <h2>Answer questions to show content tailored to you</h2>
-    </div>
-    <div class="doughnut-container">
-      <div id="canvas-holder">
-          <canvas id="chart-area" />
-      </div>
-      <div id="content-holder">
-      </div>
-    </div>
-    <script>
-    (function(){
-      if (window.location.hostname === 'localhost'){
-        console.log('Serviceworker will not be installed for localhost')
-      } else if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(function(registration) {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }).catch(function(err) {
-            console.log('ServiceWorker registration failed: ', err);
-          });
-      } else {
-        console.log('ServiceWorker not supported')
-      }
-    })();
-    </script>
-    <script src="./js/content-data.js"></script>
-    <script src="./js/question-creator.js"></script>
-    <script src="./js/form.js"></script>
-    <script src="./js/topic-creator.js"></script>
-    <script src="./js/content-creator.js"></script>
-    <script src="./vendor/Chart.min.js"></script>
-    <script src="./vendor/manup.min.js"></script>
-    <script>
-      var config = {
-          type: 'doughnut',
-          data: {
-              datasets: [
-                {
-                  data: [],
-                  backgroundColor: [
-                      "#E72B37",
-                      "#46BFBD",
-                      "#FDB45C",
-                      "#949FB1",
-                      "#4D5360",
-                  ],
-              }],
-              labels: topics
-          },
-          options: {
-              responsive: true,
-              legend: {
-                  display: false,
-              },
-              animation: {
-                  animateScale: true,
-                  animateRotate: true
-              }
-          }
-      };
-      window.onload = function() {
-          var ctx = document.getElementById("chart-area").getContext("2d");
-          window.myDoughnut = new Chart(ctx, config);
-      };
-
-      $('#chart-area').click(function(evt) {
-          var topicDivs = document.getElementsByClassName('topic');
-          Array.prototype.map.call(topicDivs, function(div) {
-            div.setAttribute('style', 'display: none');
-          });
-          var activePoint = window.myDoughnut.getElementsAtEvent(evt)[0]._index;
-          var activeDiv = document.getElementById(topics[activePoint]);
-          activeDiv.setAttribute('style', 'display: block');
-      });
-    </script>
+  </nav> 
+    <script src="bundle.js"></script>
   </body>
 </html>

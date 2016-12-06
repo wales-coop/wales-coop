@@ -1,21 +1,22 @@
-# Wales-coop targeted engagement tool
+# Wales co-op targeted engagement tool
 
 ## Problem
 
-It is important for Wales Co-op to maintain its relationship with SMEs and its repuation as being the go-to place for advice. This is important for driving small businesses towards SBW when they are looking for advice and also for Wales Co-op as they position themselves for a future where they will have to charge for advisory services. At the moment, there is a lot of already written content that if delivered in a timely fashion, SMEs might be able to get a lot of value from. However, this content is currently sequestered on the SBW or Wales Co-op websites and the number of SMEs accessing it is low.
+Wales Co-op offers free in-person advice to co-operative businesses, but this is becoming too costly to provide in all cases. If businesses first consulted the advice available online, Wales-coop would be able to streamline its in-person services.
 
 ## Solution
 
-The targeted engagement tool takes existing resouces containing business advice and presents them to SMEs in an appealing and accessible way. The tool combines this with information specific to the business to tailor this experience. The agreed overarching user story from the hackday was 'I can virtually access specific business advice from the tech I use daily.'
+The targeted engagement tool is a website which asks businesses to answer a series of questions and provides access to online advice that is tailored to the responses. Businesses can sign up to the website to persist their tailored advice and enable Wales-coop to keep track of which information is most useful to different kinds of businesses.
 
-![Wales Co-op Mission Statement](walescoopmission.png)
+## Technical Notes
 
-## Implementation
+### Technologies
 
-Several ways of providing specific advice were considered including a targeted email service. The email service would be most effective if it came from Wales Co-op's domain and using Wales Co-op's IP and it was decided that it would not be viable for Founders and Coders to carry this out in the 4 day sprint. As a result, it was decided that the project should focus on displaying the existing resources in the most engaging way possible with a webapp that would initially be standalone but would eventually make up part of the Wales Co-op website.
+ - ES6 transpiled by Webpack
+ - Hapi and PostgreSQL for backend
+ - D3 for data visualisation 
+ - Handlebars for templating
+ 
+### Quickstart
 
-### Design
-
-The design of the interface has not been fully decided yet. However it must fulfil the following criteria:
-* The design should look modern and appealing. A good design will make a big difference between businesses using the app and not using it.
-* It must present business advice in a way that is easily browsable, so intuituve hierarchy of information is still important.
+`npm i && npm run dev` will fire up the development server.

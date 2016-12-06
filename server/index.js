@@ -1,11 +1,11 @@
-const hapi = require('hapi');
-const plugins = require('./plugins');
-const routes = require('./routes');
+import hapi from 'hapi';
+import plugins from './plugins';
+import routes from './routes';
 
 const server = new hapi.Server();
 
 server.connection({
-  port: process.env.PORT || 4000,
+  port: process.env.PORT || 8080,
 });
 
 server.register(plugins, (err) => {
@@ -14,5 +14,6 @@ server.register(plugins, (err) => {
 });
 
 server.start(() => {
+  // eslint-disable-next-line no-console
   console.log(`Server is currently running on: ${server.info.uri}`);
 });

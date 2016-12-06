@@ -1,5 +1,5 @@
-const inert = require('inert');
+import inert from 'inert';
 
-module.exports = [
+export default [
   inert,
 ];

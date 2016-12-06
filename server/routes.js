@@ -1,4 +1,4 @@
-module.exports = [{
+export default [{
   path: '/{param*}',
   method: 'GET',
   handler: {
