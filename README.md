@@ -16,8 +16,11 @@ The targeted engagement tool is a website which asks businesses to answer a seri
  - Hapi and PostgreSQL for backend
  - D3 for data visualisation 
  - Handlebars for templating
+ - Materialize for styling
  
 ### Quickstart
 
-`npm i && npm run dev` will fire up the development server.
+You will need to export COOKIE_SECRET and DB_URL environment variables from a `config.env` file in the root directory.
+
+`npm i && npm run dev` will fire up the backend and development server.
 

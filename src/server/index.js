@@ -1,6 +1,10 @@
 import hapi from 'hapi';
+import setEnvVariablesFrom from 'env2';
 import plugins from './plugins';
 import routes from './routes';
+import { baseConfig } from './auth';
+
+setEnvVariablesFrom('../../config.env');
 
 const server = new hapi.Server();
 
@@ -10,10 +14,10 @@ server.connection({
 
 server.register(plugins, (err) => {
   if (err) throw err;
+  server.auth.strategy('base', 'cookie', 'required', baseConfig);
   server.route(routes);
 });
 
-server.start(() => {
+server.start(() =>
   // eslint-disable-next-line no-console
-  console.log(`Server is currently running on: ${server.info.uri}`);
-});
+  console.log(`Server started on: ${server.info.uri}`));
