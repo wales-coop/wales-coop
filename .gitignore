@@ -4,7 +4,8 @@ node_modules
 npm-debug.log*
 coverage
 .nyc_output
-dist
+dist/*.js
+dist/*.map
 public/bundle.js
 public/bundle.js.map
 public/*.woff

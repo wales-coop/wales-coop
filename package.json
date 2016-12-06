@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "nyc ava --verbose",
-    "clean": "rimraf './public/*.+(js|map|woff|woff2|eot|ttf)'",
+    "clean": "rimraf './public/*.+(js|map|woff|woff2|eot|ttf)' && rimraf './dist/*.+(js|map)'",
     "build-client": "webpack --config ./webpack.config.babel.js --progress --colors",
     "build-server": "babel -d ./dist ./src/server -s",
     "build": "npm run clean && npm run build-server && npm run build-client",
