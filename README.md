@@ -12,7 +12,7 @@ The targeted engagement tool is a website which asks businesses to answer a seri
 
 ### Technologies
 
- - ES6 transpiled by Webpack
+ - ES6 transpiled by Babel and bundled by Webpack.
  - Hapi and PostgreSQL for backend
  - D3 for data visualisation 
  - Handlebars for templating
@@ -20,3 +20,4 @@ The targeted engagement tool is a website which asks businesses to answer a seri
 ### Quickstart
 
 `npm i && npm run dev` will fire up the development server.
+

@@ -5,7 +5,7 @@ import routes from './routes';
 const server = new hapi.Server();
 
 server.connection({
-  port: process.env.PORT || 8080,
+  port: process.env.PORT || 4000,
 });
 
 server.register(plugins, (err) => {

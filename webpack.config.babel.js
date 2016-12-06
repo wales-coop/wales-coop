@@ -5,7 +5,7 @@ const config = {
   entry: [
     'materialize-loader!./materialize.config.js',
     'babel-polyfill',
-    './src/index.js',
+    './src/client/index.js',
   ],
   output: {
     path: path.join(__dirname, 'public'),
