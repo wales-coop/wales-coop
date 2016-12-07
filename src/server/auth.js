@@ -6,7 +6,6 @@ export const baseConfig = {
   isSecure: process.env.NODE_ENV !== 'development',
   ttl: daysInMs(3),
   keepAlive: true,
-  requestDecoratorName: 'baseAuth',
   redirectTo: '/login',
 };
 

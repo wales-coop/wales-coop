@@ -22,7 +22,21 @@ const routes = [
       },
     },
   }, {
-    method: 'GET',
+    method: ['GET', 'POST'],
+    path: '/register',
+    config: {
+      handler: handlers.register,
+      auth: {
+        mode: 'try',
+      },
+      plugins: {
+        'hapi-auth-cookie': {
+          redirectTo: false,
+        },
+      },
+    },
+  }, {
+    method: 'POST',
     path: '/logout',
     config: {
       handler: handlers.logout,
@@ -32,7 +46,7 @@ const routes = [
     path: '/{param*}',
     handler: {
       directory: {
-        path: './public',
+        path: '.',
         listing: false,
       },
     },

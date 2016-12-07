@@ -2,6 +2,8 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS businesses (
   id             SERIAL         PRIMARY KEY,
+  username       VARCHAR(50)    UNIQUE,
+  password       VARCHAR(50)    NOT NULL,
   name           VARCHAR(100)   NOT NULL,
   address        VARCHAR(150)   NOT NULL,
   type           VARCHAR(50)    NOT NULL,
@@ -10,14 +12,6 @@ CREATE TABLE IF NOT EXISTS businesses (
   telephone      VARCHAR(15)    NOT NULL,
   email          VARCHAR(254)   NOT NULL,
   help_before    DATE           NOT NULL,
-  interests_id   INTEGER        NOT NULL     REFERENCES interests(id)
-);
-
-CREATE TABLE IF NOT EXISTS accounts (
-  id             SERIAL         PRIMARY KEY,
-  username       VARCHAR(50)    UNIQUE,
-  password       VARCHAR(50)    NOT NULL,
-  business_id    INTEGER        NOT NULL      REFERENCES businesses(id),
 );
 
 CREATE TABLE IF NOT EXISTS interests (
