@@ -3,32 +3,32 @@
     <form class="col s12" method="post" action="/register">
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-username" name="username" type="text" class="validate" required>
-          <label for="register-username">Username</label>
+          <input id="register-username" name="username" type="text" maxlength="50" class="validate" required>
+          <label for="register-username" data-error="Invalid username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-password" name="password" type="text" class="validate" required>
-          <label for="register-password">Password</label>
+          <input id="register-password" name="password" type="text" maxlength="50" class="validate" required>
+          <label for="register-password" data-error="Invalid password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-confirm-password" name="confirmPassword" type="text" class="validate" required>
-          <label for="register-confirm-password">Confirm password</label>
+          <input id="register-confirm-password" name="confirmPassword" maxlength="50" type="text" class="validate" required>
+          <label for="register-confirm-password" data-error="Invalid password">Confirm password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-name" type="text" class="validate" required>
-          <label for="register-name">Name</label>
+          <input id="register-name" type="text" name="name" maxlength="100" class="validate" required>
+          <label for="register-name" data-error="Invalid name">Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-address" type="text" class="validate" required>
-          <label for="register-address">Address</label>
+          <input id="register-address" type="text" name="address" maxlength="150" class="validate" required>
+          <label for="register-address" data-error="Invalid address">Address</label>
         </div>
       </div>
       <div class="row">
@@ -53,20 +53,20 @@
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-contact" name="contact" type="text" class="validate" required>
-          <label for="register-contact">Name of contact</label>
+          <input id="register-contact" name="contact" type="text" maxlength="100" class="validate" required>
+          <label for="register-contact" data-error="Invalid name">Name of contact</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-telephone" name="telephone" type="text" class="validate" required>
-          <label for="register-telephone">Telephone</label>
+          <input id="register-telephone" name="telephone" type="tel" maxlength="15" class="validate" required>
+          <label for="register-telephone" data-error="Invalid telephone number">Telephone</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 offset-m3">
-          <input id="register-email" type="email" class="validate" required>
-          <label for="register-email">Email</label>
+          <input id="register-email" type="email" name="email" maxlength="254" class="validate" required>
+          <label for="register-email" data-error="Invalid email">Email</label>
         </div>
       </div>
       <div class="row">
