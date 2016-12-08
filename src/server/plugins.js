@@ -15,6 +15,7 @@ export const viewsConfig = {
   path: 'views',
   layoutPath: Path.join('views', 'layout'),
   layout: 'default',
+  isCached: process.env.NODE_ENV !== 'development',
 };
 
 const daysInMs = n => n * 24 * 60 * 60 * 1000;
