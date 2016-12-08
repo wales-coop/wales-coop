@@ -1,4 +1,5 @@
 import inert from 'inert';
+import Path from 'path';
 import cookieAuth from 'hapi-auth-cookie';
 import hapiError from 'hapi-error';
 import vision from 'vision';
@@ -10,9 +11,8 @@ const errorConfig = {
 
 export const viewsConfig = {
   engines: { hbs: Handlebars },
-  path: '../views',
-  layoutPath: 'views/layout',
-  layout: 'default',
+  path: Path.join(__dirname, '..', 'views'),
+  layoutPath: Path.join('views', 'layout'),
 };
 
 const daysInMs = n => n * 24 * 60 * 60 * 1000;
