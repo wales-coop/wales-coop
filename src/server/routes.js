@@ -8,6 +8,15 @@ const routes = [
       handler: handlers.home,
     },
   }, {
+    method: 'GET',
+    path: '/admin',
+    config: {
+      handler: handlers.admin,
+      auth: {
+        scope: 'admin',
+      },
+    },
+  }, {
     method: ['GET', 'POST'],
     path: '/login',
     config: {

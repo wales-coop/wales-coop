@@ -7,7 +7,7 @@ export const handleError = (req, rep) => (error) => {
 
 export const makeCookie = payload => ({
   username: payload.username,
-  scope: payload.username === 'wales-coop' ? 'admin' : 'user',
+  scope: payload.username === 'wales-coop' ? ['admin'] : ['user'],
 });
 
 export const onLogin = (req, rep) => (isValid) => {
@@ -45,17 +45,27 @@ export const register = (req, rep) => {
     return rep.view('register');
   }
   if (req.method === 'post') {
-    db.register(req.payload)
+    return db.register(req.payload)
       .then(onRegister(req, rep))
       .catch(handleError(req, rep));
   }
   return undefined;
 };
 
-export const home = (req, rep) =>
-  rep.view('home');
+export const home = (req, rep) => {
+  if (req.auth.credentials.scope.indexOf('user') > -1) {
+    return rep.view('home');
+  } else if (req.auth.credentials.scope.indexOf('admin') > -1) {
+    return rep.redirect('/admin');
+  }
+  return undefined;
+};
 
 export const logout = (req, rep) => {
   req.cookieAuth.clear();
   rep.redirect('/login');
+};
+
+export const admin = (req, rep) => {
+  rep.view('admin');
 };
