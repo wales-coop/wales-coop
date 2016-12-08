@@ -53,10 +53,20 @@ const routes = [
   }, {
     method: 'GET',
     path: '/{param*}',
-    handler: {
-      directory: {
-        path: '.',
-        listing: false,
+    config: {
+      handler: {
+        directory: {
+          path: '.',
+          listing: false,
+        },
+      },
+      auth: {
+        mode: 'try',
+      },
+      plugins: {
+        'hapi-auth-cookie': {
+          redirectTo: false,
+        },
       },
     },
   },
