@@ -13,3 +13,4 @@ public/*.ttf
 public/*.eot
 public/*.woff2
 config.env
+tags

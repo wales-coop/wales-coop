@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS interests (
 CREATE TABLE IF NOT EXISTS questions (
   id             SERIAL         PRIMARY KEY,
   question       VARCHAR(250)   NOT NULL,
-  topic_id       INTEGER        NOT NULL      REFERENCES topics(id),
+  topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
 );
 
 CREATE TABLE IF NOT EXISTS resources (
