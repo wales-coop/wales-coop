@@ -21,7 +21,7 @@ export const onLogin = (req, rep) => (isValid) => {
 export const login = (req, rep) => {
   if (req.method === 'get') {
     if (req.auth.isAuthenticated) return rep.redirect('/');
-    return rep.file('login.html');
+    return rep.view('login');
   }
   if (req.method === 'post') {
     db.login(req.payload)
@@ -42,7 +42,7 @@ export const onRegister = (req, rep) => (dbResult) => {
 export const register = (req, rep) => {
   if (req.method === 'get') {
     if (req.auth.isAuthenticated) return rep.redirect('/');
-    return rep.file('register.html');
+    return rep.view('register');
   }
   if (req.method === 'post') {
     db.register(req.payload)
@@ -53,7 +53,7 @@ export const register = (req, rep) => {
 };
 
 export const home = (req, rep) =>
-  rep.file('index.html');
+  rep.view('home');
 
 export const logout = (req, rep) => {
   req.cookieAuth.clear();

@@ -11,8 +11,11 @@ const errorConfig = {
 
 export const viewsConfig = {
   engines: { hbs: Handlebars },
-  path: Path.join(__dirname, '..', 'views'),
+  relativeTo: Path.join(__dirname, '..'),
+  path: 'views',
   layoutPath: Path.join('views', 'layout'),
+  layout: 'default',
+  isCached: process.env.NODE_ENV !== 'development',
 };
 
 const daysInMs = n => n * 24 * 60 * 60 * 1000;
