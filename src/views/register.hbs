@@ -1,73 +1,96 @@
-<form class="col s12" method="post" action="/login">
+<div id="container" style="margin-top: 50px">
   <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <input value="companyName" id="companyName" type="text" class="validate">
-      <label class="active" for="companyName"> userId</label>
-    </div>
+    <form class="col s12" method="post" action="/register">
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-username" name="username" type="text" class="validate" required>
+          <label for="register-username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-password" name="password" type="text" class="validate" required>
+          <label for="register-password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-confirm-password" name="confirmPassword" type="text" class="validate" required>
+          <label for="register-confirm-password">Confirm password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-name" type="text" class="validate" required>
+          <label for="register-name">Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-address" type="text" class="validate" required>
+          <label for="register-address">Address</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <select id="register-type" name="type" required>
+            <option value="type1">Type 1</option>
+            <option value="type2">Type 2</option>
+            <option value="type3">Type 3</option>
+          </select>
+          <label for="register-type">Business type</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <select id="register-sector" name="sector" required>
+            <option value="sector1">Sector 1</option>
+            <option value="sector2">Sector 2</option>
+            <option value="sector3">Sector 3</option>
+          </select>
+          <label for="register-sector">Sector</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-contact" name="contact" type="text" class="validate" required>
+          <label for="register-contact">Name of contact</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-telephone" name="telephone" type="text" class="validate" required>
+          <label for="register-telephone">Telephone</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="register-email" type="email" class="validate" required>
+          <label for="register-email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <select id="register-help-before" name="helpBefore" required>
+            <option value="1">1 Week</option>
+            <option value="4">1 Month</option>
+            <option value="24">6 Months</option>
+            <option value="48">12 Months</option>
+            <option value="0">Never</option>
+          </select>
+          <label for="register-help-before">I am seeking support in...</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <button class="btn waves-effect waves-light left" type="submit">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <input value="businessAddress" id="businessAddress" type="text" class="validate">
-      <label class="active" for="businessAddress"> password</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Business type</a>
-    </div>
-    <ul id='dropdown1' class='dropdown-content'>
-      <li><a href="#!">one</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><a href="#!">three</a></li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <a class='dropdown-button btn' href='#' data-activates='dropdown2'>Business Sector</a>
-    </div>
-    <ul id='dropdown2' class='dropdown-content'>
-      <li><a href="#!">one</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><a href="#!">three</a></li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <input value="keyContactPerson" id="keyContactPerson" type="text" class="validate">
-      <label class="active" for="keycontact"> key contact person</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <input value="keyContactNumber" id="keyContactNumber" type="text" class="validate">
-      <label class="active" for="keycontactNumber"> key contact number</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <input value="keyContactEmail" id="keyContactEmail" type="text" class="validate">
-      <label class="active" for="keyContactEmail"> key contact email</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <a class='dropdown-button btn' href='#' data-activates='dropdown3'>Timeframe</a>
-    </div>
-    <ul id='dropdown3' class='dropdown-content'>
-      <li><a href="#!">one</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><a href="#!">three</a></li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="input-field col s6 offset-m3">
-      <button class="btn waves-effect waves-light left" type="submit" name="action">Submit
-        <i class="material-icons "></i>
-      </button>
-    </div>
-  </div>
-</form>
-
+</div>
+<script type="text/javascript">
+  $('select').material_select();
+</script>

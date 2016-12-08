@@ -1,24 +1,25 @@
-<div class="container">
-  <form class="col s12" method="post" action="/login">
-    <div class="row">
-      <div class="input-field col s6 offset-m3">
-        <input value="your username" id="first_name2" type="text" class="validate">
-        <label class="active" for="first_name2"> userId</label>
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+    <form class="col s12" method="post" action="/login">
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="login-username" name="username" type="text" class="validate" required>
+          <label for="login-username" data-error="Invalid username">Username</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6 offset-m3">
-        <input value="password" id="password" type="password" class="validate">
-        <label class="active" for="password"> password</label>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <input id="login-password" type="password" class="validate" required>
+          <label for="login-password" data-error="Invalid password">Password</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6 offset-m3">
-        <button class="btn waves-effect waves-light left" type="submit" name="action">
-          Submit
-          <i class="material-icons "></i>
-        </button>
+      <div class="row">
+        <div class="input-field col s6 offset-m3">
+          <button class="btn waves-effect waves-light left" type="submit">
+            Submit
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
