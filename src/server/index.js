@@ -1,12 +1,18 @@
 import hapi from 'hapi';
-import setEnvVariablesFrom from 'env2';
-import plugins from './plugins';
+import Path from 'path';
+import plugins, * as plug from './plugins';
 import routes from './routes';
-import { baseConfig } from './auth';
+import logger from './logger';
 
-setEnvVariablesFrom('../../config.env');
-
-const server = new hapi.Server();
+const server = new hapi.Server({
+  connections: {
+    routes: {
+      files: {
+        relativeTo: Path.join(__dirname, '..', '..', 'public'),
+      },
+    },
+  },
+});
 
 server.connection({
   port: process.env.PORT || 4000,
@@ -14,10 +20,12 @@ server.connection({
 
 server.register(plugins, (err) => {
   if (err) throw err;
-  server.auth.strategy('base', 'cookie', 'required', baseConfig);
+  server.auth.strategy('base', 'cookie', 'required', plug.authConfig);
+  server.views(plug.viewsConfig);
   server.route(routes);
+  server.start(() =>
+    // eslint-disable-next-line no-console
+    console.log(`Backend server started on: ${server.info.uri}`));
+  if (process.env.NODE_ENV === 'development') logger(server);
 });
 
-server.start(() =>
-  // eslint-disable-next-line no-console
-  console.log(`Server started on: ${server.info.uri}`));

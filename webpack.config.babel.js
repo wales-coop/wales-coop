@@ -32,6 +32,21 @@ const config = {
       loader: 'file',
     }],
   },
+  devServer: {
+    proxy: {
+      '*': {
+        target: 'http://localhost:4000',
+        secure: false,
+      },
+    },
+    stats: {
+      colors: true,
+      hash: false,
+      version: false,
+      assets: false,
+      chunks: false,
+    },
+  },
 };
 
 export default config;
