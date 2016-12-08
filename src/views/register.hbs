@@ -93,4 +93,13 @@
 </div>
 <script type="text/javascript">
   $('select').material_select();
+  
+  $('#register-password').change = validatePassword;
+  $('#register-confirm-password').change = validatePassword;
+  function validatePassword() {
+    var pass2 = $('#register-confirm-password').value;
+    var pass1 = $('#register-password').value;
+    if (pass1 !== pass2) document.getElementById('register-confirm-password').setCustomValidity('Passwords don't match');
+    else document.getElementById('register-confirm-password').setCustomValidity('');
+  }
 </script>
