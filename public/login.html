@@ -10,13 +10,35 @@
   </head>
   <body>
     <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Test</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="">Link</a></li>
-      </ul>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><embed type="image/svg+xml" src="./images/icons/icon.svg" /></a>
+      </div>
+    </nav> 
+    <div class="centered">
+      <h2>Log in</h2>
+      <form class="col s12" method="post" action="/login">
+        <div class="row">
+          <div class="input-field col s6 offset-m3">
+            <input value="your username" id="first_name2" type="text" class="validate">
+            <label class="active" for="first_name2"> userId</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 offset-m3">
+            <input value="password" id="password" type="password" class="validate">
+            <label class="active" for="password"> password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 offset-m3">
+            <button class="btn waves-effect waves-light left" type="submit" name="action">Submit
+              <i class="material-icons "></i>
+          </div>
+            </button>
+        </div>
     </div>
-  </nav> 
-    <script src="bundle.js"></script>
+      </form>
+      </div>
+      <script src="bundle.js"></script>
   </body>
 </html>
