@@ -11,4 +11,5 @@ const createTables = pool.query(sql, (error, result) => (
   : console.log('Loaded PostgreSQL tables:', result)
 ));
 
+
 export default createTables;
