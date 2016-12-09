@@ -1,2 +1,5 @@
-gulpfile.js
 public/*
+coverage/*
+dist/*
+sandbox.js
+resources.js
