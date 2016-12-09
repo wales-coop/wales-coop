@@ -15,6 +15,7 @@ export const viewsConfig = {
   path: 'views',
   layoutPath: Path.join('views', 'layout'),
   layout: 'default',
+  partialsPath: Path.join('views', 'partials'),
   isCached: process.env.NODE_ENV !== 'development',
 };
 
