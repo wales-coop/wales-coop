@@ -81,10 +81,13 @@ export const postResponsesQuery = payload => [
 export const postResponses = payload =>
  pool.query(...postResponsesQuery(payload));
 
-export const getResourcesQuery = () => [
-  `SELECT * FROM resources INNER JOIN topics
-   ON resources.topic_id = topics.id`,
-];
+export const getResourcesQuery = (query) => {
+  const baseQuery = `SELECT * FROM resources INNER JOIN topics
+   ON resources.topic_id = topics.id`;
+  return query.topic_id
+    ? [`${baseQuery} WHERE topic_id = $1`, [query.topic_id]]
+    : [baseQuery];
+};
 
-export const getResources = () =>
-  pool.query(...getResourcesQuery());
+export const getResources = query =>
+  pool.query(...getResourcesQuery(query));
