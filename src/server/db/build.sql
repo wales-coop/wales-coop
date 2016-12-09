@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS businesses (
   contact        VARCHAR(100)   NOT NULL,
   telephone      VARCHAR(15)    NOT NULL,
   email          VARCHAR(254)   NOT NULL,
-  help_before    DATE           NOT NULL,
+  help_before    DATE           NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS interests (
@@ -31,12 +31,12 @@ CREATE TABLE IF NOT EXISTS resources (
   id             SERIAL         PRIMARY KEY,
   description    VARCHAR(250)   NOT NULL,
   url            TEXT           NOT NULL,
-  topic_id       INTEGER        NOT NULL      REFERENCES topics(id),
+  topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
 );
 
 CREATE TABLE IF NOT EXISTS topics (
   id             SERIAL         PRIMARY KEY,
-  topic          VARCHAR(250)   NOT NULL,
+  topic          VARCHAR(250)   NOT NULL
 );
 
 

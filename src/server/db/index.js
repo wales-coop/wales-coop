@@ -34,7 +34,7 @@ export const postBusiness = payload =>
 
 export const getBusinessesQuery = query => (
   query.username
-  ? ['SELECT * FROM businesses WHERE username = $1', query.username]
+  ? ['SELECT * FROM businesses WHERE username = $1', [query.username]]
   : ['SELECT * FROM businesses']
 );
 
@@ -54,11 +54,37 @@ export const getResponsesQuery = (query) => {
       INNER JOIN businesses ON interests.business_id = businesses.id
       INNER JOIN questions ON interests.question_id = questions.id
       INNER JOIN topics ON questions.topic_id = topics.id`;
-  return query.id
-    ? [`${baseQuery} WHERE business_id = $1`, query.id]
-    : [baseQuery];
+  if (query.business_id) {
+    return [`${baseQuery} WHERE business_id = $1`, [query.business_id]];
+  }
+  if (query.type) {
+    return [`${baseQuery} WHERE businesses.type = $1`, [query.type]];
+  }
+  return [baseQuery];
 };
 
 export const getResponses = query =>
   pool.query(...getResponsesQuery(query));
 
+export const generateResponsesInsertValuePlaceholders = (response, idx) =>
+  `($${(idx * 3) + 1}, $${(idx * 3) + 2}, $${(idx * 3) + 3})`;
+
+export const generateResponsesInsertValues = businessId => response =>
+    [businessId, response.question_id, response.response];
+
+export const postResponsesQuery = payload => [
+  `INSERT INTO interests (business_id, question_id, response) VALUES
+    ${payload.responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
+  [[].concat(...payload.responses.map(generateResponsesInsertValues(payload.business_id)))],
+];
+
+export const postResponses = payload =>
+ pool.query(...postResponsesQuery(payload));
+
+export const getResourcesQuery = () => [
+  `SELECT * FROM resources INNER JOIN topics
+   ON resources.topic_id = topics.id`,
+];
+
+export const getResources = () =>
+  pool.query(...getResourcesQuery());
