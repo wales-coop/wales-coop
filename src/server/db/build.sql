@@ -29,8 +29,10 @@ CREATE TABLE IF NOT EXISTS questions (
 
 CREATE TABLE IF NOT EXISTS resources (
   id             SERIAL         PRIMARY KEY,
+  title          VARCHAR(250)   NOT NULL,
   description    VARCHAR(250)   NOT NULL,
   url            TEXT           NOT NULL,
+  resources      TEXT           NOT NULL,
   topic_id       INTEGER        NOT NULL      REFERENCES topics(id),
 );
 
