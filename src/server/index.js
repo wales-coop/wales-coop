@@ -1,7 +1,7 @@
 import hapi from 'hapi';
 import Path from 'path';
 import plugins, * as plug from './plugins';
-import routes from './routes';
+import routes from './routes/';
 import logger from './logger';
 
 const server = new hapi.Server({

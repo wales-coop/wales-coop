@@ -1,17 +1,17 @@
-import * as handlers from './handlers';
+import * as ui from './ui_handlers';
 
-const routes = [
+const uiRoutes = [
   {
     method: 'GET',
     path: '/',
     config: {
-      handler: handlers.home,
+      handler: ui.home,
     },
   }, {
     method: 'GET',
     path: '/admin',
     config: {
-      handler: handlers.admin,
+      handler: ui.admin,
       auth: {
         scope: 'admin',
       },
@@ -20,7 +20,7 @@ const routes = [
     method: ['GET', 'POST'],
     path: '/login',
     config: {
-      handler: handlers.login,
+      handler: ui.login,
       auth: {
         mode: 'try',
       },
@@ -31,10 +31,10 @@ const routes = [
       },
     },
   }, {
-    method: ['GET', 'POST'],
+    method: 'GET',
     path: '/register',
     config: {
-      handler: handlers.register,
+      handler: ui.register,
       auth: {
         mode: 'try',
       },
@@ -48,7 +48,7 @@ const routes = [
     method: 'POST',
     path: '/logout',
     config: {
-      handler: handlers.logout,
+      handler: ui.logout,
     },
   }, {
     method: 'GET',
@@ -72,4 +72,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default uiRoutes;
