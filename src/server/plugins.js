@@ -17,6 +17,7 @@ export const viewsConfig = {
   layout: 'default',
   partialsPath: Path.join('views', 'partials'),
   isCached: process.env.NODE_ENV !== 'development',
+  // Partials always cached: https://github.com/hapijs/hapi/issues/1564
 };
 
 const daysInMs = n => n * 24 * 60 * 60 * 1000;

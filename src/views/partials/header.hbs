@@ -1,17 +1,21 @@
-<nav>
+<nav style="margin-bottom: 50px; height: 64px">
   <div class="nav-wrapper">
-    <a href="http://wales.coop/" class="brand-logo left">
-      <embed type="image/svg+xml" src="images/icons/icon.svg" />
+    <a class="brand-logo left" href="http://wales.coop/">
+      <embed
+         style="min-width: 60px; min-height: 60px; margin-left: 5px"
+         type="image/svg+xml"
+         src="images/icons/icon.svg"
+      />
     </a>
     {{#if username}}
-      <ul class="black-text right">
-        <li style="margin-right: 20px">Logged in as {{username}}</li>
-        <li>
-          <form method="post" action="/logout">
-            <button type="submit" class="waves-effect waves-teal btn-flat">Logout</button>
-          </form>
-        </li>
-      </ul>
+    <ul class="black-text right">
+      <li style="margin-right: 20px">Logged in as {{username}}</li>
+      <li>
+        <form method="post" action="/logout">
+          <button type="submit" class="waves-effect waves-teal btn-flat">Logout</button>
+        </form>
+      </li>
+    </ul>
     {{/if}}
   </div>
 </nav> 

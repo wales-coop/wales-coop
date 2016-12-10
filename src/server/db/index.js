@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import pool from './pool';
 
 export const loginQuery = payload => [
-  'SELECT * FROM accounts WHERE username = $1',
+  'SELECT * FROM businesses WHERE username = $1',
   [payload.username],
 ];
 

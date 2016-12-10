@@ -1,5 +1,8 @@
 <div id="container" style="margin-top: 50px">
   <div class="row">
+    <h3 class="col s12 offset-m3 wc-header">
+      Just a few details...
+    </h3>
     <form class="col s12" method="post" action="/register">
       <div class="row">
         <div class="input-field col s6 offset-m3">
@@ -96,10 +99,13 @@
   
   $('#register-password').change = validatePassword;
   $('#register-confirm-password').change = validatePassword;
+
   function validatePassword() {
     var pass2 = $('#register-confirm-password').value;
     var pass1 = $('#register-password').value;
-    if (pass1 !== pass2) document.getElementById('register-confirm-password').setCustomValidity("Passwords don't match");
+    if (pass1 !== pass2) {
+      document.getElementById('register-confirm-password').setCustomValidity("Passwords don't match");
+    }
     else document.getElementById('register-confirm-password').setCustomValidity('');
   }
 </script>
