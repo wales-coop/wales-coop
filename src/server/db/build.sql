@@ -14,11 +14,9 @@ CREATE TABLE IF NOT EXISTS businesses (
   help_before    DATE           NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS interests (
+CREATE TABLE IF NOT EXISTS topics (
   id             SERIAL         PRIMARY KEY,
-  business_id    INTEGER        NOT NULL      REFERENCES businesses(id),
-  question_id    INTEGER        NOT NULL      REFERENCES questions(id),
-  response       BOOL           NOT NULL
+  topic          VARCHAR(250)   NOT NULL,
 );
 
 CREATE TABLE IF NOT EXISTS questions (
@@ -27,17 +25,20 @@ CREATE TABLE IF NOT EXISTS questions (
   topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
 );
 
+CREATE TABLE IF NOT EXISTS interests (
+  id             SERIAL         PRIMARY KEY,
+  business_id    INTEGER        NOT NULL      REFERENCES businesses(id),
+  question_id    INTEGER        NOT NULL      REFERENCES questions(id),
+  response       BOOL           NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS resources (
   id             SERIAL         PRIMARY KEY,
-  description    VARCHAR(250)   NOT NULL,
+  title          VARCHAR(250)   NOT NULL,
+  description    TEXT           NOT NULL,
   url            TEXT           NOT NULL,
-  topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
+  resources      TEXT           NOT NULL,
+  topic_id       INTEGER        NOT NULL      REFERENCES topics(id),
 );
-
-CREATE TABLE IF NOT EXISTS topics (
-  id             SERIAL         PRIMARY KEY,
-  topic          VARCHAR(250)   NOT NULL
-);
-
 
 COMMIT;
