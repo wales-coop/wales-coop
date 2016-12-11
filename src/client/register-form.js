@@ -1,19 +1,31 @@
 /* global document $ */
+import 'jquery-validation';
+
 export default function () {
   $('select').material_select();
 
-  const validatePassword = () => {
-    const pass2 = $('#register-confirm-password').value;
-    const pass1 = $('#register-password').value;
-    if (pass1 !== pass2) {
-      document.getElementById('register-confirm-password').setCustomValidity("Passwords don't match");
-    } else {
-      document.getElementById('register-confirm-password').setCustomValidity('');
-    }
-  };
+  $.validator.setDefaults({
+    errorClass: 'invalid',
+    validClass: 'valid',
+    errorPlacement(error, element) {
+      $(element)
+        .closest('form')
+        .find(`label[for='${element.attr('id')}']`)
+        .attr('data-error', error.text());
+    },
+  });
 
-  $('#register-password').change = validatePassword;
-  $('#register-confirm-password').change = validatePassword;
-
+  $('#register-form').validate({
+    rules: {
+      confirmPassword: {
+        equalTo: '#register-password',
+      },
+    },
+    messages: {
+      confirmPassword: {
+        equalTo: 'Passwords must match',
+      },
+    },
+  });
   return undefined;
 }

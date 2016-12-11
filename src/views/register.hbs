@@ -3,7 +3,7 @@
     <h3 class="col s12 offset-m3 wc-header">
       Just a few details...
     </h3>
-    <form class="col s12" method="post" action="/register">
+    <form id="register-form" class="col s12" method="post" action="/register">
       <div class="row">
         <div class="input-field col s6 offset-m3">
           <input id="register-username" name="username" type="text" maxlength="50" class="validate" required>
@@ -37,7 +37,7 @@
       <div class="row">
         <div class="input-field col s6 offset-m3">
           <select id="register-type" name="type" required>
-            <option value="" disabled selected>Select type</option>
+            <option value="" disabled>Select type</option>
             <option value="type1">Type 1</option>
             <option value="type2">Type 2</option>
             <option value="type3">Type 3</option>
@@ -48,7 +48,7 @@
       <div class="row">
         <div class="input-field col s6 offset-m3">
           <select id="register-sector" name="sector" required>
-            <option value="" disabled selected>Select sector</option>
+            <option value="" disabled>Select sector</option>
             <option value="sector1">Sector 1</option>
             <option value="sector2">Sector 2</option>
             <option value="sector3">Sector 3</option>
@@ -77,7 +77,7 @@
       <div class="row">
         <div class="input-field col s6 offset-m3">
           <select id="register-help-before" name="helpBefore" required>
-            <option value="" disabled selected>Select how soon</option>
+            <option value="" disabled>Select how soon</option>
             <option value="1">1 Week</option>
             <option value="4">1 Month</option>
             <option value="24">6 Months</option>
