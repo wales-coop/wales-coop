@@ -1,5 +1,8 @@
 BEGIN;
 
+INSERT INTO businesses(username, password, name, address, type, sector, contact, telephone, email, help_before) VALUES
+('wales-coop', 'wales-coop', 'Wales Co-op', 'Y BORTH 13 BEDDAU WAY CAERPHILLY CF83 2AX', 'charity', 'governmental', 'Dylan Thomas', '0300 111 5050' , 'info@wales.coop', 'Jan-01-9999');
+
 INSERT INTO topics(topic) VALUES 
 ('Before you Start a Social Business'),
 ('Starting a Social Business'),
