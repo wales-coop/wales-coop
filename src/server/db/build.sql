@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS businesses (
 
 CREATE TABLE IF NOT EXISTS topics (
   id             SERIAL         PRIMARY KEY,
-  topic          VARCHAR(250)   NOT NULL,
+  topic          VARCHAR(250)   NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS questions (
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS resources (
   title          VARCHAR(250)   NOT NULL,
   description    TEXT           NOT NULL,
   url            TEXT           NOT NULL,
-  resources      TEXT           NOT NULL,
-  topic_id       INTEGER        NOT NULL      REFERENCES topics(id),
+  resources      JSONB          NOT NULL,
+  topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
 );
 
 COMMIT;
