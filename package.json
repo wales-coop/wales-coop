@@ -78,6 +78,7 @@
     "hapi": "^16.0.1",
     "hapi-auth-cookie": "^6.1.1",
     "hapi-error": "^1.6.0",
+    "imports-loader": "^0.7.0",
     "inert": "^4.0.3",
     "joi": "^10.0.5",
     "jquery-validation": "^1.16.0",

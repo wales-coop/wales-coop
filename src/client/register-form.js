@@ -20,10 +20,20 @@ export default function () {
       confirmPassword: {
         equalTo: '#register-password',
       },
+      username: {
+        remote: {
+          url: '/api/businesses',
+          type: 'get',
+          dataFilter: response => JSON.parse(response).length,
+        },
+      },
     },
     messages: {
       confirmPassword: {
         equalTo: 'Passwords must match',
+      },
+      username: {
+        remote: 'Username already taken',
       },
     },
   });
