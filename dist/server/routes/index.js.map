@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/server/routes/index.js"],"names":["concat"],"mappings":";;;;;;AAAA;;;;AACA;;;;;;kBAEe,GAAGA,MAAH,2C","file":"index.js","sourcesContent":["import apiRoutes from './api_routes';\nimport uiRoutes from './ui_routes';\n\nexport default [].concat(apiRoutes, uiRoutes);\n"]}
