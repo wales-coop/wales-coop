@@ -1,0 +1,20 @@
+<nav style="margin-bottom: 50px; height: 64px">
+  <div class="nav-wrapper">
+    <a class="brand-logo left" href="http://wales.coop/" style="line-height: 64px">
+      <svg width="50" height="44" style="margin-left: 5px; vertical-align: middle">
+        <image xlink:href="/images/icons/icon.svg" width="50" height="44" />
+      </svg>
+    </a>
+    {{#if username}}
+    <ul class="black-text right">
+      <li style="margin-right: 20px">Logged in as {{username}}</li>
+      <li>
+        <form method="post" action="/logout">
+          <button type="submit" class="waves-effect waves-teal btn-flat">Logout</button>
+        </form>
+      </li>
+    </ul>
+    {{/if}}
+  </div>
+</nav> 
+

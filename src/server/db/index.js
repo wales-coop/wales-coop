@@ -1,19 +1,18 @@
-import bcrypt from 'bcrypt';
 import pool from './pool';
 
 export const loginQuery = payload => [
-  'SELECT * FROM accounts WHERE username = $1',
+  'SELECT * FROM businesses WHERE username = $1',
   [payload.username],
 ];
 
 export const login = payload =>
   pool.query(...loginQuery(payload));
 
-export const postBusinessQuery = (payload, hashedPass) => [
+export const postBusinessQuery = payload => [
   'INSERT INTO businesses(username, password, name, address, type, sector, contact, telephone, email, help_before) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, username',
   [
     payload.username,
-    hashedPass,
+    payload.hashedPass,
     payload.name,
     payload.address,
     payload.type,
@@ -21,20 +20,16 @@ export const postBusinessQuery = (payload, hashedPass) => [
     payload.contact,
     payload.telephone,
     payload.email,
-    payload.help_before,
+    payload.helpBefore,
   ],
 ];
 
-export const registerWithHashedPass = payload => hashedPass =>
-  pool.query(...postBusinessQuery(payload, hashedPass));
-
 export const postBusiness = payload =>
-  bcrypt.hash(payload.password, 10)
-  .then(registerWithHashedPass(payload));
+  pool.query(...postBusinessQuery(payload));
 
 export const getBusinessesQuery = query => (
   query.username
-  ? ['SELECT * FROM businesses WHERE username = $1', query.username]
+  ? ['SELECT * FROM businesses WHERE username = $1', [query.username]]
   : ['SELECT * FROM businesses']
 );
 
@@ -54,11 +49,40 @@ export const getResponsesQuery = (query) => {
       INNER JOIN businesses ON interests.business_id = businesses.id
       INNER JOIN questions ON interests.question_id = questions.id
       INNER JOIN topics ON questions.topic_id = topics.id`;
-  return query.id
-    ? [`${baseQuery} WHERE business_id = $1`, query.id]
-    : [baseQuery];
+  if (query.business_id) {
+    return [`${baseQuery} WHERE business_id = $1`, [query.business_id]];
+  }
+  if (query.type) {
+    return [`${baseQuery} WHERE businesses.type = $1`, [query.type]];
+  }
+  return [baseQuery];
 };
 
 export const getResponses = query =>
   pool.query(...getResponsesQuery(query));
 
+export const generateResponsesInsertValuePlaceholders = (response, idx) =>
+  `($${(idx * 3) + 1}, $${(idx * 3) + 2}, $${(idx * 3) + 3})`;
+
+export const generateResponsesInsertValues = businessId => response =>
+    [businessId, response.question_id, response.response];
+
+export const postResponsesQuery = payload => [
+  `INSERT INTO interests (business_id, question_id, response) VALUES
+    ${payload.responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
+  [[].concat(...payload.responses.map(generateResponsesInsertValues(payload.business_id)))],
+];
+
+export const postResponses = payload =>
+ pool.query(...postResponsesQuery(payload));
+
+export const getResourcesQuery = (query) => {
+  const baseQuery = `SELECT * FROM resources INNER JOIN topics
+   ON resources.topic_id = topics.id`;
+  return query.topic_id
+    ? [`${baseQuery} WHERE topic_id = $1`, [query.topic_id]]
+    : [baseQuery];
+};
+
+export const getResources = query =>
+  pool.query(...getResourcesQuery(query));
