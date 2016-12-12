@@ -30,6 +30,10 @@ const config = {
     }, {
       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file',
+    }, {
+      test: require.resolve('jquery-validation'),
+      loader: 'imports-loader',
+      query: 'define=>false,require=>function(){return $}',
     }],
   },
   devServer: {
