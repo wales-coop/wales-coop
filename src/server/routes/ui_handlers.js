@@ -49,7 +49,9 @@ export const register = (req, rep) => {
 
 export const home = (req, rep) => {
   if (req.auth.credentials.scope.indexOf('user') > -1) {
-    return rep.view('home');
+    return rep.view('home', {
+      username: req.auth.credentials.username,
+    });
   } else if (req.auth.credentials.scope.indexOf('admin') > -1) {
     return rep.redirect('/admin');
   }
@@ -62,5 +64,7 @@ export const logout = (req, rep) => {
 };
 
 export const admin = (req, rep) => {
-  rep.view('admin');
+  rep.view('admin', {
+    username: req.auth.credentials.username,
+  });
 };
