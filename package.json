@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint .",
     "test": "nyc ava --verbose",
-    "clean": "rimraf './public/*.+(js|map|woff|woff2|eot|ttf)' && rimraf './dist/*.+(js|map)'",
+    "clean": "rimraf './public/**/*.+(js|map|woff|woff2|eot|ttf)' && rimraf './dist/**/*.+(js|map)'",
     "build-client": "webpack --config ./webpack.config.babel.js --progress --colors",
-    "build-server": "babel -d ./dist ./src/server -s",
+    "build-server": "babel -d ./dist/server ./src/server -s",
     "build": "npm-run-all --serial clean build-server build-client",
     "dev-client": "webpack-dev-server --content-base public/ --inline",
     "dev-server": "export NODE_ENV=development && nodemon index.js",
@@ -17,11 +17,11 @@
     "debug": "npm-run-all node-debug dev-client",
     "test-watch": "nyc ava --verbose --watch --source ./src/**/**/*.js",
     "tdd": "npm-run-all --parallel test-watch dev-server dev-client",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/server/index.js",
     "precommit": "npm run lint && npm t",
     "coverage": "nyc check-coverage --lines 95 --functions 95 --branches 95",
     "report": "nyc report --reporter=html",
-    "postinstall": "npm run clean && npm run build"
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",

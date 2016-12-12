@@ -11,7 +11,7 @@ const errorConfig = {
 
 export const viewsConfig = {
   engines: { hbs: Handlebars },
-  relativeTo: Path.join(__dirname, '..'),
+  relativeTo: Path.join(__dirname, '..', '..'),
   path: 'views',
   layoutPath: Path.join('views', 'layout'),
   layout: 'default',
