@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+import moment from 'moment';
 import * as db from '../db/';
 import { makeCookie, handleError } from './ui_handlers';
 
@@ -9,8 +11,17 @@ export const loginPostedBusiness = (req, rep) => ({ rows }) => {
 export const returnData = (req, rep) => ({ rows }) =>
   rep(JSON.stringify(rows));
 
+export const formatBusinessPayload = payload => hashedPass => ({
+  ...payload,
+  password: undefined,
+  hashedPass,
+  helpBefore: moment().add(payload.helpBefore, 'weeks'),
+});
+
 export const postBusiness = (req, rep) =>
-  db.postBusiness(req.payload)
+  bcrypt.hash(req.payload.password, 10)
+    .then(formatBusinessPayload(req.payload))
+    .then(db.postBusiness)
     .then(loginPostedBusiness(req, rep))
     .catch(handleError(req, rep));
 

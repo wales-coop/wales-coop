@@ -3,7 +3,7 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS businesses (
   id             SERIAL         PRIMARY KEY,
   username       VARCHAR(50)    UNIQUE,
-  password       VARCHAR(50)    NOT NULL,
+  password       BYTEA          NOT NULL,
   name           VARCHAR(100)   NOT NULL,
   address        VARCHAR(150)   NOT NULL,
   type           VARCHAR(50)    NOT NULL,

@@ -1,8 +1,8 @@
-import bcrypt from 'bcrypt';
+import Bcrypt from 'bcrypt';
 import * as db from '../db/';
 
 export const handleError = (req, rep) => (error) => {
-  console.log(error);
+  console.log('from handleError......', error);
   return rep(error);
 };
 
@@ -12,13 +12,16 @@ export const makeCookie = ({ id, username }) => ({
   scope: username === 'wales-coop' ? ['admin'] : ['user'],
 });
 
-export const validateLogin = payload => ({ rows }) =>
-  bcrypt.compare(payload.password, rows[0].password)
+export const validateLogin = payload => ({ rows }) => (
+  rows.length
+    ? Bcrypt.compare(payload.password, rows[0].password)
     .then(isValid => (
       isValid
       ? rows[0]
       : Promise.reject(new Error('Invalid login details'))
-    ));
+    ))
+  : Promise.reject(new Error('Invalid login details'))
+);
 
 export const onLoginValidated = (req, rep) => (userData) => {
   req.cookieAuth.set(makeCookie(userData));

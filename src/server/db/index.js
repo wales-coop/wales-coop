@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import pool from './pool';
 
 export const loginQuery = payload => [
@@ -9,11 +8,11 @@ export const loginQuery = payload => [
 export const login = payload =>
   pool.query(...loginQuery(payload));
 
-export const postBusinessQuery = (payload, hashedPass) => [
+export const postBusinessQuery = payload => [
   'INSERT INTO businesses(username, password, name, address, type, sector, contact, telephone, email, help_before) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, username',
   [
     payload.username,
-    hashedPass,
+    payload.hashedPass,
     payload.name,
     payload.address,
     payload.type,
@@ -21,16 +20,12 @@ export const postBusinessQuery = (payload, hashedPass) => [
     payload.contact,
     payload.telephone,
     payload.email,
-    payload.help_before,
+    payload.helpBefore,
   ],
 ];
 
-export const registerWithHashedPass = payload => hashedPass =>
-  pool.query(...postBusinessQuery(payload, hashedPass));
-
 export const postBusiness = payload =>
-  bcrypt.hash(payload.password, 10)
-  .then(registerWithHashedPass(payload));
+  pool.query(...postBusinessQuery(payload));
 
 export const getBusinessesQuery = query => (
   query.username
