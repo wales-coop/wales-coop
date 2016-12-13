@@ -1,4 +1,4 @@
-import Bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import * as db from '../db/';
 
 export const handleError = (req, rep) => (error) => {
@@ -14,13 +14,12 @@ export const makeCookie = ({ id, username }) => ({
 
 export const validateLogin = payload => ({ rows }) => (
   rows.length
-    ? Bcrypt.compare(payload.password, rows[0].password)
-    .then(isValid => (
-      isValid
-      ? rows[0]
-      : Promise.reject(new Error('Invalid login details'))
-    ))
-  : Promise.reject(new Error('Invalid login details'))
+  ? bcrypt.compare(payload.password, rows[0].password.toString('utf-8'))
+  .then(isValid =>
+      (isValid
+        ? rows[0]
+        : Promise.reject(new Error('Invalid login details'))))
+    : Promise.reject(new Error('Invalid login details'))
 );
 
 export const onLoginValidated = (req, rep) => (userData) => {
@@ -49,7 +48,9 @@ export const register = (req, rep) => {
 
 export const home = (req, rep) => {
   if (req.auth.credentials.scope.indexOf('user') > -1) {
-    return rep.view('home');
+    return rep.view('home', {
+      username: req.auth.credentials.username,
+    });
   } else if (req.auth.credentials.scope.indexOf('admin') > -1) {
     return rep.redirect('/admin');
   }
@@ -62,5 +63,7 @@ export const logout = (req, rep) => {
 };
 
 export const admin = (req, rep) => {
-  rep.view('admin');
+  rep.view('admin', {
+    username: req.auth.credentials.username,
+  });
 };
