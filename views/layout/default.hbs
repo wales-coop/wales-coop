@@ -11,6 +11,10 @@
   <body>
     <script src="/bundle.js"></script>
     {{>header this}}
-    {{{content}}}
+    <div id="content-container-wrapper">
+      <div id="content-container">
+        {{{content}}}
+      </div>
+    </div>
   </body>
 </html>

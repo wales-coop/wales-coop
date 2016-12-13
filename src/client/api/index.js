@@ -8,3 +8,6 @@ export const getResponses = businessId =>
 
 export const getMe = () =>
   $.get('/api/me');
+
+export const getResources = () =>
+  $.get('api/resources');
