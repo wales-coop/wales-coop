@@ -1,7 +1,7 @@
 /* global $ document window */
 import 'materialize-css';
 import { compose } from 'ramda';
-import home from './home';
+import home from './home/';
 import loginForm from './login-form';
 import registerForm from './register-form';
 

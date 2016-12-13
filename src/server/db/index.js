@@ -79,7 +79,7 @@ export const postResponses = payload =>
 export const getResourcesQuery = (query) => {
   const baseQuery = `SELECT * FROM resources INNER JOIN topics
    ON resources.topic_id = topics.id`;
-  return query.topicId
+  return query && query.topicId
     ? [`${baseQuery} WHERE topic_id = $1`, [query.topicId]]
     : [baseQuery];
 };

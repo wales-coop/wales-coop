@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 
 const config = {
   devtool: 'source-map',
@@ -11,6 +12,11 @@ const config = {
     path: path.join(__dirname, 'public'),
     publicPath: '/',
     filename: 'bundle.js',
+  },
+  resolve: {
+    alias: {
+      jquery: path.join(__dirname, 'node_modules/materialize-css/node_modules/jquery/dist/jquery'),
+    },
   },
   module: {
     loaders: [{
@@ -33,9 +39,21 @@ const config = {
     }, {
       test: require.resolve('jquery-validation'),
       loader: 'imports-loader',
-      query: 'define=>false,require=>function(){return $}',
+      query: 'define=>false,$=jquery',
+    }, {
+      test: require.resolve('materialize-css'),
+      loader: 'imports-loader',
+      query: 'jQuery=jquery,$=jquery,hammerjs',
     }],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery',
+    }),
+  ],
   devServer: {
     proxy: {
       '*': {
