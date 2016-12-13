@@ -1,4 +1,4 @@
-import Bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import * as db from '../db/';
 
 export const handleError = (req, rep) => (error) => {
@@ -14,13 +14,12 @@ export const makeCookie = ({ id, username }) => ({
 
 export const validateLogin = payload => ({ rows }) => (
   rows.length
-    ? Bcrypt.compare(payload.password, rows[0].password)
-    .then(isValid => (
-      isValid
-      ? rows[0]
-      : Promise.reject(new Error('Invalid login details'))
-    ))
-  : Promise.reject(new Error('Invalid login details'))
+  ? bcrypt.compare(payload.password, rows[0].password.toString('utf-8'))
+  .then(isValid =>
+      (isValid
+        ? rows[0]
+        : Promise.reject(new Error('Invalid login details'))))
+    : Promise.reject(new Error('Invalid login details'))
 );
 
 export const onLoginValidated = (req, rep) => (userData) => {

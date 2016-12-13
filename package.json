@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint .",
     "test": "nyc ava --verbose",
-    "clean": "rimraf './public/*.+(js|map|woff|woff2|eot|ttf)' && rimraf './dist/*.+(js|map)'",
+    "clean": "rimraf './public/**/*.+(js|map|woff|woff2|eot|ttf)' && rimraf './dist/**/*.+(js|map)'",
     "build-client": "webpack --config ./webpack.config.babel.js --progress --colors",
-    "build-server": "babel -d ./dist ./src/server -s",
+    "build-server": "babel -d ./dist/server ./src/server -s",
     "build": "npm-run-all --serial clean build-server build-client",
     "dev-client": "webpack-dev-server --content-base public/ --inline",
     "dev-server": "export NODE_ENV=development && nodemon index.js",
@@ -17,11 +17,11 @@
     "debug": "npm-run-all node-debug dev-client",
     "test-watch": "nyc ava --verbose --watch --source ./src/**/**/*.js",
     "tdd": "npm-run-all --parallel test-watch dev-server dev-client",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/server/index.js",
     "precommit": "npm run lint && npm t",
     "coverage": "nyc check-coverage --lines 95 --functions 95 --branches 95",
     "report": "nyc report --reporter=html",
-    "postinstall": "npm run clean && npm run build"
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -70,7 +70,7 @@
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-2": "^6.17.0",
-    "bcrypt": "^1.0.0",
+    "bcrypt": "^1.0.1",
     "boom": "^4.2.0",
     "env2": "^2.1.1",
     "file-loader": "^0.9.0",
@@ -78,6 +78,7 @@
     "hapi": "^16.0.1",
     "hapi-auth-cookie": "^6.1.1",
     "hapi-error": "^1.6.0",
+    "imports-loader": "^0.7.0",
     "inert": "^4.0.3",
     "joi": "^10.0.5",
     "jquery-validation": "^1.16.0",
