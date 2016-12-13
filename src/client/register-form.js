@@ -24,7 +24,7 @@ export default function () {
         remote: {
           url: '/api/businesses',
           type: 'get',
-          dataFilter: response => JSON.parse(response).length,
+          dataFilter: response => JSON.stringify(!JSON.parse(response).length),
         },
       },
     },
