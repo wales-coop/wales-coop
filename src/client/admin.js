@@ -5,7 +5,7 @@ export default () => {
   // const compose = (...functr) => inVal => functr.reverse().reduce((acc, fn) => fn(acc), inVal);
 
   const randomColor = () => (
-    `'#'${Math.floor(Math.random() * 16).toString(16)}${Math.floor(Math.random() * 16).toString(16)}${Math.floor(Math.random() * 16).toString(16)}`
+    `#${Math.floor(Math.random() * 16).toString(16)}${Math.floor(Math.random() * 16).toString(16)}${Math.floor(Math.random() * 16).toString(16)}`
   );
 
   const colorLibGen = data => data.map(el => Object.assign(el, { color: randomColor() }));
