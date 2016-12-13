@@ -72,13 +72,17 @@ export default () => {
 
   svg.selectAll('rect')
     .on('mouseover', (el) => {
-      tooltip.text(el.text);
-      tooltip.style('visibility', 'visible');
+      tooltip
+        .text(el.text)
+        .style('visibility', 'visible');
     })
     .on('mousemove', () => {
-      tooltip.style('top', `${(d3.event.pageY - 10)}px`).style('left', `${(d3.event.pageX + 10)}px`);
+      tooltip
+        .style('top', `${(d3.event.pageY - 10)}px`)
+        .style('left', `${(d3.event.pageX + 10)}px`);
     })
     .on('mouseout', () => {
-      tooltip.style('visibility', 'hidden');
+      tooltip
+        .style('visibility', 'hidden');
     });
 };
