@@ -50,3 +50,7 @@ export const getQuestions = (req, rep) =>
     .then(returnData(req, rep))
     .catch(handleError(req, rep));
 
+export const getMe = (req, rep) =>
+  db.getBusinesses(req.auth.credentials)
+    .then(returnData(req, rep))
+    .catch(handleError(req, rep));

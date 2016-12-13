@@ -53,6 +53,12 @@ const apiRoutes = [
         },
       },
     },
+  }, {
+    method: 'GET',
+    path: '/api/me',
+    config: {
+      handler: api.getMe,
+    },
   },
 ];
 

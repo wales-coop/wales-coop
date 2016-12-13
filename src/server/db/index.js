@@ -49,8 +49,8 @@ export const getResponsesQuery = (query) => {
       INNER JOIN businesses ON interests.business_id = businesses.id
       INNER JOIN questions ON interests.question_id = questions.id
       INNER JOIN topics ON questions.topic_id = topics.id`;
-  if (query.business_id) {
-    return [`${baseQuery} WHERE business_id = $1`, [query.business_id]];
+  if (query.businessId) {
+    return [`${baseQuery} WHERE business_id = $1`, [query.businessId]];
   }
   if (query.type) {
     return [`${baseQuery} WHERE businesses.type = $1`, [query.type]];
@@ -65,12 +65,12 @@ export const generateResponsesInsertValuePlaceholders = (response, idx) =>
   `($${(idx * 3) + 1}, $${(idx * 3) + 2}, $${(idx * 3) + 3})`;
 
 export const generateResponsesInsertValues = businessId => response =>
-    [businessId, response.question_id, response.response];
+    [businessId, response.questionId, response.response];
 
 export const postResponsesQuery = payload => [
   `INSERT INTO interests (business_id, question_id, response) VALUES
     ${payload.responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
-  [[].concat(...payload.responses.map(generateResponsesInsertValues(payload.business_id)))],
+  [[].concat(...payload.responses.map(generateResponsesInsertValues(payload.businessId)))],
 ];
 
 export const postResponses = payload =>
@@ -79,8 +79,8 @@ export const postResponses = payload =>
 export const getResourcesQuery = (query) => {
   const baseQuery = `SELECT * FROM resources INNER JOIN topics
    ON resources.topic_id = topics.id`;
-  return query.topic_id
-    ? [`${baseQuery} WHERE topic_id = $1`, [query.topic_id]]
+  return query.topicId
+    ? [`${baseQuery} WHERE topic_id = $1`, [query.topicId]]
     : [baseQuery];
 };
 
