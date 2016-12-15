@@ -15,3 +15,6 @@ html, body {
   letter-spacing: 0;
 }
 
+.section h5 {
+  margin: 0 auto;
+}
