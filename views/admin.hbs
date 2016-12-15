@@ -1,1 +1,26 @@
-<div>admin page goes here</div>
+<div class="container">
+  <div class="row">
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+      <li><a href="admin?filter=question">questions</a></li>
+      <li><a href="admin?filter=topic">topics</a></li>
+    </ul>
+    <ul id='dropdown2' class='dropdown-content'>
+      <li><a href="#!">type1</a></li>
+      <li><a href="#!">type2</a></li>
+      <li><a href="#!">type3</a></li>
+    </ul>
+    <div class="section col s6 offset-s6">
+      <h5>Stats</h5>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <a class='dropdown-button btn right' href='#' data-activates='dropdown2'>businessType</a>
+    <a class='dropdown-button btn right' href='#' data-activates='dropdown1'>filter</a>
+  </div>
+  <span class="divider"></span>
+  <div class="section">
+    <div class="chart"></div>
+  </div>
+</div>
