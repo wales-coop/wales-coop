@@ -1,13 +1,14 @@
 /* global $ localStorage */
 import { append, over, lensProp } from 'ramda';
-import updateChart from './chart';
+import updateChart, * as chart from './chart';
 
 // const colour = '#E72B37';
 
 const finish = () => {
-  console.log(localStorage.getItem('responses'));
+  $('h4.question-text')
+    .text('Thank you! Click the areas below to access relevant resources.');
   localStorage.removeItem('responses');
-  $('.question-container').remove();
+  $('.question-button-wrapper').slideUp('slow');
 };
 
 export const stateReducer = e => over(
@@ -46,7 +47,7 @@ export const openModal = (state) => {
 export default function (questions) {
   if (typeof Storage === 'undefined') throw new Error('Browser not supported');
   const state = JSON.parse(localStorage.getItem('responses')) || { questions, responses: [] };
-  updateChart(state);
+  chart.init(state);
   return state.responses.length
     ? nextQuestion(state)
     : openModal(state);
