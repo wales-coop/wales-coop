@@ -1,6 +1,6 @@
 /* global $ localStorage */
 import { append, over, lensProp } from 'ramda';
-import updateChart from './chart';
+import updateChart, * as chart from './chart';
 
 // const colour = '#E72B37';
 
@@ -46,7 +46,7 @@ export const openModal = (state) => {
 export default function (questions) {
   if (typeof Storage === 'undefined') throw new Error('Browser not supported');
   const state = JSON.parse(localStorage.getItem('responses')) || { questions, responses: [] };
-  updateChart(state);
+  chart.init(state);
   return state.responses.length
     ? nextQuestion(state)
     : openModal(state);

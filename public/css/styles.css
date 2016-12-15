@@ -15,3 +15,27 @@ html, body {
   letter-spacing: 0;
 }
 
+.question-chart-container {
+}
+
+.question-chart {
+  width: 70%;
+  height: 100%;
+  max-height: 400px;
+  position: absolute;
+}
+
+.question-chart .axis {
+  font: 15px sans-serif;
+}
+
+.question-chart .axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.question-chart .bar {
+  fill: steelblue;
+  fill-opacity: 0.9;
+}
