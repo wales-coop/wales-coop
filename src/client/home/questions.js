@@ -5,9 +5,10 @@ import updateChart, * as chart from './chart';
 // const colour = '#E72B37';
 
 const finish = () => {
-  console.log(localStorage.getItem('responses'));
+  $('h4.question-text')
+    .text('Thank you! Click the areas below to access relevant resources.');
   localStorage.removeItem('responses');
-  $('.question-container').remove();
+  $('.question-button-wrapper').slideUp('slow');
 };
 
 export const stateReducer = e => over(

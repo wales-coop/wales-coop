@@ -1,6 +1,7 @@
 /* global window */
 import * as d3 from 'd3';
 import getDataset from './chart-helper';
+import palette from '../palette';
 
 let svg;
 let margin;
@@ -12,7 +13,9 @@ let height;
 let yAxis;
 
 export const filteredData = state =>
-  getDataset(state).filter(topic => topic.totals.proportion > 0);
+  getDataset(state)
+    .map((topic, idx) => ({ ...topic, colour: palette[idx] }))
+    .filter(topic => topic.totals.proportion > 0);
 
 const update = (state) => {
   const dataset = filteredData(state);
@@ -52,8 +55,10 @@ const update = (state) => {
     .append('rect')
     .attr('class', 'bar')
     .attr('width', () => x(0))
+    .attr('x', 2)
     .attr('y', d => y(d.topic))
     .attr('height', y.bandwidth())
+    .attr('fill', d => d.colour)
     .transition(t)
     .attr('width', d => x(d.totals.proportion))
     .attr('y', d => y(d.topic))
