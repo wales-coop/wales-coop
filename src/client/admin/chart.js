@@ -1,21 +1,17 @@
 import * as d3 from 'd3';
 
-export default () => {
-  const randomColor = () => (
-    `#${Math.floor(Math.random() * 16).toString(16)}${Math.floor(Math.random() * 16).toString(16)}${Math.floor(Math.random() * 16).toString(16)}`
-  );
 
-  const colorLibGen = data => data.map(el => Object.assign(el, { color: randomColor() }));
+export const randomColor = () => (
+  `#${Math.floor(Math.random() * 16)
+    .toString(16)}${Math.floor(Math.random() * 16)
+    .toString(16)}${Math.floor(Math.random() * 16)
+    .toString(16)}`
+);
 
-  let data = [
-    { id: 'q1', frequency: 79, text: 'Have you started your social enterprise?' },
-    { id: 'q2', frequency: 100, text: 'Do you have an engaged group of people?' },
-    { id: 'q3', frequency: 200, text: 'Have you formed a legal structure?' },
-    { id: 'q5', frequency: 125, text: 'Are you bidding for contracts or seeking funding?' },
-    { id: 'q7', frequency: 400, text: 'Are you employing staff?' },
-    { id: 'q9', frequency: 300, text: 'Are you confident in your organisations governance?' },
-  ];
+export const colorLibGen = data => data.map(el => Object.assign(el, { color: randomColor() }));
 
+export default (data) => {
+  // data = colorLibGen(data);
   const dims = {
     rectHeigth: 35,
     barHeight: 30,
@@ -23,8 +19,6 @@ export default () => {
     width: 500,
     range: 500,
   };
-
-  data = colorLibGen(data);
 
   const x = d3.scaleLinear()
     .domain([0, d3.max(data.map(el => el.frequency))])
@@ -83,3 +77,11 @@ export default () => {
         .style('visibility', 'hidden'),
        );
 };
+/* let data = [*/
+    // { id: 'q1', frequency: 79, text: 'Have you started your social enterprise?' },
+    // { id: 'q2', frequency: 100, text: 'Do you have an engaged group of people?' },
+    // { id: 'q3', frequency: 200, text: 'Have you formed a legal structure?' },
+    // { id: 'q5', frequency: 125, text: 'Are you bidding for contracts or seeking funding?' },
+    // { id: 'q7', frequency: 400, text: 'Are you employing staff?' },
+    // { id: 'q9', frequency: 300, text: 'Are you confident in your organisations governance?' },
+  /* ];*/

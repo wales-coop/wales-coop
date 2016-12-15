@@ -4,22 +4,22 @@ import { compose } from 'ramda';
 import home from './home/';
 import loginForm from './login-form';
 import registerForm from './register-form';
-import chart from './admin';
+import admin from './admin';
 
 
-const extractRoute = href => href.split('/')[3];
+const extractRoute = href => [href.split('/')[3], href.split('=')[1]];
 const getHref = () => window.location.href;
 
-const router = new Map([
+const router = ([path, filterSelector]) => new Map([
     ['', home],
     ['login', loginForm],
     ['register', registerForm],
-    ['admin', chart],
-]);
+    ['admin', admin(filterSelector)],
+]).get(path);
 
 compose(
     $(document).ready,
-    router.get.bind(router),
+    router,
     extractRoute,
     getHref,
        )();
