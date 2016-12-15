@@ -4,11 +4,12 @@ import updateChart, * as chart from './chart';
 
 // const colour = '#E72B37';
 
-const finish = () => {
+const finish = (state) => {
   $('h4.question-text')
     .text('Thank you! Click the areas below to access relevant resources.');
   localStorage.removeItem('responses');
   $('.question-button-wrapper').slideUp('slow');
+  chart.awaitSelection(state);
 };
 
 export const stateReducer = e => over(

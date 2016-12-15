@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import getDataset from './chart-helper';
 import palette from '../palette';
 
+const barPaddingLeft = 2;
 let svg;
 let margin;
 let bar;
@@ -55,7 +56,7 @@ const update = (state) => {
     .append('rect')
     .attr('class', 'bar')
     .attr('width', () => x(0))
-    .attr('x', 2)
+    .attr('x', barPaddingLeft)
     .attr('y', d => y(d.topic))
     .attr('height', y.bandwidth())
     .attr('fill', d => d.colour)
@@ -120,6 +121,38 @@ export const init = (state) => {
 
   update(state);
   resize();
+};
+
+export const awaitSelection = (state) => {
+  bar
+    .on('mouseover.barbounce', function (d) {
+      d3.select(this)
+      .transition()
+      .ease(d3.easeElasticOut)
+      .duration('700')
+      .attr('width', x(d.totals.proportion) - 10)
+      .attr('x', barPaddingLeft + 10);
+    });
+
+      /*
+  bar
+    .on('mouseover.highlight', function (d) {
+      d3.select(this)
+        .transition()
+    });
+
+      */
+  bar
+    .on('mouseout.barbounce', function (d) {
+      d3.select(this)
+        .transition()
+        .ease(d3.easeQuadInOut)
+        .duration('300')
+        .attr('width', x(d.totals.proportion))
+        .attr('x', barPaddingLeft);
+    });
+
+  return state;
 };
 
 export default update;
