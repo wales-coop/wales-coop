@@ -1,7 +1,4 @@
-.hbox {
-  fill: steelblue;
-}
-.toolTip {
+.svg__toolTip {
   position: absolute;
   background: none repeat scroll 0 0 white;
   border: 0 none;
@@ -15,11 +12,11 @@
   z-index: 10;
 }
 
-.chart {
+.svg__chart {
   padding:5%;
 }
 
-svg {
+.svg {
   display:block;
   margin: 0 auto; 
 }

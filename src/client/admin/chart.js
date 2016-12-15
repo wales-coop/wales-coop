@@ -26,6 +26,7 @@ export default (data) => {
 
   const svg = d3.select('.chart')
     .append('svg')// create an <svg> element
+    .attr('class', 'svg')
     .attr('width', dims.width)
     .attr('height', dims.height);
 
