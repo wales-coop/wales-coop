@@ -16,10 +16,8 @@ html, body {
 }
 
 .question-chart {
-  width: 70%;
-  height: 100%;
-  max-height: 400px;
-  position: absolute;
+  height: 350px;
+  position: relative;
 }
 
 .question-chart .axis {

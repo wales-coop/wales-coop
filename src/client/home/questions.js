@@ -14,8 +14,10 @@ const finish = (state) => {
 export const stateReducer = (state, e) => ({
   ...state,
   responses: state.responses.concat(
-    e.target.id === 'question-button-yes' && state.questions[state.responses.length].expects_yes,
-  ),
+    state.questions[state.responses.length].expects_yes
+    ? (e.target.id === 'question-button-yes')
+    : (e.target.id !== 'question-button-yes'),
+ ),
 });
 
 export const setLocalStorage = state =>
@@ -40,10 +42,9 @@ export const nextQuestion = (state) => {
 };
 
 export const openModal = (state) => {
-  $('.modal').modal({
-    complete: nextQuestion(state),
-  });
+  $('.modal').modal();
   $('#home-modal').modal('open');
+  nextQuestion(state);
   return state;
 };
 

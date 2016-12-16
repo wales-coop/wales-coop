@@ -175,7 +175,6 @@ export const highlightOff = function (listenerD, listenerIdx) {
 
 export const awaitSelection = (state) => {
   const dataset = filteredData(state);
-
   d3.select('.y.axis').selectAll('.tick')
     .insert('rect', ':first-child')
     .attr('class', 'highlight')
