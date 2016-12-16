@@ -1,4 +1,4 @@
-.svg__toolTip {
+.adminSvg__toolTip {
   position: absolute;
   background: none repeat scroll 0 0 white;
   border: 0 none;
@@ -12,11 +12,11 @@
   z-index: 10;
 }
 
-.svg__chart {
+.adminSvg__chart {
   padding:5%;
 }
 
-.svg {
+.adminSvg {
   display:block;
   margin: 0 auto; 
 }

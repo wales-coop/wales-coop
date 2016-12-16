@@ -1,4 +1,6 @@
 import * as d3 from 'd3';
+
+import _ from 'ramda';
 import constants from './constants';
 
 export const randomColor = () => (
@@ -10,14 +12,14 @@ export const randomColor = () => (
 
 export const colorLibGen = data => data.map(el => Object.assign(el, { color: randomColor() }));
 
-export default (data) => {
+export const drawChart = (data) => {
   const x = d3.scaleLinear()
     .domain([0, d3.max(data.map(el => el.frequency))])
     .range([0, constants.range]);
 
   const svg = d3.select('.chart')
     .append('svg')// create an <svg> element
-    .attr('class', 'svg')
+    .attr('class', 'adminSvg')
     .attr('width', constants.width)
     .attr('height', constants.height);
 
@@ -51,7 +53,7 @@ export default (data) => {
     .style('position', 'absolute')
     .style('visibility', 'hidden')
     .style('z-axis', 10)
-    .attr('class', 'toolTip');
+    .attr('class', 'adminSvg__toolTip');
 
   svg.selectAll('rect')
     .on('mouseover', el =>
@@ -70,3 +72,9 @@ export default (data) => {
        );
 };
 
+export default (data) => {
+  _.compose(
+  drawChart,
+  colorLibGen,
+)(data);
+};
