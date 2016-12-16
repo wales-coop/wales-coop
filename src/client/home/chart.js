@@ -24,19 +24,6 @@ const update = (state) => {
 
   y.domain(dataset.map(d => d.topic));
 
-  svg.select('.y.axis').remove();
-
-  svg.append('g')
-    .attr('class', 'y axis')
-    .call(yAxis)
-    .append('text')
-    .attr('x', 50)
-    .attr('dx', '.1em')
-    .attr('dy', '-1em')
-    .style('text-anchor', 'end')
-    .style('fill', 'black')
-    .text('Areas of interest');
-
   const t = d3.transition()
     .duration(300);
 
@@ -64,6 +51,19 @@ const update = (state) => {
     .attr('width', d => x(d.totals.proportion))
     .attr('y', d => y(d.topic))
     .attr('height', y.bandwidth());
+
+  svg.select('.y.axis').remove();
+
+  svg.append('g')
+    .attr('class', 'y axis')
+    .call(yAxis)
+    .append('text')
+    .attr('x', barPaddingLeft)
+    .attr('dx', '1em')
+    .attr('dy', '-1em')
+    .style('text-anchor', 'start')
+    .style('fill', 'black')
+    .text('Areas of interest');
 };
 
 export const resize = () => {
@@ -123,34 +123,102 @@ export const init = (state) => {
   resize();
 };
 
+export const barBounceOn = function (listenerD, listenerIdx) {
+  svg.selectAll('.bar')
+    .filter((barD, barIdx) => listenerIdx === barIdx)
+    .transition()
+    .ease(d3.easeElasticOut)
+    .duration('700')
+    .attr('width', d => x(d.totals.proportion) - 10)
+    .attr('x', barPaddingLeft + 10);
+};
+
+export const barBounceOff = function (listenerD, listenerIdx) {
+  svg.selectAll('.bar')
+    .filter((barD, barIdx) => listenerIdx === barIdx)
+    .transition()
+    .ease(d3.easeQuadInOut)
+    .duration('300')
+    .attr('width', d => x(d.totals.proportion))
+    .attr('x', barPaddingLeft);
+};
+
+export const flashHighlight = function (listenerD, listenerIdx) {
+  d3.select('.y.axis').selectAll('.tick')
+    .filter((tickD, tickIdx) => listenerIdx === tickIdx)
+    .select('.highlight')
+    .attr('opacity', '1')
+    .transition()
+    .delay('100')
+    .duration('1')
+    .attr('opacity', '0')
+    .attr('opacity', '1');
+
+  d3.select('.y.axis').selectAll('.tick')
+    .filter((tickD, tickIdx) => listenerIdx === tickIdx)
+    .select('text')
+    .attr('fill', 'white')
+    .transition()
+    .delay('100')
+    .duration('1')
+    .attr('fill', 'black')
+    .attr('fill', 'white');
+};
+
+export const highlightOff = function (listenerD, listenerIdx) {
+  d3.select('.y.axis').selectAll('.tick')
+    .filter((tickD, tickIdx) => listenerIdx === tickIdx)
+    .select('.highlight')
+    .transition()
+    .duration('200')
+    .attr('opacity', '0');
+
+  d3.select('.y.axis').selectAll('.tick')
+    .filter((tickD, tickIdx) => listenerIdx === tickIdx)
+    .select('text')
+    .transition()
+    .duration('200')
+    .attr('fill', 'black');
+};
+
+
 export const awaitSelection = (state) => {
-  bar
-    .on('mouseover.barbounce', function (d) {
-      d3.select(this)
-      .transition()
-      .ease(d3.easeElasticOut)
-      .duration('700')
-      .attr('width', x(d.totals.proportion) - 10)
-      .attr('x', barPaddingLeft + 10);
-    });
+  const dataset = filteredData(state);
 
-      /*
-  bar
-    .on('mouseover.highlight', function (d) {
-      d3.select(this)
-        .transition()
-    });
+  d3.select('.y.axis').selectAll('.tick')
+    .insert('rect', ':first-child')
+    .attr('class', 'highlight')
+    .attr('width', function () {
+      return d3.select(this.parentNode).select('text').node().getBBox().width + 4;
+    })
+    .attr('height', function () {
+      return d3.select(this.parentNode).select('text').node().getBBox().height;
+    })
+    .attr('x', function () {
+      return d3.select(this.parentNode).select('text').node().getBBox().x - 2;
+    })
+    .attr('y', function () {
+      return d3.select(this.parentNode).select('text').node().getBBox().y;
+    })
+    .attr('fill', (d, i) => dataset[i].colour)
+    .attr('opacity', '0');
 
-      */
-  bar
-    .on('mouseout.barbounce', function (d) {
-      d3.select(this)
-        .transition()
-        .ease(d3.easeQuadInOut)
-        .duration('300')
-        .attr('width', x(d.totals.proportion))
-        .attr('x', barPaddingLeft);
-    });
+  const listeners = svg.selectAll('.listener')
+    .data(dataset, d => d.topic)
+    .enter()
+    .append('rect')
+    .attr('class', 'listener')
+    .attr('width', d => x(d.totals.proportion) + margin.left)
+    .attr('x', barPaddingLeft - margin.left)
+    .attr('y', d => y(d.topic))
+    .attr('height', y.bandwidth())
+    .attr('opacity', '0');
+
+  listeners
+    .on('mouseover.barbounce', barBounceOn)
+    .on('mouseout.barbounce', barBounceOff)
+    .on('mouseover.highlight', flashHighlight)
+    .on('mouseout.highlight', highlightOff);
 
   return state;
 };
