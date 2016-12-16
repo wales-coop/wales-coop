@@ -29,31 +29,33 @@ export const postBusiness = payload =>
 
 export const getBusinessesQuery = query => (
   query.username
-  ? ['SELECT * FROM businesses WHERE username = $1', [query.username]]
-  : ['SELECT * FROM businesses']
+    ? ['SELECT * FROM businesses WHERE username = $1', [query.username]]
+    : ['SELECT * FROM businesses']
 );
 
 export const getBusinesses = query =>
   pool.query(...getBusinessesQuery(query));
 
-export const getQuestionsQuery = () => [
+export const getQuestionsQuery = () => ([
   `SELECT * FROM questions
-   INNER JOIN topics ON questions.topic_id = topics.id`,
-];
+  INNER JOIN topics ON questions.topic_id = topics.id`,
+]);
 
 export const getQuestions = () =>
   pool.query(...getQuestionsQuery());
 
 export const getResponsesQuery = (query) => {
+  console.log('query from gerResponses', query);
+
   const baseQuery = `SELECT * FROM interests
-      INNER JOIN businesses ON interests.business_id = businesses.id
-      INNER JOIN questions ON interests.question_id = questions.id
-      INNER JOIN topics ON questions.topic_id = topics.id`;
+  INNER JOIN businesses ON interests.business_id = businesses.id
+  INNER JOIN questions ON interests.question_id = questions.id
+  INNER JOIN topics ON questions.topic_id = topics.id`;
   if (query.businessId) {
     return [`${baseQuery} WHERE business_id = $1`, [query.businessId]];
   }
   if (query.type) {
-    return [`${baseQuery} WHERE businesses.type = $1`, [query.type]];
+    return [`${baseQuery} WHERE type = $1`, [query.type]];
   }
   return [baseQuery];
 };
@@ -65,20 +67,20 @@ export const generateResponsesInsertValuePlaceholders = (response, idx) =>
   `($${(idx * 3) + 1}, $${(idx * 3) + 2}, $${(idx * 3) + 3})`;
 
 export const generateResponsesInsertValues = businessId => response =>
-    [businessId, response.questionId, response.response];
+  [businessId, response.questionId, response.response];
 
 export const postResponsesQuery = payload => [
   `INSERT INTO interests (business_id, question_id, response) VALUES
-    ${payload.responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
+  ${payload.responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
   [[].concat(...payload.responses.map(generateResponsesInsertValues(payload.businessId)))],
 ];
 
 export const postResponses = payload =>
- pool.query(...postResponsesQuery(payload));
+  pool.query(...postResponsesQuery(payload));
 
 export const getResourcesQuery = (query) => {
   const baseQuery = `SELECT * FROM resources INNER JOIN topics
-   ON resources.topic_id = topics.id`;
+  ON resources.topic_id = topics.id`;
   return query && query.topicId
     ? [`${baseQuery} WHERE topic_id = $1`, [query.topicId]]
     : [baseQuery];

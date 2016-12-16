@@ -11,7 +11,7 @@ export const getJSON = () => (
 const blank = (l) => new Array(l).fill(0)
   .map((el, i) => Object({ id: i + 1, frequency: 0, text: '' }));
 
-export const filter = _.curry((param, data) => {
+export const format = _.curry((param, data) => {
   return data.reduce((acc, elJ) => {
     if (elJ.response) {
       const res = acc.slice(0);
@@ -24,17 +24,21 @@ export const filter = _.curry((param, data) => {
   }, blank(13));
 });
 
-export default (filterParam = 'question') => {
-  getJSON()
-    .then(filter(filterParam))
-    .then(renderChart);
+
+
+export default (formatParam = 'question', typeFilter = 'all') => {
+  console.log('formatParam: ', formatParam)
+  console.log('type: ', typeFilter)
+  if (typeFilter === 'all'){
+    getJSON()
+      .then(format(filterParam))
+      .then(renderChart);
+  }
+  else {
+    getJSON()
+      .then(filter(typeFilter))
+      .then(format(filterParam))
+      .then(renderChart);
+  }
 };
 
-/* const data = [*/
-// { id: 'q1', frequency: 79, text: 'Have you started your social enterprise?' },
-// { id: 'q2', frequency: 100, text: 'Do you have an engaged group of people?' },
-// { id: 'q3', frequency: 200, text: 'Have you formed a legal structure?' },
-// { id: 'q5', frequency: 125, text: 'Are you bidding for contracts or seeking funding?' },
-// { id: 'q7', frequency: 400, text: 'Are you employing staff?' },
-// { id: 'q9', frequency: 300, text: 'Are you confident in your organisations governance?' },
-/* ]; */
