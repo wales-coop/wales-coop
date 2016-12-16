@@ -12,8 +12,8 @@ export const getMe = () =>
   $.get('/api/me')
     .then(JSON.parse);
 
-export const getResources = () =>
-  $.get('api/resources')
+export const getResources = topicId =>
+  $.get('api/resources', { topicId })
     .then(JSON.parse);
 
 export const getQuestions = () =>

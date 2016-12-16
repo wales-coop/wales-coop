@@ -1,5 +1,4 @@
 /* global $ localStorage */
-import { append, over, lensProp } from 'ramda';
 import updateChart, * as chart from './chart';
 
 // const colour = '#E72B37';
@@ -12,17 +11,19 @@ const finish = (state) => {
   chart.awaitSelection(state);
 };
 
-export const stateReducer = e => over(
-  lensProp('responses'),
-  append(e.target.id === 'question-button-yes'),
-);
+export const stateReducer = (state, e) => ({
+  ...state,
+  responses: state.responses.concat(
+    e.target.id === 'question-button-yes' && state.questions[state.responses.length].expects_yes,
+  ),
+});
 
 export const setLocalStorage = state =>
   localStorage.setItem('responses', JSON.stringify(state));
 
 export const clickHandler = state => (e) => {
   $('.question-button-wrapper').off('click');
-  const newState = stateReducer(e)(state);
+  const newState = stateReducer(state, e);
   setLocalStorage(newState);
   updateChart(newState);
   return newState.questions.length === newState.responses.length
@@ -31,9 +32,10 @@ export const clickHandler = state => (e) => {
 };
 
 export const nextQuestion = (state) => {
-  $('h4.question-text')
-    .text(state.questions[state.responses.length].question);
-  $('.question-button-wrapper').on('click', clickHandler(state));
+  $('h4.question-text').fadeOut('fast', function () {
+    $(this).text(state.questions[state.responses.length].question);
+    $('.question-button-wrapper').on('click', clickHandler(state));
+  }).fadeIn('fast');
   return state;
 };
 

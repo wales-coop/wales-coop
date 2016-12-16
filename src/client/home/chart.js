@@ -2,6 +2,7 @@
 import * as d3 from 'd3';
 import getDataset from './chart-helper';
 import palette from '../palette';
+import loadResources from './resources';
 
 const barPaddingLeft = 2;
 let svg;
@@ -147,21 +148,11 @@ export const flashHighlight = function (listenerD, listenerIdx) {
   d3.select('.y.axis').selectAll('.tick')
     .filter((tickD, tickIdx) => listenerIdx === tickIdx)
     .select('.highlight')
-    .attr('opacity', '1')
-    .transition()
-    .delay('100')
-    .duration('1')
-    .attr('opacity', '0')
     .attr('opacity', '1');
 
   d3.select('.y.axis').selectAll('.tick')
     .filter((tickD, tickIdx) => listenerIdx === tickIdx)
     .select('text')
-    .attr('fill', 'white')
-    .transition()
-    .delay('100')
-    .duration('1')
-    .attr('fill', 'black')
     .attr('fill', 'white');
 };
 
@@ -218,7 +209,8 @@ export const awaitSelection = (state) => {
     .on('mouseover.barbounce', barBounceOn)
     .on('mouseout.barbounce', barBounceOff)
     .on('mouseover.highlight', flashHighlight)
-    .on('mouseout.highlight', highlightOff);
+    .on('mouseout.highlight', highlightOff)
+    .on('click', loadResources);
 
   return state;
 };

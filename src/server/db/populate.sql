@@ -7,20 +7,20 @@ INSERT INTO topics(topic) VALUES
 ('Growing A Social Business'),
 ('Case Studies');
 
-INSERT INTO questions(question, topic_id) VALUES 
-('Have you started your social enterprise?', '1'), 
-('Do you have an engaged group of people?', '2'), 
-('Have you formed a legal structure?', '2'), 
-('Are you bidding for contracts or seeking funding?', '2'), 
-('Are you employing staff?', '2'), 
-('Are you confident in your organisations governance?', '3'), 
-('Do you use a form of Social Accounting?', '3'), 
-('Do you have a skilled management?', '3'), 
-('Are you looking to grow (expand, diversify etc.)?', '4'), 
-('Are you thinking of connecting with like-minded groups?', '4'), 
-('Do you think your idea could work in other areas?', '4'), 
-('Would you like to buy another business to help you grow?', '4'), 
-('Would you like to see some case studies?', '5');
+INSERT INTO questions(question, expects_yes, topic_id) VALUES 
+('Have you started your social enterprise?', 'false', '1'), 
+('Do you have an engaged group of people?', 'false', '2'), 
+('Have you formed a legal structure?', 'false', '2'), 
+('Are you bidding for contracts or seeking funding?', 'true', '2'), 
+('Are you employing staff?', 'true', '2'), 
+('Are you confident in your organisations governance?', 'false', '3'), 
+('Do you use a form of social accounting?', 'true', '3'), 
+('Do you have a skilled management?', 'false', '3'), 
+('Are you looking to grow (expand, diversify etc.)?', 'true', '4'), 
+('Are you thinking of connecting with like-minded groups?', 'true', '4'), 
+('Do you think your idea could work in other areas?', 'true', '4'), 
+('Would you like to buy another business to help you grow?', 'true', '4'), 
+('Would you like to see some case studies?', 'true', '5');
 
 INSERT INTO resources(title, description, url, topic_id, resources) VALUES 
 ('The Mission', 'The objective of this section is to help you write a succinct mission statement that describes your social business purpose.', 'https://businesswales.gov.wales/socialbusinesswales/mission', '1', '[{"title":"Download the Wales Co-operative Centre''s vision, mission and values statement","URL":"https://businesswales.gov.wales/socialbusinesswales/sites/socialbusiness/files/Centre%20values%20mission%20vision%20v2_0.pdf"}]'), 
