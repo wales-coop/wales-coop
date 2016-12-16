@@ -15,14 +15,9 @@ html, body {
   letter-spacing: 0;
 }
 
-.question-chart-container {
-}
-
 .question-chart {
-  width: 70%;
-  height: 100%;
-  max-height: 400px;
-  position: absolute;
+  height: 350px;
+  position: relative;
 }
 
 .question-chart .axis {
@@ -35,6 +30,14 @@ html, body {
   shape-rendering: crispEdges;
 }
 
-.question-chart .bar {
+.question-chart .axis text {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.question-chart .listener {
+  cursor: pointer;
 }
 

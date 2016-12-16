@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS topics (
 CREATE TABLE IF NOT EXISTS questions (
   id             SERIAL         PRIMARY KEY,
   question       VARCHAR(250)   NOT NULL,
+  expects_yes    BOOL           NOT NULL,
   topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
 );
 
