@@ -3,6 +3,8 @@ import * as _ from 'ramda';
 import * as query from './api/index';
 import renderChart from './admin/chart';
 
+export const trace = (d) => {console.log(d); return d}
+
 export const getJSON = () => (
   query.getResponses()
     .then(res => res)
@@ -24,21 +26,15 @@ export const format = _.curry((param, data) => {
   }, blank(13));
 });
 
+export const filter = _.curry((filterParam, rawData) => {
+  return rawData.filter(el => (filterParam)? el.type == filterParam: true)
+}) 
 
-
-export default (formatParam = 'question', typeFilter = 'all') => {
-  console.log('formatParam: ', formatParam)
-  console.log('type: ', typeFilter)
-  if (typeFilter === 'all'){
-    getJSON()
-      .then(format(filterParam))
+export default (formatParam = 'question', filterParam) => {
+      getJSON()
+      .then(filter(filterParam))
+      .then(trace)
+      .then(format(formatParam))
       .then(renderChart);
-  }
-  else {
-    getJSON()
-      .then(filter(typeFilter))
-      .then(format(filterParam))
-      .then(renderChart);
-  }
 };
 

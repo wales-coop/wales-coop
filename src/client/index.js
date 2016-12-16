@@ -7,16 +7,16 @@ import registerForm from './register-form';
 import admin from './admin';
 import getParameterByName from './helpers';
 
-const extractRoute = href => [
-  href.split('/')[3],
+
+export const extractRoute = href => [
+  href.split('?')[0].split('/')[3],
   getParameterByName('filter', href),
   getParameterByName('type', href),
 ];
 
-const getHref = () => window.location.href;
+export const getHref = () => window.location.href;
 
-const router = ([path, filterSelector, typeSelector]) => {
-  console.log('args:', path, filterSelector, typeSelector);
+export const router = ([path, filterSelector, typeSelector]) => {
   new Map([
     ['', home],
     ['login', loginForm],
