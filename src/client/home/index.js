@@ -1,9 +1,10 @@
+/* global $ */
 import { compose, prop, head } from 'ramda';
 import * as api from '../api/';
 import handleError from '../error';
 import runQuestionnaire from './questions';
 
-// const tr = a => b => { console.log(a, b); return b };
+$('.collapsible').collapsible();
 
 export const showResponses = () => null;
 

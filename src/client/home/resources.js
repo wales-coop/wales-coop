@@ -1,26 +1,33 @@
-/* global $ */
+/* global $ Materialize */
 import * as api from '../api/';
+import resourceTemplate from '../../../views/partials/resource.hbs';
+
+export const addSection = (resource, idx) => {
+  const $html = $(resourceTemplate(resource));
+  if (idx === 0) {
+    $html.first().addClass('active');
+    $html.find('.collapsible-header').addClass('active');
+    $html.find('.collapsible-body').css({ display: 'block' });
+  }
+  return $html.prop('outerHTML');
+};
 
 export const showResources = topic => (resources) => {
-  $('.resources-container h3').text(topic.topic);
   $('h4.question-text').slideUp();
-  $('<hr></hr>')
-    .hide()
-    .appendTo('.resources-container h3')
-    .css({
-      border: 0,
-      height: '1px',
-      borderTop: `1px solid ${topic.colour}`,
-      backgroundColor: topic.colour,
-      color: topic.colour,
-    })
-    .fadeIn();
+  $('.resources-container').fadeOut('fast', () => {
+    $('.resources-container h3').text(topic.topic);
+    $('.resources-container hr')
+      .css({
+        borderTop: `1px solid ${topic.colour}`,
+        backgroundColor: topic.colour,
+        color: topic.colour,
+      });
+  }).fadeIn('fast');
 
-  $('<div></div>')
-    .hide()
-    .appendTo('.resources-container')
-    .text(JSON.stringify(resources))
-    .fadeIn();
+  $('#resources-list')
+    .html(resources.map(addSection).join(''));
+
+  Materialize.showStaggeredList('#resources-list');
 };
 
 export default (topic) => {
