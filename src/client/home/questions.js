@@ -1,14 +1,18 @@
 /* global $ localStorage */
 import updateChart, * as chart from './chart';
+import * as api from '../api/';
+import handleError from '../error';
 
 // const colour = '#E72B37';
 
 const finish = (state) => {
   $('h4.question-text')
     .text('Thank you! Click the areas below to access relevant resources.');
-  localStorage.removeItem('responses');
   $('.question-button-wrapper').slideUp('slow');
   chart.awaitSelection(state);
+  api.submitQuestionnaire(state)
+    .then(() => localStorage.removeItem('responses'))
+    .fail(handleError);
 };
 
 export const stateReducer = (state, e) => ({
@@ -34,6 +38,7 @@ export const clickHandler = state => (e) => {
 };
 
 export const nextQuestion = (state) => {
+  $('.question-button-wrapper').fadeIn('fast');
   $('h4.question-text').fadeOut('fast', function () {
     $(this).text(state.questions[state.responses.length].question);
     $('.question-button-wrapper').on('click', clickHandler(state));
