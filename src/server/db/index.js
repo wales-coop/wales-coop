@@ -50,10 +50,10 @@ export const getResponsesQuery = (query) => {
       INNER JOIN businesses ON interests.business_id = businesses.id
       INNER JOIN questions ON interests.question_id = questions.id
       INNER JOIN topics ON questions.topic_id = topics.id`;
-  if (query.businessId) {
+  if (query && query.businessId) {
     return [`${baseQuery} WHERE business_id = $1`, [query.businessId]];
   }
-  if (query.type) {
+  if (query && query.type) {
     return [`${baseQuery} WHERE businesses.type = $1`, [query.type]];
   }
   return [baseQuery];
