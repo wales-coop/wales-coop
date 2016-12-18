@@ -37,7 +37,7 @@ export const getBusinesses = query =>
   pool.query(...getBusinessesQuery(query));
 
 export const getQuestionsQuery = () => [
-  `SELECT * FROM questions
+  `SELECT questions.*, topics.topic FROM questions
    INNER JOIN topics ON questions.topic_id = topics.id`,
 ];
 
@@ -45,7 +45,8 @@ export const getQuestions = () =>
   pool.query(...getQuestionsQuery());
 
 export const getResponsesQuery = (query) => {
-  const baseQuery = `SELECT * FROM interests
+  const baseQuery = `SELECT businesses.id, businesses.type, businesses.sector, interests.*, questions.*, topics.*
+      FROM interests
       INNER JOIN businesses ON interests.business_id = businesses.id
       INNER JOIN questions ON interests.question_id = questions.id
       INNER JOIN topics ON questions.topic_id = topics.id`;
@@ -67,14 +68,14 @@ export const generateResponsesInsertValuePlaceholders = (response, idx) =>
 export const generateResponsesInsertValues = businessId => response =>
     [businessId, response.questionId, response.response];
 
-export const postResponsesQuery = payload => [
+export const postResponsesQuery = (businessId, responses) => [
   `INSERT INTO interests (business_id, question_id, response) VALUES
-    ${payload.responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
-  [[].concat(...payload.responses.map(generateResponsesInsertValues(payload.businessId)))],
+    ${responses.map(generateResponsesInsertValuePlaceholders).join(',')}`,
+  [].concat(...responses.map(generateResponsesInsertValues(businessId))),
 ];
 
 export const postResponses = payload =>
- pool.query(...postResponsesQuery(payload));
+ pool.query(...postResponsesQuery(payload.businessId, JSON.parse(payload.responses)));
 
 export const getResourcesQuery = (query) => {
   const baseQuery = `SELECT * FROM resources INNER JOIN topics

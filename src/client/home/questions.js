@@ -1,14 +1,18 @@
 /* global $ localStorage */
 import updateChart, * as chart from './chart';
+import * as api from '../api/';
+import handleError from '../error';
 
-// const colour = '#E72B37';
+let resourcesPromiseExternal;
 
 const finish = (state) => {
   $('h4.question-text')
     .text('Thank you! Click the areas below to access relevant resources.');
-  localStorage.removeItem('responses');
   $('.question-button-wrapper').slideUp('slow');
-  chart.awaitSelection(state);
+  chart.awaitSelection(state, resourcesPromiseExternal);
+  api.submitQuestionnaire(state)
+    .then(() => localStorage.removeItem('responses'))
+    .fail(handleError);
 };
 
 export const stateReducer = (state, e) => ({
@@ -34,6 +38,7 @@ export const clickHandler = state => (e) => {
 };
 
 export const nextQuestion = (state) => {
+  $('.question-button-wrapper').fadeIn('fast');
   $('h4.question-text').fadeOut('fast', function () {
     $(this).text(state.questions[state.responses.length].question);
     $('.question-button-wrapper').on('click', clickHandler(state));
@@ -48,12 +53,12 @@ export const openModal = (state) => {
   return state;
 };
 
-export default function (questions) {
+export default resourcesPromise => (questions) => {
   if (typeof Storage === 'undefined') throw new Error('Browser not supported');
   const state = JSON.parse(localStorage.getItem('responses')) || { questions, responses: [] };
+  resourcesPromiseExternal = resourcesPromise;
   chart.init(state);
   return state.responses.length
     ? nextQuestion(state)
     : openModal(state);
-}
-
+};
