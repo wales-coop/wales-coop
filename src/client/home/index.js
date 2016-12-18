@@ -7,6 +7,8 @@ import * as chart from './chart';
 
 $('.collapsible').collapsible();
 
+export const resourcesPromise = api.getResources();
+
 export const convertResponsesToState = responses => ({
   responses: responses.map(response => response.response),
   questions: responses.map(response => ({

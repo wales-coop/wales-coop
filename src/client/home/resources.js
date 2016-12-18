@@ -1,6 +1,6 @@
 /* global $ Materialize */
-import * as api from '../api/';
 import resourceTemplate from '../../../views/partials/resource.hbs';
+import { resourcesPromise } from './index';
 
 export const addSection = (resource, idx) => {
   const $html = $(resourceTemplate(resource));
@@ -25,12 +25,14 @@ export const showResources = topic => (resources) => {
   }).fadeIn('fast');
 
   $('#resources-list')
-    .html(resources.map(addSection).join(''));
+    .html(resources
+      .filter(resource => resource.topic_id === Number(topic.topicId))
+      .map(addSection).join(''),
+    );
 
   Materialize.showStaggeredList('#resources-list');
 };
 
 export default (topic) => {
-  console.log(topic);
-  api.getResources(topic.topicId).then(showResources(topic));
+  resourcesPromise.then(showResources(topic));
 };
