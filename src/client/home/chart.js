@@ -21,10 +21,11 @@ export const filteredData = state =>
 
 const update = (state) => {
   const dataset = filteredData(state);
-  if (!dataset.length) return;
 
   d3.select('.progress .determinate')
     .style('width', d3.format('.0%')(state.responses.length / state.questions.length));
+
+  if (!dataset.length) return;
 
   y.domain(dataset.map(d => d.topic));
 
