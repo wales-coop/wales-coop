@@ -176,7 +176,7 @@ export const highlightOff = function (listenerD, listenerIdx) {
 };
 
 
-export const awaitSelection = (state) => {
+export const awaitSelection = (state, resourcesPromise) => {
   const dataset = filteredData(state);
   d3.select('.y.axis').selectAll('.tick')
     .insert('rect', ':first-child')
@@ -212,7 +212,7 @@ export const awaitSelection = (state) => {
     .on('mouseout.barbounce', barBounceOff)
     .on('mouseover.highlight', flashHighlight)
     .on('mouseout.highlight', highlightOff)
-    .on('click', loadResources);
+    .on('click', loadResources(resourcesPromise));
 
   return state;
 };

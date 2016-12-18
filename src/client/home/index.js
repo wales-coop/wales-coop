@@ -5,9 +5,6 @@ import handleError from '../error';
 import runQuestionnaire from './questions';
 import * as chart from './chart';
 
-$('.collapsible').collapsible();
-
-export const resourcesPromise = api.getResources();
 
 export const convertResponsesToState = responses => ({
   responses: responses.map(response => response.response),
@@ -20,18 +17,19 @@ export const convertResponsesToState = responses => ({
   })),
 });
 
-export const showResponses = (responses) => {
+export const showResponses = (responses, resourcesPromise) => {
   const state = convertResponsesToState(responses);
   chart.init(state);
-  chart.awaitSelection(state);
+  chart.awaitSelection(state, resourcesPromise);
   $('h4.question-text')
     .text('Welcome back! Click the areas below to access relevant resources.');
 };
 
 export const showQuestions = (responses) => {
-  if (responses.length) return showResponses(responses);
+  const resourcesPromise = api.getResources();
+  if (responses.length) return showResponses(responses, resourcesPromise);
   return api.getQuestions()
-    .then(runQuestionnaire);
+    .then(runQuestionnaire(resourcesPromise));
 };
 
 export const storeBusinessId = (id) => {
@@ -47,6 +45,7 @@ export const getPreviousResponses = () =>
     .then(api.getResponses);
 
 export default function () {
+  $('.collapsible').collapsible();
   getPreviousResponses()
     .then(showQuestions)
     .fail(handleError);

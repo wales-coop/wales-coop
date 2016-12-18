@@ -1,6 +1,5 @@
 /* global $ Materialize */
 import resourceTemplate from '../../../views/partials/resource.hbs';
-import { resourcesPromise } from './index';
 
 export const addSection = (resource, idx) => {
   const $html = $(resourceTemplate(resource));
@@ -33,6 +32,5 @@ export const showResources = topic => (resources) => {
   Materialize.showStaggeredList('#resources-list');
 };
 
-export default (topic) => {
+export default resourcesPromise => topic =>
   resourcesPromise.then(showResources(topic));
-};
