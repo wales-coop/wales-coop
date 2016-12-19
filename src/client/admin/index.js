@@ -1,14 +1,7 @@
 /* eslint-disable */
 import * as _ from 'ramda';
-import * as query from './api/index';
-import renderChart from './admin/chart';
-
-export const trace = (d) => {console.log(d); return d}
-
-export const getJSON = () => (
-  query.getResponses()
-    .then(res => res)
-);
+import * as api from '../api/';
+import renderChart from './chart';
 
 const blank = (l) => new Array(l).fill(0)
   .map((el, i) => Object({ id: i + 1, frequency: 0, text: '' }));
@@ -29,10 +22,9 @@ export const filter = _.curry((filterParam, rawData) => {
 }) 
 
 export default (formatParam = 'question', filterParam) => {
-      getJSON()
-      .then(filter(filterParam))
-      .then(trace)
-      .then(format(formatParam))
-      .then(renderChart);
+  api.getResponses()
+    .then(filter(filterParam))
+    .then(format(formatParam))
+    .then(renderChart);
 };
 

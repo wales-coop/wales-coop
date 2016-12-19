@@ -29,8 +29,8 @@ export const postBusiness = payload =>
 
 export const getBusinessesQuery = query => (
   query.username
-    ? ['SELECT * FROM businesses WHERE username = $1', [query.username]]
-    : ['SELECT * FROM businesses']
+  ? ['SELECT * FROM businesses WHERE username = $1', [query.username]]
+  : ['SELECT * FROM businesses']
 );
 
 export const getBusinesses = query =>
@@ -75,7 +75,7 @@ export const postResponsesQuery = (businessId, responses) => [
 ];
 
 export const postResponses = payload =>
- pool.query(...postResponsesQuery(payload.businessId, JSON.parse(payload.responses)));
+  pool.query(...postResponsesQuery(payload.businessId, JSON.parse(payload.responses)));
 
 export const getResourcesQuery = (query) => {
   const baseQuery = `SELECT * FROM resources INNER JOIN topics

@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 
 import _ from 'ramda';
 import constants from './constants';
-import adminPalette from './adminPalette';
+import adminPalette from './admin-palette';
 
 export const randomColor = () => (
   `#${Math.floor(Math.random() * 16)
