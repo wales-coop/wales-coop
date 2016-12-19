@@ -90,7 +90,7 @@ export const drawChart = (data) => {
   svg.selectAll('rect')
     .on('mouseover', el =>
       tooltip
-        .text('number of businesses that answered yes: '+ el.frequency)
+        .text('interested businesses: '+ el.frequency)
         .style('visibility', 'visible'),
        )
     .on('mousemove', () =>
