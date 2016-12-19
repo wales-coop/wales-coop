@@ -1,8 +1,6 @@
 /* eslint-disable */
 import * as d3 from 'd3';
-
 import _ from 'ramda';
-import constants from './constants';
 import adminPalette from './admin-palette';
 
 export const randomColor = () => (
@@ -14,82 +12,97 @@ export const randomColor = () => (
 
 export const colorLibGen = data => data.map((el, i) => Object.assign(el, { color: adminPalette[i] }));
 
-export const drawChart = (data) => {
+export const drawChart = (formatParam, filterParam) => (data) => {
   data = data.filter(el=> el.text !== '')
-  const xx = d3.scaleBand()
+
+  const margin = {
+    top: 50,
+    right: 20,
+    bottom: 50,
+    left: Math.floor(5.2*d3.max(data.map(d => d.text.length))),
+  };
+
+  const width = parseInt(d3.select('.admin-chart').style('width'), 10) - margin.left - margin.right;
+  const height = parseInt(d3.select('.admin-chart').style('height'), 10) - margin.top - margin.bottom;
 
   const x = d3.scaleLinear()
-    .domain([0, d3.max(data.map(el => el.frequency))])
-    .range([0, constants.range]);
+    .domain([0, d3.max(data.map(d => d.frequency))])
+    .range([0, width]);
 
   const y = d3.scaleBand()
-    .range([data.length * constants.rectHeigth, 0])
+    .domain(data.map(d => d.text))
+    .range([height, 0])
+    .paddingInner(0.2)
+    .paddingOuter(0.5);
 
-  var yAxis = d3.axisLeft(y)
-    .tickFormat('')
-    .tickSize(0)
+  var yAxis = d3.axisLeft(y);
 
-  const svg = d3.select('.chart')
-    .append('svg')// create an <svg> element
-    .attr('class', 'adminSvg')
-    .attr('width', constants.width)
-    .attr('height', constants.height);
-
-  var yAxisGroup = d3.select('.adminSvg') 
+  const svg = d3.select('.admin-chart')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
     .append('g')
-    .transition()
-    .duration(900)
-    .attr("transform","translate(" + 260 + "," + 50 + ")")
-    .attr('margin-left', 10)
-    .call(yAxis);
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  const bars = svg.selectAll('g')
-    .data(data)
-    .enter();
+  const bars = svg.selectAll('.bar')
+    .data(data, d => d.text)
+    .enter()
+    .append('g')
+    .attr('class', 'bar')
+    .attr('id', d => `admin-bar-${d.id}`)
+    .attr('transform', d => `translate(0, ${y(d.text)})`)
 
   bars
-    .append('g')
-    .attr('position', 'relative')
-    .attr('id', el => el.id)
+    
+  bars
     .append('rect')
-    .attr('z-index', -1)
-    .attr('height', constants.barHeight)
-    .attr('y', (el, i) => constants.rectHeigth * i)
-    .attr('x', 0)
-    .attr('fill', el => el.color)
+    .attr('height', y.bandwidth())
+    .attr('width', 0)
+    .attr('fill', d => d.color)
     .transition()
     .duration(900)
-    .attr('width', el => x(el.frequency))
-    .attr("transform", "translate(" + 261 + "," + 50 + ")");
+    .attr('width', d => x(d.frequency))
 
-  svg.selectAll('g')
+  bars
     .append('text')
     .attr('fill', 'white')
-    .attr('y', (el, i) => (50+(constants.rectHeigth * (i + 1)) - (constants.barHeight / 2)))
-    .attr('x', el => (240 + x(el.frequency)))
+    .attr('text-anchor', 'end')
+    .attr('dy', '0.35em')
+    .attr('y', y.bandwidth()/2)
+    .attr('x', d => x(d.frequency) - 4)
     .text(el => el.frequency);
 
+  svg.append('g')
+    .attr('class', 'y axis')
+    .attr('transform', `translate(${width + margin.right}, 0) scale(0, 0)`)
+    .call(yAxis)
 
-  const tooltip = d3.select('.chart')
+  svg.select('.y.axis')
+    .append('text')
+    .attr('transform', 'rotate(0)')
+    .attr('x', 250)
+    .attr('dx', '0.1em')
+    .attr('fill', 'black')
+    .style('text-anchor', 'end')
+    .text(`${!filterParam ? `${formatParam.toUpperCase()}S: all business types` : `QUESTIONS: ${filterParam} businesses only`}`);
+
+  svg.select('.y.axis')
+    .transition()
+    .delay(100)
+    .duration(800)
+    .attr('transform', 'translate(0, 0) scale(1, 1)')
+
+
+
+  const tooltip = d3.select('.admin-chart-container')
     .append('div')
     .style('position', 'absolute')
     .style('visibility', 'hidden')
     .style('z-axis', 10)
     .attr('class', 'adminSvg__toolTip');
 
-  bars.append("text")
-    .attr("class", "label")
-    .attr("x", () =>  500)
-    .attr("y", () => 75)
-    .text((d) =>  d.text)
-    .attr("font-size", "10px")
-    .transition()
-    .duration(900)
-    .attr("transform", (el,i)=> ("translate("+ -500 + "," + constants.rectHeigth * i + ")"))
-
   svg.selectAll('rect')
     .on('mouseover', el =>
-      tooltip
+        tooltip
         .text('interested businesses: '+ el.frequency)
         .style('visibility', 'visible'),
        )
@@ -104,9 +117,9 @@ export const drawChart = (data) => {
        );
 };
 
-export default (data) => {
+export default (formatParam, filterParam) => (data) => {
   _.compose(
-    drawChart,
+    drawChart(formatParam, filterParam),
     colorLibGen,
   )(data);
 };

@@ -12,11 +12,8 @@
   z-index: 10;
 }
 
-.adminSvg__chart {
-  padding:5%;
-}
-
-.adminSvg {
-  display:block;
-  margin: 0 auto; 
+.admin-chart {
+  height: 500px;
+  position: relative;
+  width: 100%;
 }
