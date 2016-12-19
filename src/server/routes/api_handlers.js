@@ -36,7 +36,7 @@ export const getResponses = (req, rep) =>
     .catch(handleError(req, rep));
 
 export const getResources = (req, rep) =>
-  db.getResources()
+  db.getResources(req.query)
     .then(returnData(req, rep))
     .catch(handleError(req, rep));
 

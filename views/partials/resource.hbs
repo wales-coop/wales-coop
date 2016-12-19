@@ -1,0 +1,23 @@
+<li class="collapsible-list-item">
+  <div class="collapsible-header">
+    {{title}}
+    <a class="right" href="{{url}}" target="_blank">
+      <i class="material-icons">open_in_new</i>
+    </a>
+  </div>
+  <div class="collapsible-body">
+    <p>
+      {{description}}
+      {{#if resources.length}}
+        <br/>
+        <br/>
+        Further resources:
+        <br/>
+        {{#each resources}}
+          <a href="{{URL}}">{{title}}</a>
+          <br/>
+        {{/each}}
+      {{/if}}
+    </p>
+  </div>
+</li>

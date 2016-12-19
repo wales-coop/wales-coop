@@ -1,0 +1,9 @@
+BEGIN;
+
+DROP TABLE businesses CASCADE;
+DROP TABLE topics CASCADE;
+DROP TABLE questions CASCADE;
+DROP TABLE interests CASCADE;
+DROP TABLE resources CASCADE;
+
+COMMIT;
