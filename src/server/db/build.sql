@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS resources (
   title          VARCHAR(250)   NOT NULL,
   description    TEXT           NOT NULL,
   url            TEXT           NOT NULL,
-  resources      JSONB          NOT NULL,
+  resources      JSON           NOT NULL,
   topic_id       INTEGER        NOT NULL      REFERENCES topics(id)
 );
 
