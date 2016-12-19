@@ -66,7 +66,7 @@ export const generateResponsesInsertValuePlaceholders = (response, idx) =>
   `($${(idx * 3) + 1}, $${(idx * 3) + 2}, $${(idx * 3) + 3})`;
 
 export const generateResponsesInsertValues = businessId => response =>
-    [businessId, response.questionId, response.response];
+  [businessId, response.questionId, response.response];
 
 export const postResponsesQuery = (businessId, responses) => [
   `INSERT INTO interests (business_id, question_id, response) VALUES
@@ -75,11 +75,11 @@ export const postResponsesQuery = (businessId, responses) => [
 ];
 
 export const postResponses = payload =>
- pool.query(...postResponsesQuery(payload.businessId, JSON.parse(payload.responses)));
+  pool.query(...postResponsesQuery(payload.businessId, JSON.parse(payload.responses)));
 
 export const getResourcesQuery = (query) => {
   const baseQuery = `SELECT * FROM resources INNER JOIN topics
-   ON resources.topic_id = topics.id`;
+  ON resources.topic_id = topics.id`;
   return query && query.topicId
     ? [`${baseQuery} WHERE topic_id = $1`, [query.topicId]]
     : [baseQuery];
