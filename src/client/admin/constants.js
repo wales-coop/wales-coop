@@ -1,7 +1,7 @@
 export default {
-  rectHeigth: 35,
-  barHeight: 30,
-  height: 600,
-  width: 500,
+  rectHeigth: 55,
+  barHeight: 50,
+  height: 1300,
+  width: 800,
   range: 500,
 };
